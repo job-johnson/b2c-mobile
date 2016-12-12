@@ -1,0 +1,32 @@
+
+<?xml version="1.0"?>
+<!--
+Author Name: Firasath
+Author URI: http://www.firasath.com
+Author Email: firasath_hussain20@yahoo.com
+-->
+<config>
+    <modules>
+        <Ziwira_Checkout>
+            <version>1.0.0.0</version>
+        </Ziwira_Checkout>
+    </modules>
+
+    <global>
+        <blocks>
+            <ziwira_checkout>
+                <class>Ziwira_Checkout_Block</class>
+            </ziwira_checkout>
+        </blocks>
+    </global>
+
+    <frontend>
+        <layout>
+            <updates>
+                <ziwira_checkout>
+                    <file>ziwira/checkout.xml</file>
+                </ziwira_checkout>
+            </updates>
+        </layout>
+    </frontend>
+</config>

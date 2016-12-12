@@ -1,0 +1,122 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magento.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magento.com for more information.
+ *
+ * @category    design
+ * @package     rwd_default
+ * @copyright   Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<?php
+/**
+ * Template for Mage_Page_Block_Html
+ */
+?>
+
+<!DOCTYPE html>
+
+<!--[if lt IE 7 ]> <html lang="<?php echo $this->getLang(); ?>" id="top" class="no-js ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="<?php echo $this->getLang(); ?>" id="top" class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="<?php echo $this->getLang(); ?>" id="top" class="no-js ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="<?php echo $this->getLang(); ?>" id="top" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="<?php echo $this->getLang(); ?>" id="top" class="no-js"> <!--<![endif]-->
+
+<head>
+<?php echo $this->getChildHtml('head') ?>
+<style>
+.page-print{
+      width: 7.5in;
+}
+.print-page h1{
+  color: #3bac4a;
+font-size: 27.33px;
+font-weight: 300;
+margin-bottom: 0;
+}
+.print-page p.order-date{
+  color: #253537;
+font-size: 13.33px;
+font-family: "Open Sans", sans-serif;
+font-weight: 400;
+margin: 0;
+}
+.print-page h2{
+  font-family: Arial, Helvetica, sans-serif;
+font-weight: bold;
+color: #191919;
+font-size: 18px;
+}
+.print-page address, .print-page .col-1, .print-page .col-2{
+  font-family: Arial, Helvetica, sans-serif;
+    color: #191919;
+    font-size: 13px;
+    line-height: 20px;
+}
+.print-page thead th{
+  border-bottom: 1px solid silver;
+    background: #f3f3f3;
+    padding: 10px 10px;
+    color: #253537;
+    font-size: 13.33px;
+    font-family: "Open Sans", sans-serif;
+    font-weight: bold;
+    border: none;
+}
+.print-page tbody td, .print-page tfoot tr{
+  background: none;
+}
+.print-page tbody tr td, .print-page tfoot tr td {
+  color: #191919;
+border: none;
+font-size: 13.33px;
+font-family: Arial, Helvetica, sans-serif;
+padding: 10px 10px;
+}
+.print-page tbody{
+      border-bottom: 1px solid #ededed;
+}
+.print-page .buttons-set button{
+  background: #3bb04b;
+border-radius: 4px;
+font-size: 14px;
+font-family: 'Ubuntu', sans-serif;
+font-weight: normal;
+padding: 13px 20px;
+letter-spacing: 1px;
+margin-bottom: 30px;
+}
+</style>
+</head>
+<body class="page-print<?php echo $this->getBodyClass()?$this->getBodyClass():'' ?>">
+<div class="print-page">
+    <div class="print-head">
+        <img src="<?php echo $this->getPrintLogoUrl() ? $this->getPrintLogoUrl() : $this->getChild('header')->getLogoSrc() ?>" class="logo" alt="" />
+        <?php if ($this->getPrintLogoText()):?>
+            <address><?php echo nl2br($this->escapeHtml($this->getPrintLogoText())) ?></address>
+        <?php endif;?>
+    </div>
+    <?php echo $this->getChildHtml('content') ?>
+    <div class="buttons-set">
+        <button type="button" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Close Window')) ?>" class="button" onclick="window.close();"><span><span><?php echo $this->__('Close Window') ?></span></span></button>
+    </div>
+    <?php echo $this->getAbsoluteFooter() ?>
+</div>
+</body>
+</html>

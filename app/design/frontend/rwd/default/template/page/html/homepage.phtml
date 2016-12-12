@@ -1,0 +1,419 @@
+<div class="white-bg clearall">
+    <div class="main-container" id="maincontent">
+        <div class="main">
+            <div class="col-main">
+
+
+                <div class="clearall home-container-1">
+                  <div class="home-container-left pull-left">
+                    <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('home_slider')->toHtml();?>
+
+                    <div class="clearall hidden">
+                      <div class="home-left-col pull-left">
+                        <!-- <?php //echo $this->getLayout()->createBlock('cms/block')->setBlockId('head-cat')->toHtml(); ?> -->
+                        <div class="recycle-block">
+                        <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('green-products')->toHtml(); ?>
+                        </div>
+                        <div class="recycle-block">
+                        <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('express-delivery')->toHtml(); ?>
+                        </div>
+
+                      </div>
+                      <div class="home-right-col pull-left">
+                        <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('home_slider')->toHtml();?>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="home-container-right pull-left">
+                  <div class="home-right-1">
+                  <!-- /100058245/Marketplace_MR1 -->
+                  <div id='div-gpt-ad-1472827447864-0' style='height:250px; width:300px;'>
+                  <script>
+                  googletag.cmd.push(function() { googletag.display('div-gpt-ad-1472827447864-0'); });
+                  </script>
+                  </div>
+                  </div>
+                  <div class="home-right-1">
+                  <!-- /100058245/Marketplace_MR2 -->
+                  <div id='div-gpt-ad-1472827447864-1' style='height:250px; width:300px;'>
+                  <script>
+                  googletag.cmd.push(function() { googletag.display('div-gpt-ad-1472827447864-1'); });
+                  </script>
+                  </div>
+                  </div>
+
+                  </div>
+                  <div class="middle-1">
+                  <div class="middle-1-col pull-left">
+                  <!-- /100058245/Marketplace_CS1 -->
+                  <div id='div-gpt-ad-1472827447864-2' style='height:161px; width:411px;'>
+                  <script>
+                  googletag.cmd.push(function() { googletag.display('div-gpt-ad-1472827447864-2'); });
+                  </script>
+                  </div>
+                  </div>
+                  <div class="middle-1-col pull-left">
+                  <!-- /100058245/Marketplace_CS2 -->
+                  <div id='div-gpt-ad-1472827447864-3' style='height:161px; width:411px;'>
+                  <script>
+                  googletag.cmd.push(function() { googletag.display('div-gpt-ad-1472827447864-3'); });
+                  </script>
+                  </div>
+                  </div>
+                  <div class="middle-1-col pull-left no-mar">
+                  <!-- /100058245/Marketplace_CS3 -->
+                  <div id='div-gpt-ad-1472827447864-4' style='height:161px; width:411px;'>
+                  <script>
+                  googletag.cmd.push(function() { googletag.display('div-gpt-ad-1472827447864-4'); });
+                  </script>
+                  </div>
+                  </div>
+                  </div>
+                  <div class="featured-heading">
+                    <div class="featured-icon pull-left">
+                      <img src="<?php echo $this->getSkinUrl('images/featured-icon.png'); ?>"/>
+                    </div>
+                    <div class="featured-title pull-left">
+                      <h1>New Products</h1><li><a href="">view all&nbsp;&nbsp;></a></li>
+                    </div>
+                  </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script type="text/javascript">
+jQuery(window).load(function(){
+jQuery('.feature-product-list').bxSlider({
+pager:false,
+auto: true,
+minSlides: 3,
+maxSlides: 5,
+slideWidth: 240,
+slideMargin:20
+});
+
+jQuery('.sellers').bxSlider({
+pager:false,
+auto: true,
+minSlides: 3,
+maxSlides: 5,
+slideWidth: 240,
+slideMargin:20
+});
+})
+</script>
+
+<div class="no-bg">
+<div class="main-container new-products ps" id="maincontent-new-products">
+<div class="main new-products">
+<div class="col-main new-products">
+<ul class="feature-product-list">
+<?php
+
+$category = Mage::getModel('catalog/category')->load(51);
+$productCollection = Mage::getResourceModel('catalog/product_collection')
+                                 ->addCategoryFilter($category)
+                                 ->setPageSize(50);
+//echo $this->getAddtoCartUrl($collection, array('qty' => 7));
+foreach($productCollection as $_product){
+   $product = Mage::getModel('catalog/product')->load($_product->getEntityId());
+$IsNew = $product->getIsNew();
+$IsSale = $product->getIsSale();
+$IsBestseller = $product->getIsBestseller();
+?>
+
+<li>
+<?php if($IsNew == 1):?>
+<div class="flag-new-top flag-arrow-top"></div>
+<div class="flag-text">new</div>
+<?php endif;?>
+<?php if($IsSale == 1):?>
+<div class="flag-sale-top flag-arrow-top"></div>
+<div class="flag-text">sale</div>
+<?php endif;?>
+<?php if($IsBestseller == 1):?>
+<div class="flag-arrow-right"></div>
+<div class="seller-arrow-text">best seller</div>
+<?php endif;?>
+<div class="prod-img" style="">
+<a href="<?php echo $product->getProductUrl(); ?>"><img src="<?php echo Mage::helper('catalog/image')->init($product, 'small_image'); ?>"/></a>
+</div>
+<div class="prod-action">
+<a class="featured-add-to-cart" style="cursor:pointer" title="<?php echo $this->quoteEscape($this->__('Add to Cart')) ?>" onclick="setLocation('<?php echo Mage::helper('checkout/cart')->getAddUrl($product); ?>')"><i class="icon-market" ></i><?php echo $this->__('Add to Cart') ?></a>
+<a href="<?php echo $product->getProductUrl(); ?>" class="featured-quick-view"><i class="icon-search"></i>Quick View</a>
+</div>
+<div class="prod-info">
+<div class="recycle-flag"><img src="<?php echo $this->getSkinUrl('images/recycle-flag.png'); ?>"/></div>
+<h2 class="prod-name"><?php echo $product->getName(); ?></h2>
+<h3 class="prod-price"><span class="new-price"><?php echo Mage::helper('core')->currency($product->getFinalPrice(),true,true); ?></span>
+<?php if($product->getMsrp() !=''): ?>
+  /<span class="old-price"><?php echo Mage::helper('core')->currency($product->getMsrp(),true,true); ?></span>
+  <?php endif;?>
+
+
+</h3>
+</div>
+</li>
+
+
+
+
+<?php }?>
+</ul>
+
+</div>
+</div>
+</div>
+
+</div>
+
+
+<div class="white-bg">
+<div class="main-container limited-offer ps" id="maincontent-limited-offer">
+<div class="main limited-offer">
+<div class="col-main limited-offer">
+<div class="featured-heading">
+<div class="featured-icon pull-left">
+<img src="<?php echo $this->getSkinUrl('images/prod-icon.png'); ?>"/>
+</div>
+<div class="featured-title pull-left">
+<h1>Limited Time Offers</h1><li><a href="">view all&nbsp;&nbsp;></a></li>
+</div>
+</div>
+<ul class="feature-product-list">
+<?php
+$limitedTimeOfferCat = Mage::getModel('catalog/category')->load(50);
+$ltoproductCollection = Mage::getResourceModel('catalog/product_collection')
+                                 ->addCategoryFilter($limitedTimeOfferCat)
+                                 ->setPageSize(50);
+                                 /*
+$collection = Mage::getResourceModel('catalog/product_collection')
+->joinField('category_id','catalog/category_product','category_id','product_id=entity_id',null,'left')
+->addAttributeToFilter('category_id', array('in' => array(50)))
+->addAttributeToSelect('*')->setPageSize(50)
+->load();**/
+//echo $this->getAddtoCartUrl($collection, array('qty' => 7));
+/**foreach($collection as $product){**/
+foreach($ltoproductCollection as $_product){
+   $product = Mage::getModel('catalog/product')->load($_product->getEntityId());
+$IsNew = $product->getIsNew();
+$IsSale = $product->getIsSale();
+$IsBestseller = $product->getIsBestseller();
+?>
+
+<li>
+<?php if($IsNew == 1):?>
+<div class="flag-new-top flag-arrow-top"></div>
+<div class="flag-text">new</div>
+<?php endif;?>
+<?php if($IsSale == 1):?>
+<div class="flag-sale-top flag-arrow-top"></div>
+<div class="flag-text">sale</div>
+<?php endif;?>
+<?php if($IsBestseller == 1):?>
+<div class="flag-arrow-right"></div>
+<div class="seller-arrow-text">best seller</div>
+<?php endif;?>
+<div class="prod-img" style="">
+<a href="<?php echo $product->getProductUrl(); ?>"><img src="<?php echo Mage::helper('catalog/image')->init($product, 'small_image'); ?>"/></a>
+</div>
+<div class="prod-action">
+<a class="featured-add-to-cart" style="cursor:pointer" title="<?php echo $this->quoteEscape($this->__('Add to Cart')) ?>" onclick="setLocation('<?php echo Mage::helper('checkout/cart')->getAddUrl($product); ?>')"><i class="icon-market" ></i><?php echo $this->__('Add to Cart') ?></a>
+<a href="<?php echo $product->getProductUrl(); ?>" class="featured-quick-view"><i class="icon-search"></i>Quick View</a>
+</div>
+<div class="prod-info">
+<div class="recycle-flag"><img src="<?php echo $this->getSkinUrl('images/recycle-flag.png'); ?>"/></div>
+<h2 class="prod-name"><?php echo $product->getName(); ?></h2>
+<h3 class="prod-price"><span class="new-price"><?php echo Mage::helper('core')->currency($product->getFinalPrice(),true,true); ?></span>
+
+  <?php if($product->getMsrp() !=''): ?>
+    /<span class="old-price"><?php echo Mage::helper('core')->currency($product->getMsrp(),true,true); ?></span>
+    <?php endif;?>
+</h3>
+</div>
+</li>
+
+
+
+
+<?php }?>
+</ul>
+
+<div class="featured-heading">
+<div class="featured-icon pull-left">
+<img src="<?php echo $this->getSkinUrl('images/hot-icon.png'); ?>"/>
+</div>
+<div class="featured-title pull-left">
+<h1>Best Sellers</h1><li><a href="">view all&nbsp;&nbsp;></a></li>
+</div>
+</div>
+
+</div>
+</div>
+</div>
+
+</div>
+
+<div class="no-bg">
+<div class="main-container best-sellers ps" id="maincontent-best-sellers">
+<div class="main best-sellers">
+<div class="col-main best-sellers">
+<ul class="feature-product-list">
+<?php
+$bestSellersCat = Mage::getModel('catalog/category')->load(52);
+$BsproductCollection = Mage::getResourceModel('catalog/product_collection')
+                                 ->addCategoryFilter($bestSellersCat)
+                                 ->setPageSize(50);
+/*
+$collection = Mage::getResourceModel('catalog/product_collection')
+->joinField('category_id','catalog/category_product','category_id','product_id=entity_id',null,'left')
+->addAttributeToFilter('category_id', array('in' => array(52)))
+->addAttributeToSelect('*')->setPageSize(50)
+->load();
+//echo $this->getAddtoCartUrl($collection, array('qty' => 7));
+foreach($collection as $product){**/
+foreach($BsproductCollection as $_product){
+   $product = Mage::getModel('catalog/product')->load($_product->getEntityId());
+
+$IsNew = $product->getIsNew();
+$IsSale = $product->getIsSale();
+$IsBestseller = $product->getIsBestseller();
+?>
+
+<li>
+<?php if($IsNew == 1):?>
+<div class="flag-new-top flag-arrow-top"></div>
+<div class="flag-text">new</div>
+<?php endif;?>
+<?php if($IsSale == 1):?>
+<div class="flag-sale-top flag-arrow-top"></div>
+<div class="flag-text">sale</div>
+<?php endif;?>
+<?php if($IsBestseller == 1):?>
+<div class="flag-arrow-right"></div>
+<div class="seller-arrow-text">best seller</div>
+<?php endif;?>
+<div class="prod-img" style="">
+<a href="<?php echo $product->getProductUrl(); ?>"><img src="<?php echo Mage::helper('catalog/image')->init($product, 'small_image'); ?>"/></a>
+</div>
+<div class="prod-action">
+<a class="featured-add-to-cart" style="cursor:pointer" title="<?php echo $this->quoteEscape($this->__('Add to Cart')) ?>" onclick="setLocation('<?php echo Mage::helper('checkout/cart')->getAddUrl($product); ?>')"><i class="icon-market" ></i><?php echo $this->__('Add to Cart') ?></a>
+<a href="<?php echo $product->getProductUrl(); ?>" class="featured-quick-view"><i class="icon-search"></i>Quick View</a>
+</div>
+<div class="prod-info">
+<div class="recycle-flag"><img src="<?php echo $this->getSkinUrl('images/recycle-flag.png'); ?>"/></div>
+<h2 class="prod-name"><?php echo $product->getName(); ?></h2>
+<h3 class="prod-price"><span class="new-price"><?php echo Mage::helper('core')->currency($product->getFinalPrice(),true,true); ?></span>
+
+  <?php if($product->getMsrp() !=''): ?>
+    /<span class="old-price"><?php echo Mage::helper('core')->currency($product->getMsrp(),true,true); ?></span>
+    <?php endif;?>
+
+</h3>
+</div>
+</li>
+
+
+
+
+<?php }?>
+</ul>
+
+</div>
+</div>
+</div>
+
+</div>
+
+
+<div class="white-bg" style="margin-top: 30px;">
+<div class="main-container brands ps" id="maincontent-brands">
+<div class="main brands">
+<div class="col-main brands">
+
+
+<div class="featured-heading fea-bor-bottom">
+<div class="featured-icon pull-left">
+<img src="<?php echo $this->getSkinUrl('images/hot-icon.png'); ?>"/>
+</div>
+<div class="featured-title pull-left">
+<h1>Shop By Brands</h1><li><a href="">view all&nbsp;&nbsp;></a></li>
+</div>
+</div>
+<div class="seller-container">
+  <div class="sellers">
+
+<?php
+
+// Gets all sub categories of parent category 'Brands'
+$parent = Mage::getModel('catalog/category')->load(53);
+
+// Create category collection for children
+$childrenCollection = $parent->getCollection();
+// Only get child categories of parent cat
+$childrenCollection->addIdFilter($parent->getChildren());
+// Only get active categories
+$childrenCollection->addAttributeToFilter('is_active', 1);
+
+// Add base attributes
+$childrenCollection->addAttributeToSelect('url_key')
+->addAttributeToSelect('shop_brand_logo')
+->addAttributeToSelect('all_children')
+->addAttributeToSelect('is_anchor')
+->setOrder('position', Varien_Db_Select::SQL_ASC)
+->joinUrlRewrite();
+
+// ADD IMAGE ATTRIBUTE
+$childrenCollection->addAttributeToSelect('image');
+$count=1;
+foreach($childrenCollection as $cat):
+$_file_name = $cat->getShopBrandLogo(); // Here $cat is category data array
+$_media_dir = Mage::getBaseDir('media') . DS . 'catalog' . DS . 'category' . DS;
+$cache_dir = $_media_dir . DS; // Here i create a resize folder. for upload new category image
+
+if (file_exists($cache_dir . $_file_name)) {
+$catImg =Mage::getBaseUrl('media') .  'catalog' . DS . 'category' . DS . $_file_name;
+} elseif (file_exists($_media_dir . $_file_name)) {
+if (!is_dir($cache_dir)) {
+mkdir($cache_dir);
+}
+
+$_image = new Varien_Image($_media_dir . $_file_name);
+$_image->resize(101, 106); // change image height, width
+$_image->save($cache_dir . $_file_name);
+$catImg = Mage::getBaseUrl('media') . 'catalog' . DS . 'category' . DS . $_file_name;
+}
+// display resize category thumbnail imagename
+?>
+<div class="seller-col">
+<a href="<?php echo $cat->getURL(); ?>"><img src="<?php echo $catImg; ?>"/></a>
+</div>
+<?php endforeach; ?>
+</div>
+<div class="homepage_fullwidth_ads cust_feed">
+
+ <h3><img src="<?php echo $this->getSkinUrl('images/homepage/customer_feedback_icon.png'); ?>" alt="customer_feedback"> Customers Feedback</h3>
+    <div class="cutomer_feedback">
+      <?php  $feedbackData = Mage::getModel('customerfeedback/customerfeedback')->getCollection()->addFieldToFilter('approved',1)->getLastItem()->getData();
+    //  echo "<pre>";print_r($feedbackData);exit;
+      if(!empty($feedbackData)):
+      $feedbackcustomerName = $feedbackData['customer_name'];
+      $feedback= $feedbackData['feedback'];
+      $postedDate= $feedbackData['posted_date'];
+      ?>
+
+      <p>“<?php echo $feedback;?>”</p>
+        <h4><?php echo $feedbackcustomerName;?> <span>- <?php echo date("F, Y",strtotime($postedDate));?></span></h4>
+
+      <?php endif;?>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</div>

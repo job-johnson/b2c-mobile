@@ -1,0 +1,16 @@
+<?php
+/**
+ * Helcim Gateway info admin template
+ */
+?>
+<?php if($_info = $this->getInfo()): ?>
+<?php echo $this->__('Name on Card: %s', $this->getInfo()->getCcOwner()) ?><br />
+<?php echo $this->__('Card Number: **** %s', $this->getInfo()->getCcLast4()) ?><br />
+<?php echo $this->__('Expiry Date: %s', $this->getExpiryDate()) ?><br />
+<hr />
+<?php echo $this->__('Gateway Response: %s', $this->getInfo()->getCcStatus()) ?><br />
+<?php echo $this->__('Transaction Id: %s', $this->getInfo()->getCcTransId()) ?><br />
+<?php echo $this->__('Gateway Ref#: %s', $this->getInfo()->getGatewayOrderId()) ?><br />
+<?php echo $this->__('AVS Result: %s', $this->getInfo()->getCcAvsStatus()) ?><br />
+<?php echo $this->__('CVV Result: %s', $this->getInfo()->getCcCidStatus()) ?><br />
+<?php endif; ?>

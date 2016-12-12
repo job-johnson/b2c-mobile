@@ -1,0 +1,27 @@
+<!-- Categories display start -->
+<!-- <div class="home_categories">
+<ul>
+ <?php $helper = $this->helper('catalog/category') ?>
+<?php foreach ($helper->getStoreCategories() as $_category): ?>
+<li>
+   <a href="<?php //echo Mage::getModel('catalog/category')->setData($_category->getData())->getUrl(); ?>" title="<?php //echo $_category->getName() ?>"><?php //echo $_category->getName() ?></a>
+</li>
+<?php endforeach ?>
+</ul>
+
+</div> -->
+<?php //echo $this->getChildHtml() ?>
+
+<!-- Categories display end -->
+
+
+
+<div class="cat-block">
+  <h2><img src="<?php echo $this->getSkinUrl('images/cat-icon.png'); ?>"/>CATEGORIES</h2>
+  <ul class="cat-list clearall">
+    <?php $helper = $this->helper('catalog/category') ?>
+    <?php foreach ($helper->getStoreCategories() as $_category): ?>
+      <li><a href="<?php echo Mage::getModel('catalog/category')->setData($_category->getData())->getUrl(); ?>" title="<?php echo $_category->getName() ?>"><span><?php echo $_category->getName() ?></span><span class="cat-arrow">></span></a></li>
+    <?php endforeach ?>
+  </ul>
+</div>

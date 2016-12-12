@@ -1,0 +1,36 @@
+<div class="discount">
+    <div class="discount-form">
+        <p class="coupon_code_p"><?php echo $this->__('Please enter your coupon code to get 50% OFF:') ?></p>
+        <input type="hidden" name="remove" id="remove-coupone" value="0"/>
+
+        <div class="input-box">
+            <input class="input-text coupon_code_new_changes" id="coupon_code" name="coupon_code"
+                   value="<?php echo $this->htmlEscape($this->getCouponCode()) ?>"/>
+
+        </div>
+        <div>
+            <div id="coupon-success-msg" class="sucesss coupon_code_p"></div>
+            <div id="coupon-error-msg" class="error"></div>
+        </div>
+        <div class="lt-buttons-set">
+            <?php
+            $classRemovedCouponBtn = 'hidden';
+            if (strlen($this->getCouponCode())) {
+                $classRemovedCouponBtn = '';
+            } ?>
+            <button id="apply_coupon_btn" disbled="disabled" type="button"
+                    title="<?php echo $this->__('Apply Coupon') ?>" class=" button disabled new_coupon_button" disabled="disabled"
+                    value="<?php echo $this->__('Apply Coupon') ?>">
+                <span><span><?php echo $this->__('Apply Coupon') ?></span></span></button>
+
+            &nbsp;
+            <button id="cancel_coupon_btn" type="button" title="<?php echo $this->__('Cancel Coupon') ?>"
+                    class="button <?php echo $classRemovedCouponBtn; ?>"
+                    value="<?php echo $this->__('Cancel Coupon') ?>">
+                <span><span><?php echo $this->__('Cancel Coupon') ?></span></span></button>
+            <?php if (strlen($this->getCouponCode())): ?>
+            <?php endif; ?>
+        </div>
+
+    </div>
+</div>

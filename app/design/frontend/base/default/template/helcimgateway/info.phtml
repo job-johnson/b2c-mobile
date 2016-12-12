@@ -1,0 +1,10 @@
+<?php
+/**
+ * Helcim Gateway info frontend template
+ */
+?>
+<?php if($_info = $this->getInfo()): ?>
+<?php echo $this->__('Name on Card: %s', $this->getInfo()->getCcOwner()) ?><br />
+<?php echo $this->__('Card Number: **** %s', $this->getInfo()->getCcLast4()) ?><br />
+<?php echo $this->__('Expiry Date: %s', $this->getExpiryDate()) ?><br />
+<?php endif; ?>

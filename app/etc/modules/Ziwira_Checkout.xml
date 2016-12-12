@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!--
+Author Name: Firasath
+Author URI: http://www.firasath.com
+Author Email: firasath_hussain20@yahoo.com
+-->
+<config>
+    <modules>
+        <Ziwira_Checkout>
+            <active>true</active>
+            <codePool>local</codePool>
+            <depends>
+                <Mage_Checkout/>
+            </depends>
+        </Ziwira_Checkout>
+    </modules>
+</config>

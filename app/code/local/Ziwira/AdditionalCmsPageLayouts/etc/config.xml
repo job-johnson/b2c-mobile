@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!--
+Author Name: Firasath
+Author URI: http://www.firasath.com
+Author Email: firasath_hussain20@yahoo.com
+-->
+<config>
+ <global>
+  <page>
+   <layouts>
+    <custom_static_page_one>
+     <label>HomePage Layout</label>
+     <template>page/custom-homepage-layout.phtml</template>
+    </custom_static_page_one>
+    <custom_static_page_two>
+     <label>Custom Product Page Layout</label>
+     <template>page/custom-product-layout.phtml</template>
+   </custom_static_page_two>
+   <custom_static_page_three>
+    <label>Custom Two Col Left Layout</label>
+    <template>page/custom-2col-left.phtml</template>
+  </custom_static_page_three>
+
+   </layouts>
+  </page>
+ </global>
+</config>

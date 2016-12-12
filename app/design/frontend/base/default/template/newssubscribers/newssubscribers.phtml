@@ -1,0 +1,75 @@
+<?php
+if ($this->isActivePopUp() && !Mage::helper('newssubscribers')->isMobile()):
+?>
+<script type="text/javascript">
+    <?php if (is_numeric($this->getCookieLifeTime())): ?>
+    EsNewsSubscribers.setCookieLiveTime(<?php echo $this->getCookieLifeTime(); ?>);
+    <?php endif; ?>
+    <?php if ($this->getCookieName()): ?>
+    EsNewsSubscribers.setCookieName('<?php echo $this->getCookieName(); ?>');
+    <?php endif; ?>
+    EsNewsSubscribers.setBaseUrl('<?php echo $this->getBaseUrl(); ?>');
+</script>
+<div id="esns_background_layer">
+    <?php if ($this->getTheme() == 'default'): ?>
+    <div id="esns_box_layer">
+      <div id="esns_box_close"></div>
+        <div class="left-newsletter">
+          <div id="esns_box_subscribe_response_error"></div>
+            <div id="esns_box_subscribe_response_success">
+<div class="success-text-up">
+          <p class="top-text">Thank you for subscribing to Ziwira.com</p>
+        </div>
+<p class="signup-now-success">We have sent you an email with a uniqiue code
+Please enter the code at checkout to get <strong>50% OFF</strong> on your very first order</p>
+<p class="valid-text-success">"Valid Untill December 31, 2016"</p>
+
+          </div>
+          <div id="discount_newsletter_form">
+          <div class="text-up">
+          <p class="top-text">Register Today and Get 50% Off Your First Order of All-Natural, Organic and Eco-Friendly</p>
+        </div>
+          <span class="signup-now">Sign up to our newsletter now!*</span>
+          <div id="esns_box_subscribe">
+              <div id="esns_box_subscribe_response_error"></div>
+              <div id="esns_box_subscribe_response_success"></div>
+              <div id="esns_box_subscribe_form">
+                  <div id="esns_box_subscribe_input"><input onclick="if(this.value=='<?php echo $this->__('Your Email'); ?>') this.value=''" onblur="if(this.value=='') this.value='<?php echo $this->__('Your Email'); ?>'" id="esns_email" name="subscribe_email" value="<?php echo $this->__('Your Email'); ?>" type="text"></div>
+                  <div id="esns_box_subscribe_submit"><a href="javascript:void(0)" id="esns_submit" ><?php echo $this->__('Sign Me Up'); ?></a></div>
+              </div>
+          </div>
+            <span class="valid-text">"Valid Untill December 31, 2016"</span>
+        </div>
+
+        </div>
+        <div class="right-newsletter">
+          <div id="esns_box_title">
+          </div>
+        </div>
+    </div>
+    <?php elseif($this->getTheme() == 'label'): ?>
+    <div id="esns_box_layer" class="tl">
+        <div id="esns_box_close"></div>
+
+
+            <div id="esns_box_block_1">
+                <?php echo $this->getFirstTitle() ?>
+
+                <div id="esns_box_subscribe">
+                    <div id="esns_box_subscribe_response_error"></div>
+                    <div id="esns_box_subscribe_response_success"></div>
+                    <div id="esns_box_subscribe_form">
+                        <div id="esns_box_subscribe_input"><input onclick="if(this.value=='<?php echo $this->__('Email'); ?>') this.value=''" onblur="if(this.value=='') this.value='<?php echo $this->__('Email'); ?>'" id="esns_email" name="subscribe_email" value="<?php echo $this->__('Email'); ?>" type="text"></div>
+                        <div id="esns_box_subscribe_submit"><a href="javascript:void(0)" id="esns_submit" ><?php echo $this->__('Subscribe'); ?></a></div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+    </div>
+    <?php endif; ?>
+</div>
+<?php endif; ?>

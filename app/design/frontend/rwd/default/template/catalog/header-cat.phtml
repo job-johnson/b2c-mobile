@@ -1,0 +1,69 @@
+<!-- Categories display start -->
+
+<?php
+/*
+Author Name: Firasath
+Author URI: http://www.firasath.com
+Author Email: firasath_hussain20@yahoo.com
+*/
+$_helper = Mage::helper('catalog/category');
+$_categories = $_helper->getStoreCategories();
+if (count($_categories) > 0){ ?>
+
+  <ul class="nav">
+    <?php  foreach($_categories as $_category){
+          $_category = Mage::getModel('catalog/category')->load($_category->getId());
+          $_subcategories = $_category->getChildrenCategories();
+          if($_category->getIsActive() == 1 & $_category->getIncludeInMenu() == 1){
+          if (count($_subcategories) > 0 || $_category->getUrlKey() == 'sales'){ ?>
+              <li>
+                <a href="<?php echo $_category->getUrl(); ?>"><?php echo $_category->getName(); ?></a>
+                <div>
+                  <div class="nav-column-left">
+                      <div class="nav-column new-nav">
+                            <ul class="new-sub">
+                              <?php foreach($_subcategories as $_subcategory){
+                                      $_subcategory = Mage::getModel('catalog/category')->load($_subcategory->getEntityId());
+                                ?>
+                                <?php if($_subcategory->getIsActive() == 1 && $_subcategory->getIncludeInMenu() ==1){?>
+                                <li><a href="<?php echo $_subcategory->getUrl(); ?>"><?php echo $_subcategory->getName(); ?></a></li>
+                              <?php }} ?>
+                            </ul>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="nav-column nav-column-img">
+                          <a href="https://ziwirastore.com/shop-by-brand/prairie-naturals.html"><img src="<?php echo $this->getSkinUrl('images/homepage/menu-icon-3.png');?>" alt="Prairie Naturals" /></a>
+                        </div>
+                        <div class="nav-column nav-column-img">
+                          <a href="https://ziwirastore.com/shop-by-brand/organika.html"><img src="<?php echo $this->getSkinUrl('images/homepage/menu-icon-2.png');?>" alt="Organika" /></a>
+                        </div>
+                        <div class="nav-column nav-column-img">
+                          <a href="https://ziwirastore.com/shop-by-brand/now-foods.html"><img src="<?php echo $this->getSkinUrl('images/homepage/menu-icon-1.png');?>" alt="Now" /></a>
+                        </div>
+                    </div>
+                    <div class="nav-column nav-column-gray">
+                        <h3>ON SALE</h3>
+                        <ul>
+                          <li><a href="https://ziwirastore.com/garcinia-plus.html">Get 26% Off on Weight Loss Products</a></li>
+                          <li><a href="https://ziwirastore.com/health-beauty/bath-body/big-sky-tea-tree-shampoo.html">Get 17% Off on Big Sky Tea Tree Shampoo</a></li>
+                          <li><a href="https://ziwirastore.com/hair-plus.html">Get 27% Off on Hair Plus - Gives you Hair </a></li>
+                        </ul>
+                        <h3>FEATURED</h3>
+                        <ul>
+                            <li><a href="https://ziwirastore.com/coenzyme-q10-w-vit-e-a.html">Anti-aging</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+              </li>
+
+          <?php }
+     }
+      } ?>
+
+
+    </ul>
+
+<?php
+}
+?>

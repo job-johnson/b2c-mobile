@@ -1,0 +1,47 @@
+<?php
+/*
+Author Name: Firasath
+Author URI: http://www.firasath.com
+Author Email: firasath_hussain20@yahoo.com
+*/
+$_helper = Mage::helper('catalog/category');
+$_categories = $_helper->getStoreCategories(); ?>
+
+
+
+<?php
+$_helper = Mage::helper('catalog/category');
+$_categories = $_helper->getStoreCategories();
+if (count($_categories) > 0){ ?>
+
+
+  <div class="cat-block navigation">
+  <h2><img src="<?php echo $this->getSkinUrl('images/cat-icon.png'); ?>"/>CATEGORIES</h2>
+  <ul class="first-level">
+    <?php  foreach($_categories as $_category){
+          $_category = Mage::getModel('catalog/category')->load($_category->getId());
+          $_subcategories = $_category->getChildrenCategories();
+          if (count($_subcategories) > 0){ ?>
+
+              <li class="has-sub"> <a href="<?php echo $_category->getUrl(); ?>"><?php echo $_category->getName(); ?></a>
+
+            <?php   //echo 'Parent'.$_category->getName().'<br/>';
+              //echo 'Parent Id'.$_category->getId().'<br/>'; ?>
+              <ul>
+              <?php foreach($_subcategories as $_subcategory){ ?>
+                <li><a href="<?php echo $_subcategory->getUrl(); ?>"><?php echo $_subcategory->getName(); ?></a></li>
+
+                  <?php //  echo 'sub cat'.$_subcategory->getName().'<br/>';
+                  //  echo 'sub cat id'.$_subcategory->getId().'<br/>'; ?>
+            <?php   } ?>
+            </ul>
+          </li>
+          <?php }
+      } ?>
+
+  </ul>
+</div>
+
+<?php
+}
+?>

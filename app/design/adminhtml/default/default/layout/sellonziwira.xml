@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+  <sellonziwira_adminhtml_sellonziwirabackend_index>
+	<reference name="content">
+	  <block type="sellonziwira/adminhtml_sellonziwirabackend" name="sellonziwirabackend" template="sellonziwira/sellonziwirabackend.phtml"/>
+	</reference>
+  </sellonziwira_adminhtml_sellonziwirabackend_index>
+  <sellonziwira_adminhtml_sellonziwira_index>
+	<reference name="content">
+	  <block type="sellonziwira/adminhtml_sellonziwira" name="sellonziwira" />
+	</reference>
+  </sellonziwira_adminhtml_sellonziwira_index>
+</layout>

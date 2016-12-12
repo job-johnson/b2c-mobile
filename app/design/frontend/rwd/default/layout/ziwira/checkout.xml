@@ -1,0 +1,18 @@
+
+<?xml version="1.0"?>
+<!--
+Author Name: Firasath
+Author URI: http://www.firasath.com
+Author Email: firasath_hussain20@yahoo.com
+-->
+<layout version="0.1.0">
+    <checkout_cart_index>
+        <reference name="content">
+            <reference name="checkout.cart">
+                <block type="ziwira_checkout/cart_crosssell" name="checkout.cart.crosssell" as="crosssell" template="checkout/cart/crosssell.phtml">
+                    <action method="setMaxItems"><value>5</value></action>
+                </block>
+            </reference>
+        </reference>
+    </checkout_cart_index>
+</layout>

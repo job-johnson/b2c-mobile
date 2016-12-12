@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!--
+Author Name: Firasath
+Author URI: http://www.firasath.com
+Author Email: firasath_hussain20@yahoo.com
+-->
+<config>
+ <modules>
+  <Ziwira_AdditionalCmsPageLayouts>
+   <codePool>local</codePool>
+   <active>true</active>
+ </Ziwira_AdditionalCmsPageLayouts>
+ </modules>
+</config>

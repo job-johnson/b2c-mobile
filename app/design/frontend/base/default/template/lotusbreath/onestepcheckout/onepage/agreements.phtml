@@ -1,0 +1,51 @@
+<?php
+/**
+ * Lotusbreath
+ * @see Mage_Checkout_Block_Agreements
+ */
+?>
+
+<?php if (!$this->getAgreements()) return; ?>
+<?php foreach ($this->getAgreements() as $_a): ?>
+    <p class="agree agree-changes">
+        <input type="checkbox" id="agreement-<?php echo $_a->getId() ?>" name="agreement[<?php echo $_a->getId() ?>]"
+               value="1" title="<?php echo $this->htmlEscape($_a->getCheckboxText()) ?>" class="checkbox"/>
+        <label for="agreement-<?php echo $_a->getId() ?>">
+            <a class="a-agreement" href="#"
+               rel="aggrement-popup-<?php echo $_a->getId() ?>" title=""><?php echo $_a->getIsHtml() ? $_a->getCheckboxText() : $this->htmlEscape($_a->getCheckboxText()) ?></a>
+        </label>
+        <div class="aggrement-popup white-popup mfp-hide" title="<?php echo $_a->getName(); ?>" id="aggrement-popup-<?php echo $_a->getId() ?>">
+
+            <div style="margin: auto; padding: 10px; 10px;">
+                <h2><?php echo "Terms and Conditions" ?></h2>
+                Returns*<br>
+   <br>
+   Our goal at the Ziwira Shop is to provide our customers with a gratified shopping experience. We accept returns of unopened products up to 14 days after the date of purchase. All clothing items, excluding undergarments, can only be returned only if their tags still attached to them. Opened or used products, or any items marked as non-refundable are not within our return guidelines. For hygienic reason, we cannot accept the following items:<br>
+   <br>
+   Breast Pumps<br>
+   Personal Massagers and Vibrators<br>
+   Disposable Diapers and Cloth Diapers<br>
+   Re-usable feminine pads<br>
+   All Car Seats<br>
+   All Strollers<br>
+   Infant Formula<br>
+   Nutritional Drinks<br>
+   Baby Gates<br>
+   Mattresses and Bedding<br>
+   Compression Stockings<br>
+   Support &amp; Braces<br>
+   Ostomy Products<br>
+   Nutritional Drinks<br>
+   *Please note that we are not the manufacturers of the products we sell. If you have a performance and/or warranty issue, or a general complaint with a product, please contact the manufacturer or parent company at the number on the packaging.<br>
+   <br>
+   If you would like to make a return request, please email contact@ziwira.com with your order number (as quoted in the subject line of your "Order Update" emails), the item(s) that you would like to return, and the reason for the return. One of our friendly Customer Care team members will reach out to you as soon as possible with the next steps!<br>
+   <br>
+   Returns are made directly to the manufacturer, brand or distributor. Customers are responsible to pay the shipping fee. Customers can expect a full refund (excluding all shipping costs) of their money up to 7 days after the manufacturer, brand or distributor has received it.<br>
+   <br>
+            </div>
+        </div>
+    </p>
+<?php endforeach ?>
+
+<div id="agreenment-error" class="error">
+</div>

@@ -1,0 +1,35 @@
+<!-- Categories display start -->
+
+<?php
+/*
+Author Name: Firasath
+Author URI: http://www.firasath.com
+Author Email: firasath_hussain20@yahoo.com
+*/
+$_helper = Mage::helper('catalog/category');
+$_categories = $_helper->getStoreCategories();
+if (count($_categories) > 0){ ?>
+  <div class="footer-cat">
+
+  <?php  foreach($_categories as $_category){
+        $_category = Mage::getModel('catalog/category')->load($_category->getId());
+          if($_category->getIsActive() == 1 & $_category->getIncludeInMenu() == 1){
+        $_subcategories = $_category->getChildrenCategories();
+        if (count($_subcategories) > 0){ ?>
+          <ul>
+          <h3><?php echo $_category->getName(); ?></h3>
+          <?php foreach($_subcategories as $_subcategory){
+              $_subcategory = Mage::getModel('catalog/category')->load($_subcategory->getEntityId());
+              if($_subcategory->getIsActive() == 1 && $_subcategory->getIncludeInMenu() ==1){
+            ?>
+              <li><a href="<?php echo $_subcategory->getUrl(); ?>"><?php echo $_subcategory->getName(); ?></a></li>
+          <?php   }} ?>
+        </ul>
+
+        <?php }
+    }} ?>
+</div>
+
+<?php
+}
+?>

@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<config>
+	<global>
+		<!-- declare model group for new module -->
+		<models>
+			<!-- model group alias to be used in Mage::getModel('helcimgateway/...') -->
+			<helcimgateway>
+				<!-- base class name for the model group -->
+				<class>Mage_HelcimGateway_Model</class>
+			</helcimgateway>
+		</models>
+		<helpers>
+			<helcimgateway>
+				<class>Mage_HelcimGateway_Helper</class>
+			</helcimgateway>
+		</helpers>
+		<blocks>
+			<helcimgateway>
+				<class>Mage_HelcimGateway_Block</class>
+			</helcimgateway>
+		</blocks>
+
+		<!-- declare resource setup for the new module -->
+		<resources>
+			<!-- resource identifier -->
+			<helcimgateway_setup>
+				<!-- specify that this resource is a setup resource and used for upgrades -->
+				<setup>
+					<!-- which module to look for install/upgrade files in -->
+					<module>Mage_HelcimGateway</module>
+					<class>Mage_HelcimGateway_Model_Setup</class>
+				</setup>
+				<!-- specify database connection for this resource -->
+				<connection>
+					<!-- do not create new connection, use predefined core setup connection -->
+					<use>core_setup</use>			
+				</connection>
+			</helcimgateway_setup>
+			<helcimgateway_write>
+				<use>core_write</use>
+			</helcimgateway_write>
+			<helcimgateway_read>
+				<use>core_read</use>
+			</helcimgateway_read>
+		</resources>
+	</global>
+	<frontend>
+		<routers>
+			<helcimgateway>
+				<use>standard</use>
+				<args>
+					<module>Mage_HelcimGateway</module>
+					<frontName>helcimgateway</frontName>
+				</args>
+			</helcimgateway>
+		</routers>
+	</frontend>
+
+	<!-- declare default configuration values for this module -->
+	<default>
+		<!-- 'payment' configuration section (tab) -->
+		<payment>
+			<!-- 'helcimgateway' configuration group -->
+			<helcimgateway>
+				<!-- by default this payment method is inactive -->
+				<active>0</active>
+				<!-- model to handle logic for this payment method -->
+				<model>helcimgateway/PaymentMethod</model>
+				<!-- order status for new orders paid by this method -->
+				<order_status>1</order_status>
+				<!-- default title for payment checkout page and order view page -->
+				<title>Credit Card (Helcim Gateway)</title>
+				<gateway_url>https://gateway.helcim.com/</gateway_url>
+				<payment_action>authorize_capture</payment_action>
+				<disable_cvv>0</disable_cvv>
+			</helcimgateway>
+		</payment>
+	</default>
+</config>

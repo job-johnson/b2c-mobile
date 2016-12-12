@@ -1,0 +1,160 @@
+<?php echo $this->getChildHtml("jsconfig");?>
+<script type="text/javascript" src="<?php echo $this->getJsUrl('varien/accordion.js') ?>"></script>
+<script type="text/javascript" src="<?php echo $this->getSkinUrl('lotusbreath/onestepcheckout/js/override_mage.js') ?>"></script>
+
+<?php
+$isAllowComment = Mage::getStoreConfig('lotusbreath_onestepcheckout/general/allowcomment');
+?>
+<script id="loader-template" type="text/x-handlebars-template">
+    <div class="osc-loader" id="osc-loader">
+        <div class="osc-loader-background"></div>
+        <div class="loading-mask" data-role="loader">
+            <div class="loader">
+                <img alt="{{imgAlt}}" src="{{icon}}">
+                <p>{{loaderText}}</p>
+            </div>
+        </div>
+    </div>
+</script>
+<script>
+    var loaderJson = {
+        imgAlt: '<?php echo $this->__("Please wait...");?>',
+        icon: '<?php echo $this->getSkinUrl('lotusbreath/onestepcheckout/images/ajax-loader_3.gif');?>',
+        loaderText: '<?php echo $this->__("Please wait...");?>'
+    };
+</script>
+
+<div class="lt-checkoutpage layout-2col " id="checkoutSteps">
+    <?php echo $this->getChildHtml("loginform");?>
+
+    <form id="checkout_form" name="checkout_form">
+        <div class="grid">
+          <div class="left-header remove-float">
+             <h1><img src="https://ziwira.com/skin/frontend/rwd/default/images/lock-icon.png" alt="Icon"> SECURE CHECKOUT</h1>
+          </div>
+            <?php if (!Mage::helper('customer')->isLoggedIn()) : ?>
+                <p class="sign-in-already-reg"><?php echo $this->__("Already registered? Please");?>
+                    <a class="login_link" href="javascript:void(0);" id="loginFrmDlgO"> <?php echo $this->__("log in");?> </a></p>
+            <?php endif; ?>
+            <?php if (Mage::getStoreConfig('lotusbreath_onestepcheckout/content/display_bottom_static_block')): ?>
+                <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('onestepcheckout_top_block')->toHtml(); ?>
+            <?php endif;?>
+            <div class="row  no-padding padding-mobile">
+                <div class="four columns">
+                    <h3 class="ptitle">
+                        <?php if ($billingHeader = Mage::getStoreConfig('lotusbreath_onestepcheckout/content/billing_header')):?>
+                          <div class="sectionheading"><h3><span class="badge border-radius-change">1</span><?php echo $this->__("Billing Information"); ?> </div>
+                        <?php else:?>
+                            <div class="sectionheading"><h3><span class="badge border-radius-change">1</span><?php echo $this->__("Billing Information"); ?> </div>
+                        <?php endif;?>
+
+                    </h3>
+                    <?php echo $this->getChildHtml('billing'); ?>
+                    <div id="shipping-area" style="display: none;">
+                        <h3 class="ptitle">
+                            <?php if ($shippingHeader = Mage::getStoreConfig('lotusbreath_onestepcheckout/content/shipping_address_header')):?>
+                                <div class="sectionheading"><h3><?php echo $this->__("Shipping Information"); ?> </div>
+                            <?php else:?>
+                                <div class="sectionheading"><h3><?php echo $this->__("Shipping Information"); ?> </div>
+                            <?php endif;?>
+
+                        </h3>
+                        <?php
+                        echo $this->getChildHtml('shipping'); ?>
+                    </div>
+                </div>
+                <div class="eight columns">
+                  <h3 class="ptitle">
+                      <?php if ($shippingMethodHeader = Mage::getStoreConfig('lotusbreath_onestepcheckout/content/shipping_method_header')):?>
+                          <div class="sectionheading"><h3><span class="badge border-radius-change">2</span><?php echo $this->__("Shipping and Payment Method"); ?> </div>
+                      <?php else:?>
+                            <div class="sectionheading"><h3><span class="badge border-radius-change">2</span><?php echo $this->__("Shipping and Payment Method"); ?> </div>
+                      <?php endif;?>
+                  </h3>
+                    <div class="row row-changes">
+                        <?php if(!$this->getQuote()->isVirtual()):?>
+
+                        <div class="five columns">
+                            <div id="shipping_partial">
+                                <?php echo $this->getChildHtml('shipping_method'); ?>
+                            </div>
+
+                        </div>
+                        <?php endif;?>
+                        <div class="seven columns">
+                          <div class="payment-icons payment-icons-chanes"><img src="https://ziwira.com/skin/frontend/rwd/default/images/payment-icons.png"></div>
+                            <div id="payment_partial">
+                                <?php echo $this->getChildHtml('payment'); ?>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-3">
+                        <?php if( Mage::getStoreConfig('lotusbreath_onestepcheckout/general/allowshowgiftmessage') ):?>
+                            <?php if (!$this->getQuote()->isVirtual()): ?>
+                                <?php echo $this->helper('giftmessage/message')->getInline('onepage_checkout', $this->getQuote(), $this->getDontDisplayContainer()) ?>
+                            <?php endif; ?>
+                        <?php endif;?>
+                        <?php if( Mage::getStoreConfig('lotusbreath_onestepcheckout/general/allowshowcoupon') ):?>
+                            <div id="coupon_patial">
+                                  <div class="sectionheading"><h3><?php echo $this->__("Discount Codes"); ?> </div>
+                              <!--  <h3 class="ptitle"><?php //echo $this->__("Discount Codes");?></h3>-->
+
+                                <?php echo $this->getChildHtml('coupon'); ?>
+                            </div>
+                        <?php endif;?>
+                        <?php if( Mage::getStoreConfig('lotusbreath_onestepcheckout/general/allowcomment') ):?>
+                            <div id="comment-patial">
+                                <h3 class="ptitle"><?php echo $this->__("Comment");?></h3>
+                                <ul class="form-list">
+                                    <li class="fields">
+                                        <div class="input-box">
+                                            <textarea name="order_comment" placeholder="<?php echo $this->__("Type comment here");?>" class="input-text"></textarea>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        <?php endif;?>
+
+                        <h3 class="ptitle">
+                            <?php if ($reviewOrderHeader = Mage::getStoreConfig('lotusbreath_onestepcheckout/content/review_header')):?>
+                              <div class="sectionheading"><h3><span class="badge border-radius-change">3</span><?php echo $this->__("Review Order"); ?></div>
+
+                            <?php else:?>
+                              <div class="sectionheading"><h3><span class="badge border-radius-change">3</span><?php echo $this->__("Review Order"); ?></div>
+                            <?php endif;?>
+
+                        </h3>
+                        <div id="review_partial">
+                            <?php echo $this->getData("reviewHtml"); ?>
+                            <?php echo $this->getChildHtml('review'); ?>
+                        </div>
+
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="clearfix"></div>
+            <?php if (Mage::getStoreConfig('lotusbreath_onestepcheckout/content/display_bottom_static_block')): ?>
+            <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('onestepcheckout_bottom_block')->toHtml(); ?>
+            <?php endif;?>
+        </div>
+    </form>
+</div>
+
+<script type="text/javascript">
+    //<![CDATA[
+    var accordion = new Accordion('checkoutSteps', '.step-title', true);
+    <?php if($this->getActiveStep()): ?>
+    accordion.openSection('opc-<?php echo $this->getActiveStep() ?>');
+    <?php endif ?>
+    var checkout = new Checkout(accordion,{
+            progress: '<?php echo $this->getUrl('checkout/onepage/progress') ?>',
+            review: '<?php echo $this->getUrl('checkout/onepage/review') ?>',
+            saveMethod: '<?php echo $this->getUrl('checkout/onepage/saveMethod') ?>',
+            failure: '<?php echo $this->getUrl('checkout/cart') ?>'}
+    );
+    //]]>
+</script>

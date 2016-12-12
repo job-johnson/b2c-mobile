@@ -1,0 +1,226 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magento.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magento.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Untitled Document</title>
+<style type="text/css">
+
+body { margin-left: 0px; margin-top: 20px; margin-right: 0px; margin-bottom: 20px; background:#f1f1f1; }
+
+</style>
+</head>
+
+<body>
+<table width="650" border="0" align="center" cellpadding="0" cellspacing="0"  style="border:1px solid #E2E2E2; background:#fff; margin:auto !important;">
+	<tr>
+    	<td align="left" valign="top"><img src="https://s3.amazonaws.com/ziwira-assets/b2c/images/top-header.png" width="650" height="32" usemap="#Map2" border="0" /></td>
+ 	</tr>
+    <tr>
+    	<td>
+        	<table width="650" border="0" cellspacing="0" cellpadding="0">
+						<td height="30" align="center" vali1n="middle" style="padding-top:6px;padding-bottom:5px; letter-spacing:0.3px;border-bottom: 1px solid #b1b6b6; ">
+							<span style="font-family:Arial, Helvetica, sans-serif;color:#666; font-size:11px;">
+								<a href="https://ziwra.com/health-beauty.html" target="_blank" style="text-decoration:none; color:#333;">Health &amp; Beauty</a>
+								 &nbsp; |&nbsp; <a href="https://ziwra.com/mom-baby.html" target="_blank" style="text-decoration:none; color:#333;">Mom &amp;
+										Baby</a> &nbsp; |&nbsp; <a href="https://ziwra.com/organic-food.html" target="_blank" style="text-decoration:none; color:#333;">Organic Food</a>
+										<!--&nbsp; | &nbsp;<a href="#" target="_blank" style="text-decoration:none; color:#333;">Clothing &amp; Accessories</a>-->
+										&nbsp; | <a href="https://ziwra.com/supplements-vitamins.html" target="_blank" style="text-decoration:none; color:#333;">Supplements &amp; Vitamins</a>
+										 &nbsp; | &nbsp;<a href="https://ziwra.com/home.html" target="_blank" style="text-decoration:none; color:#333;"> Home </a>
+										 <!--&nbsp; |&nbsp;  <a href="#" target="_blank" style="text-decoration:none; color:#333;">Pets </a>--></span>
+							</td>
+          	</table>
+            <!-- Syed Changes-->
+<?php $_order = $this->getOrder() ?>
+<h1><?php echo $this->__('Order #%s', $_order->getRealOrderId()) ?></h1>
+<p class="order-date"><?php echo $this->__('Order Date: %s', $this->formatDate($_order->getCreatedAtStoreDate(), 'long')) ?></p>
+<div class="col2-set">
+    <?php if (!$_order->getIsVirtual()): ?>
+    <div class="col-1">
+        <h2><?php echo $this->__('Shipping Address') ?></h2>
+        <address><?php echo $_order->getShippingAddress()->format('html') ?></address>
+    </div>
+    <div class="col-2">
+    <?php else: ?>
+    <div class="col-1">
+    <?php endif; ?>
+        <h2><?php echo $this->__('Billing Address') ?></h2>
+        <address><?php echo $_order->getBillingAddress()->format('html') ?></address>
+    </div>
+<?php if (!$_order->getIsVirtual()): ?>
+</div>
+<div class="col2-set">
+    <div class="col-1">
+        <h2><?php echo $this->__('Shipping Method') ?></h2>
+				<?php
+				if($_order->getShippingMethod() == 'purolatormodule_PurolatorGround'){
+					echo $this->escapeHtml('Purolator Ground: Delivery in 3 to 5 Business Days');
+
+				}
+				elseif($_order->getShippingMethod() == 'purolatormodule_PurolatorExpress'){
+					echo $this->escapeHtml('Purolator Express: Delivery in 2 to 3 Business Days');
+				}
+				else{
+				 echo $this->escapeHtml($_order->getShippingDescription());
+				}
+				 ?>
+    </div>
+<?php endif; ?>
+    <div class="col-2">
+        <h2><?php echo $this->__('Payment Method') ?></h2>
+        <?php echo $this->getPaymentInfoHtml() ?>
+    </div>
+</div>
+<h2><?php echo $this->__('Items Ordered') ?></h2>
+<table class="data-table" id="my-orders-table">
+    <col />
+    <col width="1" />
+    <col width="1" />
+    <col width="1" />
+    <col width="1" />
+    <thead>
+        <tr>
+            <th><?php echo $this->__('Product Name') ?></th>
+            <th><?php echo $this->__('SKU') ?></th>
+            <th class="a-right"><?php echo $this->__('Price') ?></th>
+            <th class="a-center"><?php echo $this->__('Qty') ?></th>
+            <th class="a-right"><?php echo $this->__('Subtotal') ?></th>
+        </tr>
+    </thead>
+    <tfoot>
+        <?php echo $this->getChildHtml('order_totals') ?>
+    </tfoot>
+    <?php $_items = $_order->getItemsCollection(); ?>
+    <?php $_count = $_items->count(); ?>
+    <?php foreach ($_items as $_item): ?>
+    <?php if ($_item->getParentItem()) continue; ?>
+    <tbody>
+        <?php echo $this->getItemHtml($_item) ?>
+    </tbody>
+        <?php endforeach; ?>
+</table>
+<script type="text/javascript">decorateTable('my-orders-table', {'tbody' : ['odd', 'even'], 'tbody tr' : ['first', 'last']})</script>
+<script type="text/javascript">window.print();</script>
+
+<!-- Syed Changes-->
+</td>
+  	</tr>
+    <tr>
+        <td align="left" valign="top">
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td align="center" style="border-top: 1px solid #b1b6b6;"><img src="https://s3.amazonaws.com/ziwira-assets/b2c/images/be.jpg" width="457" height="24" style="padding-top:20px;padding-bottom:40px"/></td>
+                </tr>
+                <tr>
+                    <td align="left" valign="top">
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                            <tr>
+                                <td align="left" valign="top">
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+																			<tr>
+																					<td width="190">&nbsp;</td>
+																					<td><a href="https://www.facebook.com/ziwira/" target="_blank"><img src="https://s3.amazonaws.com/ziwira-assets/b2c/images/f.jpg" width="30" height="30" /></a></td>
+																					<td><a href="https://twitter.com/ZiwiraEco" target="_blank"><img src="https://s3.amazonaws.com/ziwira-assets/b2c/images/t.jpg" width="30" height="30" /></a></td>
+																					<td><a href="https://www.instagram.com/ziwira/" target="_blank"><img src="https://s3.amazonaws.com/ziwira-assets/b2c/images/ins.jpg" width="30" height="30" /></a></td>
+																					<td><a href="https://www.linkedin.com/company/ziwira" target="_blank"><img src="https://s3.amazonaws.com/ziwira-assets/b2c/images/in.jpg" width="30" height="30" /></a></td>
+																					<td width="30"><a href="https://plus.google.com/+ZiwiraEco" target="_blank"><img src="https://s3.amazonaws.com/ziwira-assets/b2c/images/g.jpg" width="30" height="30" /></a></td>
+																					<td width="190">&nbsp;</td>
+																			</tr>
+                                    </table>
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                        <tbody>
+                                            <tr>
+                                                <td height="25">&nbsp;</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                            <tr>
+                                <td>
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                        <tr>
+                                            <td><img src="https://s3.amazonaws.com/ziwira-assets/b2c/images/line.jpg" width="650" height="1" /></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                    <tr>
+                                                        <td height="40" align="left" valign="middle" style="font-family:Arial, Helvetica, sans-serif;color:#a1a1a1; font-size:11px;">
+                                                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td width="15">&nbsp;</td>
+                                                                        <td align="left" style="padding-top:12px !important; font-family:ing=inherit !important"><a href="http://ziwira.com/contactus" target="_blank" style="text-decoration:none; color:#a1a1a1;">&nbsp;Contacts&nbsp; </a>&nbsp; &nbsp;&nbsp; &nbsp;<a href="http://ziwira.com/terms-conditions/" target="_blank" style="text-decoration:none; color:#a1a1a1;">Terms &amp; Conditions </a>&nbsp; &nbsp; &nbsp; &nbsp;<a href="http://ziwira.com/disclaimer/" target="_parent" style="text-decoration:none; color:#a1a1a1;">Disclaimer </a>&nbsp; &nbsp; &nbsp; &nbsp;<a href="http://ziwira.com/sitemap/" target="_blank" style="text-decoration:none; color:#a1a1a1;">Sitemap&nbsp; </a >&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;  &nbsp; &nbsp;© 2016, Ziwira - all rights reserved</td>
+                                                                        <td width="15">&nbsp;</td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </td>
+   	</tr>
+</table>
+
+<!--<map name="Map" id="Map">
+  <area shape="rect" coords="89,16,105,25" href="http://ziwira.com/eat/" target="_blank" />
+  <area shape="rect" coords="122,14,190,26" href="http://ziwira.com/sweat/" target="_blank" />
+  <area shape="rect" coords="203,14,233,26" href="http://ziwira.com/work/" target="_blank" />
+  <area shape="rect" coords="252,14,291,26" href="http://ziwira.com/beauty/" target="_blank" />
+  <area shape="rect" coords="301,14,340,25" href="http://ziwira.com/fashion/" target="_blank" />
+  <area shape="rect" coords="355,16,413,25" href="http://ziwira.com/adventure/" target="_blank" />
+  <area shape="rect" coords="429,14,477,24" href="http://ziwira.com/eco-tech/" />
+  <area shape="rect" coords="488,14,542,26" href="http://ziwira.com/well-being/" target="_blank" />
+  <area shape="rect" coords="556,14,591,26" href="http://ziwira.com/family/" target="_blank" />
+  <area shape="rect" coords="606,14,647,25" href="http://ziwira.com/habitat/" target="_blank" />
+
+</map>
+
+<map name="Map3" id="Map3">
+  <area shape="rect" coords="24,57,128,83" href="http://www.bloomberg.com" alt="" />
+  <area shape="rect" coords="258,57,361,82" href="http://www.nasdaq.com" />
+  <area shape="rect" coords="487,57,590,82" href="http://www.nasdaq.com" />
+</map>-->
+<map name="Map2" id="Map2">
+  <area shape="rect" coords="416,10,495,23" href="http://marketplace.us-east-1.elasticbeanstalk.com" target="_blank" />
+  <area shape="rect" coords="526,10,631,23" href="http://ziwira.com/green-businesses/" target="_blank" />
+</map>
+</body>
+</html>

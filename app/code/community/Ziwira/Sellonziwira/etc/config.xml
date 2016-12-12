@@ -1,0 +1,134 @@
+<?xml version="1.0"?>
+<config>
+  <modules>
+    <Ziwira_Sellonziwira>
+      <version>0.1.0</version>
+    </Ziwira_Sellonziwira>
+  </modules>
+  <frontend>
+    <routers>
+      <sellonziwira>
+        <use>standard</use>
+          <args>
+            <module>Ziwira_Sellonziwira</module>
+            <frontName>sellonziwira</frontName>
+          </args>
+      </sellonziwira>
+    </routers>
+		<layout>
+		  <updates>
+			<sellonziwira>
+			  <file>sellonziwira.xml</file>
+			</sellonziwira>
+		  </updates>
+		</layout>
+  </frontend>
+  <global>
+    <helpers>
+      <sellonziwira>
+        <class>Ziwira_Sellonziwira_Helper</class>
+      </sellonziwira>
+    </helpers>
+	<blocks>
+	  <sellonziwira>
+		<class>Ziwira_Sellonziwira_Block</class>
+	  </sellonziwira>
+	</blocks>
+	<models>
+	  <sellonziwira>
+		<class>Ziwira_Sellonziwira_Model</class>
+		<resourceModel>sellonziwira_mysql4</resourceModel>
+	  </sellonziwira>
+	  <sellonziwira_mysql4>
+		<class>Ziwira_Sellonziwira_Model_Mysql4</class>
+		<entities>
+			  <sellonziwira>
+				<table>sell_on_ziwira</table>
+			  </sellonziwira>
+        </entities>
+	  </sellonziwira_mysql4>
+	</models>
+	<resources>
+	  <sellonziwira_setup>
+		<setup>
+		  <module>Ziwira_Sellonziwira</module>
+		</setup>
+		<connection>
+		  <use>core_setup</use>
+		</connection>
+	  </sellonziwira_setup>
+	  <sellonziwira_write>
+		<connection>
+		  <use>core_write</use>
+		</connection>
+	  </sellonziwira_write>
+	  <sellonziwira_read>
+		<connection>
+		  <use>core_read</use>
+		</connection>
+	  </sellonziwira_read>
+	</resources>
+  </global>
+  <admin>
+	<routers>
+	  <sellonziwira>
+	    <use>admin</use>
+		<args>
+		  <module>Ziwira_Sellonziwira</module>
+		  <frontName>admin_sellonziwira</frontName>
+		</args>
+	  </sellonziwira>
+	</routers>
+  </admin>
+  <adminhtml>
+	<menu>
+	  <sellonziwira module="sellonziwira">
+		<title>Sellonziwira</title>
+		<sort_order>100</sort_order>
+		<children>
+		<!--  <sellonziwirabackend module="sellonziwira">
+			<title>Sell On</title>
+			<sort_order>0</sort_order>
+			<action>admin_sellonziwira/adminhtml_sellonziwirabackend</action>
+    </sellonziwirabackend>-->
+		  <sellonziwira module="sellonziwira">
+		    <title>Sellers List</title>
+			<sort_order>0</sort_order>
+			<action>admin_sellonziwira/adminhtml_sellonziwira</action>
+		  </sellonziwira>
+		</children>
+	  </sellonziwira>
+	</menu>
+	<acl>
+	  <resources>
+		<all>
+		  <title>Allow Everything</title>
+		</all>
+		<admin>
+		  <children>
+			<sellonziwira translate="title" module="sellonziwira">
+			  <title>Sellonziwira adas</title>
+			  <sort_order>1000</sort_order>
+			  <children>
+		  <!--<sellonziwirabackend translate="title">
+			<title>Sell On Ziwira</title>
+    </sellonziwirabackend>-->
+		  <sellonziwira translate="title">
+			<title>Manage Sellonziwira</title>
+			<sort_order>0</sort_order>
+		  </sellonziwira>
+			  </children>
+			</sellonziwira>
+		  </children>
+		</admin>
+	  </resources>
+	</acl>
+	<layout>
+	  <updates>
+		<sellonziwira>
+		  <file>sellonziwira.xml</file>
+		</sellonziwira>
+	  </updates>
+	</layout>
+  </adminhtml>
+</config>

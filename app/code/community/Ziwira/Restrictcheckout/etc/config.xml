@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<config>
+  <modules>
+    <Ziwira_Restrictcheckout>
+      <version>0.1.0</version>
+    </Ziwira_Restrictcheckout>
+  </modules>
+  <global>
+    <helpers>
+      <restrictcheckout>
+        <class>Ziwira_Restrictcheckout_Helper</class>
+      </restrictcheckout>
+    </helpers>
+
+	<models>
+    <checkout>
+                <rewrite>
+                    <cart>Ziwira_Restrictcheckout_Model_Checkout_Cart</cart>
+                </rewrite>
+            </checkout>
+	</models>
+    <!--<events>
+	  <checkout_cart_save_before>
+        <observers>
+          <checkout_cart_save_before_handler>
+            <type>model</type>
+            <class>restrictcheckout/observer</class>
+            <method>BeforeCartSave</method>
+            <args></args>
+          </checkout_cart_save_before_handler>
+        </observers>
+      </checkout_cart_save_before>
+    </events>-->
+  </global>
+</config>

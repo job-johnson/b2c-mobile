@@ -1,0 +1,124 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magento.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magento.com for more information.
+ *
+ * @category    design
+ * @package     rwd_default
+ * @copyright   Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+
+<?php $_items = $this->getReviewsCollection()->getItems();?>
+
+<?php
+
+$product_id = Mage::registry('current_product')->getId();
+// echo $product_id;
+
+echo $RatingOb=Mage::getModel('rating/rating')->getEntitySummary($product_id);
+$ratings=$RatingOb->getSum()/$RatingOb->getCount();
+?>
+
+
+<div class="firas-review">
+  <div class="new-review-heading">Reviews</div>
+<div class="box-collateral box-reviews" id="customer-reviews">
+    <?php if (count($_items)):?>
+        <div class="review-heading" style="margin-bottom:0;">
+            <h2 class="pull-left" style="width:135px;">
+                <?php echo $this->__('Customer Reviews') ?>
+                <!-- <span><?php //echo count($_items); ?> item(s)</span> -->
+            </h2>
+            <?php if($ratings): ?>
+            <?php
+              $ratingText = ($ratings * 5)/100;
+              // echo $ratingText; ?>
+            <div class="ratings pull-right">
+            <div class="rating-text"><?php echo $ratingText.'/5'; ?></div>
+            <div class="rating-box">
+            <div class="rating" style="width:<?php echo $ratings; ?>%"></div>
+            </div>
+            <div class="rat-count">Based on <span><?php echo count($_items) ?></span> reviews</div>
+            </div>
+            <?php endif; ?>
+            <?php echo $this->getChildHtml('toolbar') ?>
+        </div>
+        <dl>
+        <?php foreach ($_items as $_review):?>
+            <dt>
+
+                <a class ="hidden" href="<?php echo $this->getReviewUrl($_review->getId()) ?>">
+                    <?php echo $this->escapeHtml($_review->getTitle()) ?>
+                </a>
+                <span class="review-meta">
+                    <span class="author-name"><?php echo $this->__($this->escapeHtml($_review->getNickname())) ?></span>
+                    <span class="breaker">On</span>
+                   <span class="author-date"><?php echo $this->__($this->formatDate($_review->getCreatedAt()), 'long') ?></span>
+                   <?php $_votes = $_review->getRatingVotes(); ?>
+                   <?php if (count($_votes)): ?>
+
+                   <span class="author-rating">
+                     <table class="ratings-table">
+                         <colgroup>
+                             <col class="review-label" />
+                             <col class="review-value" />
+                         </colgroup>
+                         <tbody>
+                             <?php foreach ($_votes as $_vote): ?>
+                             <tr>
+                                 <th class="hidden"><?php echo $this->escapeHtml($_vote->getRatingCode()) ?></th>
+                                 <td>
+                                     <div class="rating-box">
+                                         <div class="rating" style="width:<?php echo $_vote->getPercent() ?>%;"></div>
+                                     </div>
+                                 </td>
+                             </tr>
+                             <?php endforeach; ?>
+                         </tbody>
+                     </table>
+                     <?php endif; ?>
+                   </span>
+                </span>
+            </dt>
+            <dd>
+                <span><?php $_votes = $_review->getRatingVotes(); ?></span>
+
+                <span><?php echo nl2br($this->escapeHtml($_review->getDetail())) ?></span>
+
+
+
+
+
+                <span class="review-meta hidden">
+                    <?php echo $this->__('Review by %s', $this->escapeHtml($_review->getNickname())) ?>
+                    /
+                   <?php echo $this->__('(Posted on %s)', $this->formatDate($_review->getCreatedAt()), 'long') ?>
+                </span>
+            </dd>
+        <?php endforeach; ?>
+        </dl>
+
+        <?php // echo $this->getChildHtml('toolbar') ?>
+    <?php elseif($this->getParentBlock()): ?>
+        <?php echo $this->getParentBlock()->getReviewsSummaryHtml($this->getProduct(), 'short', true)?>
+    <?php endif;?>
+    <?php echo $this->getChildHtml('review_form') ?>
+</div>
+</div>
