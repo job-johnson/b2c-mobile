@@ -58,117 +58,192 @@
   ?>
 <?php endif ?>
 
-<header class="homepage_header">
-	<div class="container">
-    	<ul>
-        	<li><img src="<?php echo $this->getSkinUrl('images/homepage/phone-icon.png');?>" alt="Phone" />1-800-953-6593</li>
-            <li><img src="<?php echo $this->getSkinUrl('images/homepage/return-refund-icon.png');?>" alt="Refund" /><a href="<?php echo Mage::getBaseUrl().'return-and-refund-policy' ?>">Return &amp; Refund Policies</a></li>
-            <li><img src="<?php echo $this->getSkinUrl('images/homepage/visa-card-icon.png');?>" alt="Visa Card" /><a href="<?php echo Mage::getBaseUrl().'tax-regulation'; ?>">Tax Regulation</a></li>
-            <li><a href="<?php echo Mage::getBaseUrl().'sell-on-ziwira' ?>">SELL ON ZIWIRA</a></li>
-            <li>EN <img src="<?php echo $this->getSkinUrl('images/homepage/canada-flag.png');?>" alt="Canada" /> <span>|</span> CAD</li>
-            <li>
 
-            <?php
-    if (Mage::getModel('customer/session')->isLoggedIn()):?>
-              <a href="<?php echo Mage::getUrl('customer/account/logout'); ?>">Logout</a>
-    <?php else:?>
-              <a href="<?php echo Mage::getUrl('customer/account/login'); ?>">Login</a>  |  <a href="<?php echo Mage::getUrl('customer/account/login');  ?>">Register</a>
-<?php endif;?>
-
-            </li>
-            <li><a href="http://ziwira.com"><img src="<?php echo $this->getSkinUrl('images/homepage/wibe-world-globe.png');?>" alt="WWW" /> ZIWIRA PORTAL</a></li>
-        </ul>
-    </div>
-</header>
-<header class="homepage_logo_header">
+<section id="topBar">
 	<div class="container">
-    	<div class="homepage_logo">
-        	<a href="<?php echo Mage::getBaseUrl(); ?>"><img src="<?php echo $this->getSkinUrl('images/homepage/ziwira-logo.png');?>" alt="Phone" /></a>
-        </div>
-        <div class="header_searchbar">
-          <div id="header-search" class="skip-content">
-                  <?php echo $this->getChildHtml('topSearch') ?>
-          </div>
-        	<!-- <input type="text" placeholder="What are you looking for" />
-            <a href="#"><img src="<?php echo $this->getSkinUrl('images/homepage/search-icon.png');?>" alt="Search" /> Search</a> -->
-        </div>
-        <div class="right-header">
-<li class="your-marketplace account-cart-wrapper">
-            <a href="<?php echo $this->helper('customer')->getAccountUrl(); ?>" data-target-element="#header-account" class="skip-link skip-account">
-              <div>
-              <?php
-              if (Mage::getModel('customer/session')->isLoggedIn()) {
-          $customer = Mage::getSingleton('customer/session')->getCustomer();
-          echo ucfirst($customer->getFirstname())." ".ucfirst($customer->getLastname());
-
-        } ?></div>
-                <span class="label"><?php echo $this->__('My Account'); ?></span>
-            </a>
-            <div id="header-account" class="skip-content">
-                <?php echo $this->getChildHtml('topLinks') ?>
-            </div>
-          </li>
-          <li class="new-cart">
-          <?php
-            $cartItemsCount = Mage::helper('checkout/cart')->getCart()->getItemsCount();
-            // echo $cartItemsCount;
-          ?>
-          <div class="cart-right pull-right"><span id="mini-cart-count" class="cart-count"><?php echo $cartItemsCount;?></span><span class="cart-item">&nbsp;Items</span><span class="cart-view">Quick View</span></div>
-          <i class="icon-market pull-right"></i>
-          <div class="header-minicart">
-              <?php echo $this->getChildHtml('minicart_head'); ?>
-          </div>
-                    </li>
-            <!-- <a href="#" class="my_account_text">MY ACCOUNT</a> -->
-            <!-- <a href="#" class="view_cart_btn"><img src="<?php echo $this->getSkinUrl('images/cart-img.png');?>" alt="Cart"> <span>VIEW CART</span></a> -->
-        </div>
-    </div>
-</header>
-<header class="homepage_menu">
-	<div class="container">
-    	<div id="menu-wrapper">
-        	 <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('head-cat')->toHtml(); ?>
-            <img src="<?php echo $this->getSkinUrl('images/homepage/best-price-guarantee-img.png');?>" alt="Price" />
-        </div>
+		<div class="row">
+			<div class="col-md-6 hidden-sm hidden-xs topBarleftLinks">
+				<ul>
+					<li><img src="<?php echo $this->getSkinUrl('images/homepage/phone-icon.png');?>" alt="Phone" />1-800-953-6593</li>
+					<li><img src="<?php echo $this->getSkinUrl('images/homepage/return-refund-icon.png');?>" alt="Refund" /><a href="<?php echo Mage::getBaseUrl().'return-and-refund-policy' ?>">Return &amp; Refund Policies</a></li>
+					<li><img src="<?php echo $this->getSkinUrl('images/homepage/visa-card-icon.png');?>" alt="Visa Card" /><a href="<?php echo Mage::getBaseUrl().'tax-regulation'; ?>">Tax Regulation</a></li>
+				</ul>	
+			</div>
+			
+			<div class="col-md-6 topBarrightLinks">
+				<ul>
+					<li class="ziwira-portal"><a href="http://ziwira.com"><img src="<?php echo $this->getSkinUrl('images/homepage/wibe-world-globe.png');?>" alt="WWW" /> ZIWIRA PORTAL</a></li>
+					<li class="sellZiwira"><a href="<?php echo Mage::getBaseUrl().'sell-on-ziwira' ?>">SELL ON ZIWIRA</a></li>
+					<li class="lang">EN <img src="<?php echo $this->getSkinUrl('images/homepage/canada-flag.png');?>" alt="Canada" /> <span>|</span> CAD</li>
+					<li class="login">
+		
+					<?php
+			if (Mage::getModel('customer/session')->isLoggedIn()):?>
+					  <a href="<?php echo Mage::getUrl('customer/account/logout'); ?>">Logout</a>
+			<?php else:?>
+					  <a href="<?php echo Mage::getUrl('customer/account/login'); ?>">Login</a>  |  <a href="<?php echo Mage::getUrl('customer/account/login');  ?>">Register</a>
+		<?php endif;?>
+		
+					</li>
+					
+				</ul>
+				
+				<div class="clearfix"></div>
+				
+			</div>
+			
+		</div>
+		
 	</div>
-</header>
+	
+</section>
+
+
+
+<section id="mainBrand">
+	<div class="container">
+		<div class="row">
+			
+			<div class="hidden-lg hidden-md  col-xs-2 text-center visible-xs">
+				<div class="navbar-header">
+				  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#headerNav" aria-expanded="false">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				  </button>
+				</div>
+			</div>
+			<div class="col-md-2 col-sm-3 col-xs-8 text-center logoContainer">
+				
+					<a href="<?php echo Mage::getBaseUrl(); ?>"><img src="<?php echo $this->getSkinUrl('images/homepage/ziwira-logo.png');?>" alt="Phone" class="img-responsive" /></a>
+				
+			</div>
+			
+			<div class="col-md-2 col-sm-9 col-md-push-8 col-xs-2 cartContainer">
+			
+					<ul>
+						<li class="myAccount"><?php
+						$cartItemsCount = Mage::helper('checkout/cart')->getCart()->getItemsCount();
+							?>
+							
+							<a href="<?php echo $this->helper('customer')->getAccountUrl(); ?>" >
+							<?php
+								  if (Mage::getModel('customer/session')->isLoggedIn()) {
+							  $customer = Mage::getSingleton('customer/session')->getCustomer();
+							  echo ucfirst($customer->getFirstname())." ".ucfirst($customer->getLastname());
+					
+							} ?> <?php echo $this->__('My Account'); ?> </a>
+							
+							<div id="myAccountLinks" >
+								<?php echo $this->getChildHtml('topLinks') ?>
+							</div>
+							
+						</li>
+						
+						<li class="cartLink">
+							<a href="javascript:void(0)" ><i class="icon-market"></i> <span class="cartCounter"><?php echo $cartItemsCount;?></span></a>
+							<div class="cartInfo">
+							  <?php echo $this->getChildHtml('minicart_head'); ?>
+						  </div>
+						</li>
+					</ul>
+					
+				</div>
+				
+			
+			<div class="col-md-8 col-md-pull-2 col-xs-12">
+				<div id="headerSearch">
+                  <?php echo $this->getChildHtml('topSearch') ?>
+          		</div>
+			</div>
+			<div class="clearfix"></div>
+		</div>
+	</div>
+</section>
+
+
+
+<section id="headerMenu">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-9 col-md-12">
+				<div id="mainNavbar">
+					
+					
+					 <div class="collapse navbar-collapse" id="headerNav">
+					 	<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('head-cat')->toHtml(); ?>
+					 </div>
+					
+					
+				</div>
+			</div>
+			
+			<div class="col-lg-3 hidden-md hidden-sm hidden-xs menuImage">
+				<img src="<?php echo $this->getSkinUrl('images/homepage/best-price-guarantee-img.png');?>" alt="Price" class="img-responsive" />
+			</div>
+		</div>
+	</div>
+</section>
+
+
 
 <script>
   (function($){
     $(document).ready(function(){
       $('.breadcrumbs li.home a').text('Marketplace');
-      $('.new-cart .header-minicart a').on('click',function(){
-        // alert('ads');
-        $('.header-minicart #header-cart').addClass('skip-active');
-      });
-      $('.new-cart .cart-view').on('click',function(){
-        // alert('ads');
-        $('.header-minicart #header-cart').addClass('skip-active');
-      });
-      $('.minicart-wrapper .skip-link-close').on('click',function(){
-        // alert('ads');
-        $('.header-minicart .skip-cart').removeClass('skip-active');
-        $('.header-minicart #header-cart').removeClass('skip-active');
-      });
-
-      $(".new-cart").mouseover(function(){
-        // alert('over');
-        $('#header-cart').addClass('skip-active');
-      });
-
-      $(".new-cart").mouseout(function(){
-        // alert('over');
-        $('#header-cart').removeClass('skip-active');
-      });
-      $('.your-marketplace').mouseover(function(){
-        // alert('over');
-        $('#header-account').addClass('skip-active');
-      });
-      $('.your-marketplace').mouseout(function(){
-        // alert('over');
-        $('#header-account').removeClass('skip-active');
-      });
-
+      
+	  
+	  
+		
+		$( window ).resize(function(){
+			$('.dropdown-menu').hide();
+			$(".dropdown").removeClass("open").find("span.glyphicon").removeClass("glyphicon-minus-sign").addClass("glyphicon-plus-sign");	
+			if($(window).width() > 740)
+			{
+				$(".dropdown").hover(            
+					function() {
+						$(this).find(".dropdown-menu").stop(true,true).slideDown("400");
+						$(this).toggleClass('open');        
+					},
+					function() {
+						$(this).find(".dropdown-menu").stop(true,true).slideUp("400");
+						$(this).toggleClass('open');       
+					}
+				);
+			}else
+			{
+				$(".dropdown").off( "hover" );
+				$(".dropdown").find("span.showMenu").on("click",function(){
+					if($(this).hasClass("glyphicon-plus-sign"))
+					{
+						$(this).removeClass("glyphicon-plus-sign").addClass("glyphicon-minus-sign");
+						$(this).next('.dropdown-menu').stop(true,true).slideDown("400");
+						$(this).parent(".dropdown").toggleClass('open'); 
+					}else
+					{
+						$(this).removeClass("glyphicon-minus-sign").addClass("glyphicon-plus-sign");	
+						$(this).next('.dropdown-menu').stop(true,true).slideUp("400");
+						$(this).parent(".dropdown").toggleClass('open'); 
+					}	
+				})
+			}
+		})
+	  
+	  	$(window).trigger('resize');
+	  
+	  $("li.myAccount").hover(function(){
+		  $("div#myAccountLinks").stop(true,true).slideDown();
+	  },function(){
+		  $("div#myAccountLinks").hide(); 
+	 })
+	
+	 $("li.cartLink").hover(function(){
+		  $("div.cartInfo").stop(true,true).slideDown();
+	  },function(){
+		  $("div.cartInfo").hide(); 
+	 })
+	
 
     });
 

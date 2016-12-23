@@ -25,14 +25,6 @@
  */
 ?>
 
-<script type="text/javascript">
-<!--
-if (screen.width <= 699) {
-document.location = "mobile.php";
-}
-//-->
-</script>
-
 
 <meta http-equiv="Content-Type" content="<?php echo $this->getContentType() ?>" />
 <title><?php echo $this->getTitle() ?></title>
@@ -72,7 +64,11 @@ document.location = "mobile.php";
 </script>
 <!-- dfp ad script end -->
 <!-- heatmap -->
-<script src="//load.sumome.com/" data-sumo-site-id="ee39cd0f88f0bdb794c2476dae023e85501a1cd7154d6fa83c235c2d074a3957" async="async"></script><script src="//load.sumome.com/" data-sumo-site-id="ee39cd0f88f0bdb794c2476dae023e85501a1cd7154d6fa83c235c2d074a3957" async="async"></script>
+<!-- 
+
+<script src="//load.sumome.com/" data-sumo-site-id="ee39cd0f88f0bdb794c2476dae023e85501a1cd7154d6fa83c235c2d074a3957" async="async"></script><script src="//load.sumome.com/" data-sumo-site-id="ee39cd0f88f0bdb794c2476dae023e85501a1cd7154d6fa83c235c2d074a3957" async="async"></script> 
+
+-->
 <?php echo $this->getCssJsHtml() ?>
 <?php echo $this->getChildHtml() ?>
 <?php echo $this->helper('core/js')->getTranslatorScript() ?>

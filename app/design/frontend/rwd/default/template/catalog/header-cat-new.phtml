@@ -17,27 +17,26 @@ if (count($_categories) > 0){ ?>
           if($_category->getIsActive() == 1 & $_category->getIncludeInMenu() == 1){
           if (count($_subcategories) > 0 || $_category->getUrlKey() == 'sales'){ ?>
               <li class="dropdown mega-dropdown">
-                <a href="<?php echo $_category->getUrl(); ?>"><?php echo $_category->getName(); ?></a><span class="glyphicon glyphicon-plus-sign pull-right hidden-lg hidden-md hidden-sm visible-xs showMenu"></span>
+                <a href="<?php echo $_category->getUrl(); ?>"><?php echo $_category->getName(); ?></a>
 				
 				<div class="dropdown-menu mega-dropdown-menu">
-					
-						<div class="col-sm-8">
-							<div class="row menuList">
-								<?php 
+					<div class="row">
+						<div class="col-sm-9">
+							<div class="row">
+							<?php 
 									$count==0;
 									$closingTag=false;
 									foreach($_subcategories as $_subcategory)
 									{
 										if($count%4==0)
 										{
-											
+											$count++;
 											$closingTag=true;
 							?>
-											<div class="col-sm-4 col-xs-6 listBox">	
+											<div class="col-sm-4">	
 												<ul>	
 							<?php				
 										}
-										$count++;		
 							          				$_subcategory = Mage::getModel('catalog/category')->load($_subcategory->getEntityId());
 							?>
 												<?php if($_subcategory->getIsActive() == 1 && $_subcategory->getIncludeInMenu() ==1)
@@ -60,8 +59,6 @@ if (count($_categories) > 0){ ?>
 									
 									if($closingTag)
 									{
-											$count=0;
-											$closingTag=false;
 							?>
 											</ul>
 										</div>	
@@ -71,16 +68,16 @@ if (count($_categories) > 0){ ?>
 							</div>
 							
 							
-							<div class="row brandBox">
-								<div class="col-xs-4  text-center">
+							<div class="row">
+								<div class="col-sm-4 text-center">
 									<a href="https://ziwirastore.com/shop-by-brand/prairie-naturals.html"><img src="<?php echo $this->getSkinUrl('images/homepage/menu-icon-3.png');?>" alt="Prairie Naturals" class="img-responsive" /></a>
 								</div>
 								
-								<div class="col-xs-4 text-center">
+								<div class="col-sm-4 text-center">
 									<a href="https://ziwirastore.com/shop-by-brand/organika.html"><img src="<?php echo $this->getSkinUrl('images/homepage/menu-icon-2.png');?>" alt="Organika"  class="img-responsive" /></a>
 								</div>
 								
-								<div class="col-xs-4 text-center">
+								<div class="col-sm-4 text-center">
 									<a href="https://ziwirastore.com/shop-by-brand/now-foods.html"><img src="<?php echo $this->getSkinUrl('images/homepage/menu-icon-1.png');?>" alt="Now" class="img-responsive" /></a>
 								</div>
 								
@@ -88,7 +85,7 @@ if (count($_categories) > 0){ ?>
 							
 						</div>
 						
-						<div class="col-sm-4 grayBox">
+						<div class="col-sm-3 grayBox">
 							<h3>ON SALE</h3>
 							<ul>
 							  <li><a href="https://ziwirastore.com/garcinia-plus.html">Get 26% Off on Weight Loss Products</a></li>
@@ -101,14 +98,14 @@ if (count($_categories) > 0){ ?>
 							</ul>
 						</div>
 						
-					
+					</div>
 					
 				</div>
 				
 				
                 
 
-              
+              </li>
 
           <?php }
      }

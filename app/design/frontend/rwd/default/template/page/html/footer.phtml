@@ -40,40 +40,57 @@ $magazine = 'https://magazine.ziwira.com/';
 $jobs = 'https://jobs.ziwira.com/';
 
 ?>
-<footer class="homepage_footer">
-	<div class="footer_list_element">
-        <div class="container">
-        	<div class="footer_list_element_sect">
-                <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('footer-categories')->toHtml(); ?>
 
-            </div>
-            <div class="footer_signup_section">
-              <?php echo $this->getLayout()->createBlock('newsletter/subscribe')->setTemplate('newsletter/subscribe.phtml')->toHtml(); ?>
 
-            	<!-- <h3>SIGN UP FOR OUR NEWSLETTER</h3>
-                <p>Enter your email address below to subscribe to our newsletter.</p>
-                <div class="signup_input">
-                	<input type="text" placeholder="Email address" />
-                    <a href="#"><img src="<?php echo $this->getSkinUrl('images/homepage/signup-tick.png'); ?>" alt="signup-tick"></a>
-                </div> -->
+<section id="footer">
+	<div class="container">
+		<div class="row">
+			
+			 <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('footer-categories')->toHtml(); ?>
+				
+			
+			<div class="col-md-3">
+            	<div class="clearfix">
+				<div id="signUp-form">
+					<?php echo $this->getLayout()->createBlock('newsletter/subscribe')->setTemplate('newsletter/subscribe.phtml')->toHtml(); ?>
+				</div>
+				<div class="clearfix"></div>
+				
+				
+			</div>
+			
+		</div>
+		
+		
+		
+		
+	</div>
+</section>
+
+
+<section id="footer-bottom">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-2 footerLogo">
+				<img src="<?php echo $this->getSkinUrl('images/homepage/ziwira-logo.png'); ?>" alt="ziwira-logo" class="img-response">
+				
+                
+			</div>
+			
+			<div class="col-sm-5 text-center">
+				<p class="footerLinks"> <a href="/about-us">About Us</a> <a href="/contact-us">Contact Us</a> <a href="/terms-and-conditions">Terms &amp; Conditions</a> <a href="/privacy-policy">Privacy Policy</a> <a href="/customerfeedback">Customer Feedback</a> </p>
+			</div>
+			
+            
+            <div class="col-sm-3 col-sm-push-2">
+            	<p class="social-media"><a href="https://www.facebook.com/ziwira/"><img src="<?php echo $this->getSkinUrl('images/f.jpg'); ?>" alt="social-media"></a> <a href="https://twitter.com/ziwiraeco"><img src="<?php echo $this->getSkinUrl('images/t.jpg'); ?>" alt="social-media"></a> <a href="https://www.linkedin.com/company/ziwira"><img src="<?php echo $this->getSkinUrl('images/in.jpg'); ?>" alt="social-media"></a><a href="https://www.instagram.com/ziwira/"><img src="<?php echo $this->getSkinUrl('images/ins.jpg'); ?>" alt="social-media"></a></p>
             </div>
-        </div>
-    </div>
-    <div class="footer_bottom">
-    	<div class="container">
-        	<img src="<?php echo $this->getSkinUrl('images/homepage/ziwira-logo.png'); ?>" alt="ziwira-logo" class="footer_logo">
-            <ul>
-            	<li><a href="https://ziwira.com/about-us">About Us</a></li>
-                <li><a href="https://ziwira.com/contact-us">Contact Us</a></li>
-                <li><a href="https://ziwira.com/terms-and-conditions">Terms &amp; Conditions</a></li>
-                <li><a href="https://ziwira.com/privacy-policy">Privacy Policy</a></li>
-                <li><a href="https://ziwira.com/customerfeedback">Customer Feedback</a></li>
-                <li class="copyright">2016 Ziwira - all rights reserved</li>
-                <li class="social_media"><a href="https://www.facebook.com/ziwira/"><img src="<?php echo $this->getSkinUrl('images/f.jpg'); ?>" alt="social-media"></a></li>
-                <li class="social_media"><a href="https://twitter.com/ziwiraeco"><img src="<?php echo $this->getSkinUrl('images/t.jpg'); ?>" alt="social-media"></a></li>
-                <li class="social_media"><a href="https://www.linkedin.com/company/ziwira"><img src="<?php echo $this->getSkinUrl('images/in.jpg'); ?>" alt="social-media"></a></li>
-                <li class="social_media"><a href="https://www.instagram.com/ziwira/"><img src="<?php echo $this->getSkinUrl('images/ins.jpg'); ?>" alt="social-media"></a></li>
-            </ul>
-        </div>
-    </div>
-</footer>
+            
+			<div class="col-sm-2 col-sm-pull-3 text-right copy">
+				<p class="copyright">&copy; 2016 Ziwira - all rights reserved</p>
+			</div>
+			
+		</div>
+	</div>
+</section>
+

@@ -8,16 +8,51 @@ Author Email: firasath_hussain20@yahoo.com
 */
 $_helper = Mage::helper('catalog/category');
 $_categories = $_helper->getStoreCategories();
-if (count($_categories) > 0){ ?>
-  <div class="footer-cat">
+if (count($_categories) > 0){ 
+
+$counter = 0;
+$flag5 = 1;
+$flag4 = 1;
+
+?>
+ 
 
   <?php  foreach($_categories as $_category){
         $_category = Mage::getModel('catalog/category')->load($_category->getId());
           if($_category->getIsActive() == 1 & $_category->getIncludeInMenu() == 1){
         $_subcategories = $_category->getChildrenCategories();
-        if (count($_subcategories) > 0){ ?>
-          <ul>
-          <h3><?php echo $_category->getName(); ?></h3>
+        if (count($_subcategories) > 0){
+
+		switch($counter){
+			
+			case 0 :
+				echo "<div class='col-md-5 col-xs-6'>";
+				echo "<div class='row'>";
+				echo "<div class='col-md-4 footer-cat'>";
+			break;
+			case 1 :
+			case 2 :
+				echo "<div class='col-md-4 footer-cat'>";
+			break;
+			case 3 :
+				echo "<div class='col-md-4 col-xs-6'>";
+				echo "<div class='row'>";
+				echo "<div class='col-md-7  footer-cat'>";
+			break;
+			
+			case 4 :
+				echo "<div class='col-md-5  footer-cat'>";
+			break;
+		}	
+		 
+		  
+		  
+		?>
+          
+		 <h3><?php echo $_category->getName(); ?></h3>
+		  
+		  <ul>
+          
           <?php foreach($_subcategories as $_subcategory){
               $_subcategory = Mage::getModel('catalog/category')->load($_subcategory->getEntityId());
               if($_subcategory->getIsActive() == 1 && $_subcategory->getIncludeInMenu() ==1){
@@ -26,9 +61,31 @@ if (count($_categories) > 0){ ?>
           <?php   }} ?>
         </ul>
 
-        <?php }
-    }} ?>
-</div>
+        <?php 
+		$counter++;
+		switch($counter){
+			
+			case 1 :
+			case 2 :
+				echo "</div>";
+			break;
+			
+			case 3 :
+				echo "</div></div></div>";
+			break;
+			case 4 :
+				echo "</div>";
+			break;
+			 
+		}
+		
+		
+		
+		}
+    }}
+echo "</div></div></div>";
+	?>
+ 
 
 <?php
 }

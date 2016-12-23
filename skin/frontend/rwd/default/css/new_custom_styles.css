@@ -2587,7 +2587,7 @@ text-align: left;
   background: #3bb04b;
   padding: 12px 50px;
 }
-.mini-count{
+/*.mini-count{
   margin-left: 21px;
 margin-bottom: 30px;
 font-size: 14px;
@@ -2605,7 +2605,7 @@ margin-top: 8px;
     margin-top: 0px;
     display: block;
     text-transform: uppercase;
-}
+}*/
 .mini-empty a, .mini-empty a:hover{
   color: #fff;
 }
@@ -2859,7 +2859,7 @@ img { max-width: 100%; display:block; height:auto; }
 
 header.container { position:relative; }
 
-.container { margin: 0 auto; width:1280px; padding:0; }
+/*.container { margin: 0 auto; width:1280px; padding:0; }*/
 
 .left-header { width:430px; float:left; padding-top:0px; }
 
@@ -3687,7 +3687,7 @@ width: 100%;
 .footer_list_element_sect .nav{
   display: none;
 }
-.signup_input input[type="text"]{
+/*.signup_input input[type="text"]{
   font-size: 12px;
 font-family: 'Ubuntu', sans-serif;
 font-weight: 300;
@@ -3713,7 +3713,7 @@ margin: 0;
     padding-top: 3px;
     padding: 3px 0px 0px 0px;
         position: absolute;
-}
+}*/
 .signup_input .validation-advice{
   position: relative;
 width: 100%;
@@ -3800,7 +3800,7 @@ width: 100%;
 padding: 20px 15px;
 }
 .customer-account .main-container{
-      max-width: 1280px;
+     /* max-width: 1280px;*/
 }
 .customer-account  .wrapper{
   background: #fff;
@@ -3815,7 +3815,7 @@ padding: 20px 15px;
 }
 .customer-account .main-container .col-main{
   float: left;
-width: 1025px;
+/*width: 1025px;*/
 padding: 0;
 margin: 0;
 margin-top: 0px;

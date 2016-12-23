@@ -92,7 +92,13 @@
                  <!-- custom css firas -->
                  <action method="addItem"><type>skin_css</type><name>css/font-awesome.css</name><params/><if><![CDATA[<!--[if (gte IE 9) | (IEMobile)]><!-->]]></if></action>
                  <action method="addItem"><type>skin_css</type><name>css/new_custom_styles.css</name><params/><if><![CDATA[<!--[if (gte IE 9) | (IEMobile)]><!-->]]></if></action>
+				 
+				 <action method="addItem"><type>skin_css</type><name>css/new_bootstrap_custom.css</name><params/><if><![CDATA[<!--[if (gte IE 9) | (IEMobile)]><!-->]]></if></action>
 
+                <!-- custom css firas ends -->
+				
+				
+                 
                 <!-- custom css firas ends -->
 
                 <!-- Sets viewport meta tag using text block -->
