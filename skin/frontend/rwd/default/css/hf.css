@@ -2202,11 +2202,11 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   color: #2e383a;
 }
 
-#maincontent {
+/*#maincontent {
   width: 1272px;
   max-width: 1272px;
   margin: 0 auto;
-}
+}*/
 #two-column #left-block {
   width: 913px;
 }
@@ -2643,12 +2643,12 @@ legend {
   border: 0;
   border-bottom: 1px solid #e5e5e5;
 }
-label {
+/*label {
   display: inline-block;
   max-width: 100%;
   margin-bottom: 5px;
   font-weight: bold;
-}
+}*/
 input[type="search"] {
   -ms-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -2686,7 +2686,7 @@ output {
   line-height: 1.42857143;
   color: #414042;
 }
-.form-control {
+/*.form-control {
   display: block;
   width: 94.5%;
   height: 30px;
@@ -2705,7 +2705,7 @@ output {
   -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
   transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
   font-size: 1em;
-}
+}*/
 .form-control::-moz-placeholder {
   color: #2E383A;
   opacity: 1;
@@ -2800,7 +2800,7 @@ input[type="search"] {
 .checkbox-inline input[type="checkbox"] {
   position: absolute;
   margin-left: -20px;
-  margin-top: 4px \9;
+  margin-top: 2px \9;
 }
 .radio + .radio,
 .checkbox + .checkbox {
@@ -3166,7 +3166,7 @@ select[multiple].form-group-lg .form-control {
   font-family: UbuntuRegular;
   text-transform: capitalize;
 }
-.btn {
+/*.btn {
   display: inline-block;
   margin-bottom: 0;
   font-weight: 400;
@@ -3205,7 +3205,7 @@ select[multiple].form-group-lg .form-control {
 
 .full-width {
   width: 100%;
-}
+}*/
 
 /*magento css*/
 

@@ -66,6 +66,7 @@
                 <action method="addItem"><type>skin_js</type><name>js/lib/jquery.cycle2.swipe.min.js</name></action>
                 <action method="addItem"><type>skin_js</type><name>js/slideshow.js</name></action>
                 <action method="addItem"><type>skin_js</type><name>js/lib/imagesloaded.js</name></action>
+				<action method="addItem"><type>skin_js</type><name>js/owl.carousel.min.js</name></action>
                 <action method="addLinkRel"><rel>stylesheet</rel><href>//fonts.googleapis.com/css?family=Raleway:300,400,500,700,600</href></action>
                 <action method="addItem"><type>skin_js</type><name>js/minicart.js</name></action>
 
@@ -92,6 +93,11 @@
                  <!-- custom css firas -->
                  <action method="addItem"><type>skin_css</type><name>css/font-awesome.css</name><params/><if><![CDATA[<!--[if (gte IE 9) | (IEMobile)]><!-->]]></if></action>
                  <action method="addItem"><type>skin_css</type><name>css/new_custom_styles.css</name><params/><if><![CDATA[<!--[if (gte IE 9) | (IEMobile)]><!-->]]></if></action>
+				
+				 
+				  <action method="addItem"><type>skin_css</type><name>css/owl.carousel.min.css</name><params/><if><![CDATA[<!--[if (gte IE 9) | (IEMobile)]><!-->]]></if></action>
+				 
+				  <action method="addItem"><type>skin_css</type><name>css/owl.theme.default.min.css</name><params/><if><![CDATA[<!--[if (gte IE 9) | (IEMobile)]><!-->]]></if></action>
 				 
 				 <action method="addItem"><type>skin_css</type><name>css/new_bootstrap_custom.css</name><params/><if><![CDATA[<!--[if (gte IE 9) | (IEMobile)]><!-->]]></if></action>
 

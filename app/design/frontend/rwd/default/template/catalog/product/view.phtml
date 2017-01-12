@@ -5,74 +5,74 @@
     var optionsPrice = new Product.OptionsPrice(<?php echo $this->getJsonConfig() ?>);
 </script>
 
-<div id="messages_product_view"><?php echo $this->getMessagesBlock()->toHtml() ?></div>
+<div id="messages_product_view" class="row"><div class="col-sm-12"><?php echo $this->getMessagesBlock()->toHtml() ?></div></div>
 
 <!-- product content area start -->
-<div class="product-view">
-    <div class="product-essential">
+<div class="row product-view">
+    
         <form action="<?php echo $this->getSubmitUrl($_product, array('_secure' => $this->_isSecure())) ?>" method="post" id="product_addtocart_form"<?php if($_product->getOptions()): ?> enctype="multipart/form-data"<?php endif; ?>>
             <?php echo $this->getBlockHtml('formkey') ?>
 
-            <div class="no-display">
+            <div class="no-display hidden">
                 <input type="hidden" name="product" value="<?php echo $_product->getId() ?>" />
                 <input type="hidden" name="related_product" id="related-products-field" value="" />
             </div>
 
-            <div><?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('floating-cat')->toHtml(); ?></div>
-
+            <div class="col-sm-12 hidden"><?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('floating-cat')->toHtml(); ?></div>
+			<div class="clearfix"></div>
 
             <!-- product image -->
-            <div class="product-img-box">
-                <div class="product-name">
+            <div class="product-img-box col-md-5">
+                <div class="product-name hidden-lg hidden-md">
                     <h1><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></h1>
-                    <div><?php echo $_product->getSize(); ?></div>
+                    <!--<div><?php echo $_product->getSize(); ?></div>-->
                 </div>
                 <?php echo $this->getChildHtml('media') ?>
             </div>
 
             <!-- product info -->
-            <div class="product-shop">
-                <div class="clearfix">
-                    <div class="product-name">
-                        <span class="h1"><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></span>
-
-                    </div>
-                </div>
-<div><?php echo $_product->getSize(); ?></div>
-                <div class="extra-info no-display">
+            <div class="product-shop col-md-7">
+				<div class="product-name hidden-sm hidden-xs">
+					<h1><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></h1>
+					
+				</div>
+				
+                <p class="size"><?php echo $_product->getSize(); ?></p>
+				<div class="extra-info no-display hidden">
                     <?php echo $this->getReviewsSummaryHtml($_product, 'default', false)?>
                     <?php echo $this->getChildHtml('product_type_availability'); ?>
                 </div>
 
                 <?php echo $this->getChildHtml('alert_urls') ?>
 
-                <div class="ratings-points" style="margin-bottom: 60px;">
+                <div class="ratings-points">
                   <?php echo $RatingOb=Mage::getModel('rating/rating')->getEntitySummary($_product->getId());
-    $ratings=$RatingOb->getSum()/$RatingOb->getCount();
-   ?>
-   <?php if($ratings): ?>
-   <div class="ratings pull-left" style="">
-       <div class="rating-box">
-           <div class="rating" style="width:<?php echo $ratings; ?>%"></div>
-       </div>
-   </div>
-<?php endif; ?>
+    				$ratings=$RatingOb->getSum()/$RatingOb->getCount();
+   				  ?>
+   				<?php if($ratings): ?>
+				   <div class="ratings" style="">
+					   <div class="rating-box">
+						   <div class="rating" style="width:<?php echo $ratings; ?>%"></div>
+					   </div>
+				   </div>
+				<?php endif; ?>
 
 
-<?php
-    $storeId    = Mage::app()->getStore()->getId();
-    $summaryData = Mage::getModel('review/review_summary')
-    ->setStoreId($storeId)
-    ->load($_product->getId()); ?>
-    <!-- <img style="margin-left:-20px" src="<?php //echo $this->getSkinUrl('images/rating.png'); ?>"/> -->
-<div class="review-count pull-left" style="margin-top: 10px;margin-left: 0px;">
-  <?php if($summaryData['reviews_count'] > 0): ?>
-    <span style="display: inline-block;"><?php echo $summaryData['reviews_count'].'&nbsp;reviews'; ?></span>
-  <?php endif ?>
-  <span style="display: inline-block;margin-left: 0px;top: 4px;position: relative;"><img style="margin-left:0px" src="<?php echo $this->getSkinUrl('images/product-flag.png'); ?>"/></span></div>
+				<?php
+					$storeId    = Mage::app()->getStore()->getId();
+					$summaryData = Mage::getModel('review/review_summary')
+					->setStoreId($storeId)
+					->load($_product->getId()); ?>
+						<!-- <img style="margin-left:-20px" src="<?php //echo $this->getSkinUrl('images/rating.png'); ?>"/> -->
+					<div class="review-count">
+					  <?php if($summaryData['reviews_count'] > 0): ?>
+						<?php echo $summaryData['reviews_count'].'&nbsp;reviews'; ?>
+					  <?php endif ?>
+					  <img src="<?php echo $this->getSkinUrl('images/product-flag.png'); ?>" class="img-responsive"/>
+					  </div>
                   <!-- <img style="margin-left:0px" src="<?php //echo $this->getSkinUrl('images/rating.png'); ?>"/> -->
                 </div>
-                <div class="product-top-info no-display">
+                <div class="product-top-info no-display hidden">
                     <ul class="top-info-1 clearfix">
                         <li><?php echo $this->__('Item # 1007CUWART'); ?></li>
                         <li><?php echo $this->__('Brand:'); ?> <span>Ulster Weaver</span></li>
@@ -86,37 +86,36 @@
                     </ul>
                 </div>
 
-               <!-- <div class="price-info">
-                    <?php //echo $this->getPriceHtml($_product); ?>
-                    <?php //echo $this->getChildHtml('bundle_prices') ?>
-                    <?php //echo $this->getTierPriceHtml() ?>
-                </div> -->
+              
 
                 <div class="price-wr">
-                  <?php
-                //  echo "<pre>"; print_r($_product);
-                  $promoPrice = $_product->getFinalPrice();
-                  $originalPrice = $_product->getPrice();
-
-                  ?>
-                  <?php if($promoPrice < $originalPrice): ?>
-                  <div>
-
-                    <?php echo $this->__('Special Price:'); ?> <span class="prprice"><?php echo Mage::helper('core')->currency($_product->getFinalPrice(),true,false); ?></span></div>
-                  <div><?php echo $this->__('Regular Price:'); ?> <span class="oldprice"><?php echo Mage::helper('core')->currency($_product->getPrice(),true,false); ?></span></div>
-                <?php else: ?>
-                  <div>
-                    <?php echo $this->__('Our Price:'); ?> <span class="cart-view"><?php echo Mage::helper('core')->currency($_product->getPrice(),true,false); ?></span></div>
-                <?php endif ?>
-                <?php if($_product->getMsrp() !=''): ?>
-                        <div class="msrp-strike">Regular Price: <?php echo Mage::helper('core')->currency($_product->getMsrp(),true,true);?></div>
-              <?php endif;?>
-                <div>  <?php echo "SKU: ".$_product->getSKU(); ?></div>
+					  <?php
+					//  echo "<pre>"; print_r($_product);
+					  $promoPrice = $_product->getFinalPrice();
+					  $originalPrice = $_product->getPrice();
+	
+					  ?>
+                  		<?php if($promoPrice < $originalPrice): ?>
+                  			<p>
+                   		 		<?php echo $this->__('Special Price:'); ?> <span class="prprice"><?php echo Mage::helper('core')->currency($_product->getFinalPrice(),true,false); ?></span>
+							</p>
+                  			<p>
+								<?php echo $this->__('Regular Price:'); ?> <span class="oldprice"><?php echo Mage::helper('core')->currency($_product->getPrice(),true,false); ?></span>
+							</p>
+                		<?php else: ?>
+                  			<p>
+                    			<?php echo $this->__('Our Price:'); ?> <span class="cart-view"><?php echo Mage::helper('core')->currency($_product->getPrice(),true,false); ?></span>
+							</p>
+                		<?php endif ?>
+                		<?php if($_product->getMsrp() !=''): ?>
+                        	<p class="msrp-strike">Regular Price: <?php echo Mage::helper('core')->currency($_product->getMsrp(),true,true);?></p>
+              			<?php endif;?>
+                			<p>  <?php echo "SKU: ".$_product->getSKU(); ?></p>
                 </div>
 
 
                 <?php if ($_product->getDescription()):?>
-                    <div class="short-description p-desc no-display">
+                    <div class="short-description p-desc no-display hidden">
                         <h5>Description</h5>
                         <div class="std"><?php echo $_helper->productAttribute($_product, nl2br($_product->getDescription()), 'short_description') ?></div>
                     </div>
@@ -129,33 +128,36 @@
                 <?php endif;?>
 
                 <div class="add-to-cart-wrapper">
-                    <?php echo $this->getChildHtml('product_type_data') ?>
-                    <?php echo $this->getChildHtml('extrahint') ?>
+                    <?php  echo $this->getChildHtml('product_type_data') ?>
+                    <?php  echo $this->getChildHtml('extrahint') ?>
 
                     <?php if (!$this->hasOptions()):?>
                         <div class="add-to-box">
                             <?php if($_product->isSaleable()): ?>
-                                <?php echo $this->getChildHtml('addtocart') ?>
+                                <?php  echo $this->getChildHtml('addtocart') ?>
                                 <?php if( $this->helper('wishlist')->isAllow() || $_compareUrl=$this->helper('catalog/product_compare')->getAddUrl($_product)): ?>
                                     <span class="or"><?php echo $this->__('OR') ?></span>
                                 <?php endif; ?>
                             <?php endif; ?>
-                            <div class="share-box clearfix">
-                                <?php echo $this->getChildHtml('sharing') ?>
-                                <?php echo $this->getChildHtml('addto') ?>
-                            </div>
+                            
                         </div>
-                        <?php echo $this->getChildHtml('extra_buttons') ?>
+						
+						<div class="share-box">
+							<?php  echo $this->getChildHtml('sharing') ?>
+							<?php  echo $this->getChildHtml('addto') ?>
+						</div>
+						
+                        <?php  echo $this->getChildHtml('extra_buttons') ?>
                     <?php elseif (!$_product->isSaleable()): ?>
                         <div class="add-to-box">
-                            <?php echo $this->getChildHtml('addto') ?>
-                            <?php echo $this->getChildHtml('sharing') ?>
+                            <?php  echo  $this->getChildHtml('addto') ?>
+                            <?php  echo  $this->getChildHtml('sharing') ?>
                         </div>
                     <?php endif; ?>
                 </div>
 
                 <div class="secure-payment">
-                    <img src="<?php echo $this->getSkinUrl('images/payment.jpg');?>" width="100%" />
+                    <img src="<?php echo $this->getSkinUrl('images/payment.jpg');?>" class="img-responsive" />
                 </div>
 
             </div>
@@ -288,11 +290,11 @@
             }
         //]]>
         </script>
-    </div>
+   
+		<div class="clearfix"></div>
 
-
-      <div class="review-desc-container">
-        <div class="product-shop">
+     
+        <div class="product-shop col-md-7 col-md-push-5" style="margin-top:15px;">
           <?php if ($_product->getDescription()):?>
               <div class="short-description p-desc">
                   <h5>Description</h5>
@@ -300,15 +302,20 @@
               </div>
           <?php endif;?>
         </div>
-        <?php echo $this->getChildHtml('reviews') ?>
-        <?php echo $this->getChildHtml('review_form') ?>
-      </div>
-
+		
+		<div class="col-md-5 col-lg-pull-7">
+			<div class="review-box">
+				<?php  echo $this->getChildHtml('reviews') ?>
+				<?php  echo $this->getChildHtml('review_form') ?>
+			</div>
+     	</div>
+		<div class="clearfix"></div>
       <?php //echo $this->getChildHtml('upsell_products') ?>
+	  
       <?php echo $this->getChildHtml('related_products') ?>
 
 
-    <div class="product-collateral toggle-content tabs no-review no-display">
+    <div class="product-collateral toggle-content tabs no-review no-display hidden">
         <?php if ($detailedInfoGroup = $this->getChildGroup('detailed_info', 'getChildHtml')):?>
             <dl id="collateral-tabs" class="collateral-tabs">
                 <?php foreach ($detailedInfoGroup as $alias => $html):?>
@@ -327,7 +334,7 @@
         <?php endif; ?>
     </div>
 
-    <div class="no-display">
+    <div class="no-display hidden">
         <?php echo $this->getChildHtml('product_additional_data') ?>
     </div>
 

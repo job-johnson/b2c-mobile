@@ -350,7 +350,7 @@
 }
 
 .row {
-    max-width: 100% !important;
+   /* max-width: 100% !important;*/
 }
 
 .review-qty-input {

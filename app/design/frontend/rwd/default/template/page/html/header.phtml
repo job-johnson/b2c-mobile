@@ -72,16 +72,33 @@
 			
 			<div class="col-md-6 topBarrightLinks">
 				<ul>
-					<li class="ziwira-portal"><a href="http://ziwira.com"><img src="<?php echo $this->getSkinUrl('images/homepage/wibe-world-globe.png');?>" alt="WWW" /> ZIWIRA PORTAL</a></li>
+					<li class="ziwira-portal"><a href="javascript:void(0)"><img src="<?php echo $this->getSkinUrl('images/homepage/wibe-world-globe.png');?>" alt="WWW" class="img-responsive" /> ZIWIRA PORTAL</a> <button type="button" class="navbar-toggle collapsed portal-Nav" data-toggle="collapse" data-target="#portal-nav" aria-expanded="false">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				  </button>
+                  	<div id="portal-nav">
+                  	<ul  class="nav navbar-nav">
+                    	<li><a href="<?php echo Mage::getBaseUrl().'return-and-refund-policy' ?>">Return &amp; Refund Policies</a></li>
+                        <li><a href="<?php echo Mage::getBaseUrl().'tax-regulation'; ?>">Tax Regulation</a></li>
+                        <li><a href="<?php echo Mage::getBaseUrl().'sell-on-ziwira' ?>">SELL ON ZIWIRA</a></li>
+                    </ul>
+                    </nav>
+                  	
+                  </li>
 					<li class="sellZiwira"><a href="<?php echo Mage::getBaseUrl().'sell-on-ziwira' ?>">SELL ON ZIWIRA</a></li>
 					<li class="lang">EN <img src="<?php echo $this->getSkinUrl('images/homepage/canada-flag.png');?>" alt="Canada" /> <span>|</span> CAD</li>
 					<li class="login">
 		
 					<?php
 			if (Mage::getModel('customer/session')->isLoggedIn()):?>
-					  <a href="<?php echo Mage::getUrl('customer/account/logout'); ?>">Logout</a>
+					  <a href="javascript:void(0)">My Account</a>
+                      <div class="myAccountLinks">
+                      		<?php echo $this->getChildHtml('topLinks') ?>
+                      </div>
 			<?php else:?>
-					  <a href="<?php echo Mage::getUrl('customer/account/login'); ?>">Login</a>  |  <a href="<?php echo Mage::getUrl('customer/account/login');  ?>">Register</a>
+					  <a href="<?php echo Mage::getUrl('customer/account/login'); ?>">Login</a>  |  <a href="<?php echo Mage::getUrl('customer/account/create');  ?>">Register</a>
 		<?php endif;?>
 		
 					</li>
@@ -129,11 +146,11 @@
 							
 							<a href="<?php echo $this->helper('customer')->getAccountUrl(); ?>" >
 							<?php
-								  if (Mage::getModel('customer/session')->isLoggedIn()) {
+								  /*if (Mage::getModel('customer/session')->isLoggedIn()) {
 							  $customer = Mage::getSingleton('customer/session')->getCustomer();
 							  echo ucfirst($customer->getFirstname())." ".ucfirst($customer->getLastname());
 					
-							} ?> <?php echo $this->__('My Account'); ?> </a>
+							}*/ ?> <?php echo $this->__('My Account'); ?> </a>
 							
 							<div id="myAccountLinks" >
 								<?php echo $this->getChildHtml('topLinks') ?>
@@ -142,8 +159,8 @@
 						</li>
 						
 						<li class="cartLink">
-							<a href="javascript:void(0)" ><i class="icon-market"></i> <span class="cartCounter"><?php echo $cartItemsCount;?></span></a>
-							<div class="cartInfo">
+							<a href="javascript:void(0)" ><i class="icon-market"></i> <span class="cartCounter" id="mini-cart-count"><?php echo $cartItemsCount;?></span></a>
+							<div class="cartInfo header-minicart">
 							  <?php echo $this->getChildHtml('minicart_head'); ?>
 						  </div>
 						</li>
@@ -199,7 +216,7 @@
 		$( window ).resize(function(){
 			$('.dropdown-menu').hide();
 			$(".dropdown").removeClass("open").find("span.glyphicon").removeClass("glyphicon-minus-sign").addClass("glyphicon-plus-sign");	
-			if($(window).width() > 740)
+			if($(window).width() > 640)
 			{
 				$(".dropdown").hover(            
 					function() {
@@ -231,6 +248,10 @@
 		})
 	  
 	  	$(window).trigger('resize');
+		
+		$("li.login").on("click",function(){
+			$(this).toggleClass("active");	
+		})
 	  
 	  $("li.myAccount").hover(function(){
 		  $("div#myAccountLinks").stop(true,true).slideDown();
@@ -239,7 +260,14 @@
 	 })
 	
 	 $("li.cartLink").hover(function(){
-		  $("div.cartInfo").stop(true,true).slideDown();
+		  $("div.cartInfo").stop(true,true).slideDown().find("#header-cart").show();
+		  if($("#minicart-scroller").find("#cart-sidebar").find("li").length > 0)
+		  {
+				$("div.mini-empty").show();  
+		  }else
+		  {
+				$("div.mini-empty").hide();    
+		  }
 	  },function(){
 		  $("div.cartInfo").hide(); 
 	 })

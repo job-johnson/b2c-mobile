@@ -1,5 +1,5 @@
 #esns_background_layer {
-    position: absolute;
+    position: fixed;
     z-index: 9998;
     background: url(../images/newssubscribers/esns_dark2.png);
     width: 100%;

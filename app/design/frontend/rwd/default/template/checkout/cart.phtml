@@ -33,212 +33,210 @@
 ?>
 <?php $_priceDisplay = ($this->helper('tax')->displayCartBothPrices()) ? 'display-both-prices' : 'display-single-price'; ?>
 <div><?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('floating-cat')->toHtml(); ?></div>
-<div class="cart <?php echo $_priceDisplay; ?>">
-    <?php echo $this->getMessagesBlock()->toHtml() ?>
-    <div class="page-title title-buttons hidden">
-        <h1 class="hidden"><?php echo $this->__('Shopping Cart') ?></h1>
-        <?php if(!$this->hasError()): ?>
-        <ul class="checkout-types top">
-        <?php foreach ($this->getMethods('top_methods') as $method): ?>
-            <?php if ($methodHtml = $this->getMethodHtml($method)): ?>
-            <li><?php echo $methodHtml; ?></li>
+<div class="cart <?php echo $_priceDisplay; ?> row">
+	<div class="col-md-8">
+		<?php echo $this->getMessagesBlock()->toHtml() ?>
+        <div class="page-title title-buttons hidden">
+            <h1 class="hidden"><?php echo $this->__('Shopping Cart') ?></h1>
+            <?php if(!$this->hasError()): ?>
+            <ul class="checkout-types top">
+            <?php foreach ($this->getMethods('top_methods') as $method): ?>
+                <?php if ($methodHtml = $this->getMethodHtml($method)): ?>
+                <li><?php echo $methodHtml; ?></li>
+                <?php endif; ?>
+            <?php endforeach; ?>
+            </ul>
             <?php endif; ?>
-        <?php endforeach; ?>
-        </ul>
-        <?php endif; ?>
-    </div>
-    <?php echo $this->getChildHtml('form_before') ?>
-    <div class="firas-cart-left pull-left">
-      <form action="<?php echo $this->getFormActionUrl() ?>" method="post">
-          <?php echo $this->getBlockHtml('formkey'); ?>
-          <table id="shopping-cart-table" class="cart-table data-table">
-              <col width="1" />
-              <col width="1" />
-              <col width="1" />
-              <col width="1" />
-              <col width="1" />
-              <col width="1" />
-              <?php if ($this->helper('tax')->displayCartBothPrices()): ?>
-              <col width="1" />
-              <col width="1" />
-              <?php endif; ?>
-
-          <?php $mergedCells = ($this->helper('tax')->displayCartBothPrices() ? 2 : 1); ?>
-              <thead>
-                  <tr>
-                      <th rowspan="<?php echo $mergedCells; ?>"><span class="nobr"><?php echo $this->__('Product') ?></span></th>
-
-                      <th rowspan="<?php echo $mergedCells; ?>">&nbsp;</th>
-
-                      <th class="a-center cart-price-head" colspan="<?php echo $mergedCells; ?>">
-  <!--                            <div class="cart-price-placeholder">-->
-                              <span class="nobr"><?php echo $this->__('Price') ?></span>
-  <!--                            </div>-->
-                      </th>
-
-                      <th rowspan="<?php echo $mergedCells; ?>" class="a-center hidden">
-                          <?php echo $this->__('Qty') ?>
-
-                          <?php /*if ($this->helper('wishlist')->isAllowInCart()) : ?>
-                              <span class="nobr"><?php echo $this->__('Move to Wishlist') ?></span>
-                          <?php endif*/ ?>
-
-                      </th>
-
-                      <th class="a-center" rowspan="<?php echo $mergedCells; ?>">&nbsp;</th>
-
-                      <th class="a-center cart-total-head" colspan="<?php echo $mergedCells; ?>">
-  <!--                            <div class="cart-total-placeholder">-->
-                              <?php echo $this->__('Subtotal') ?>
-  <!--                            </div>-->
-                      </th>
-
-
-
-                  </tr>
-                  <?php if ($this->helper('tax')->displayCartBothPrices()): ?>
-                  <tr>
-                      <th class="a-center cart-price-head"><?php echo $this->helper('tax')->getIncExcTaxLabel(false) ?></th>
-                      <th class="a-center cart-price-head"><?php echo $this->helper('tax')->getIncExcTaxLabel(true) ?></th>
-                      <th class="a-center cart-total-head"><?php echo $this->helper('tax')->getIncExcTaxLabel(false) ?></th>
-                      <th class="a-center cart-total-head"><?php echo $this->helper('tax')->getIncExcTaxLabel(true) ?></th>
-                  </tr>
-                  <?php endif; ?>
-              </thead>
-              <tfoot>
-                  <tr>
-                      <td colspan="50" class="a-right cart-footer-actions">
-
-                          <!-- Make this button the first responder rather than empty cart -->
-                          <button type="submit" style="visibility:hidden;" data-cart-item-update name="update_cart_action" value="update_qty" title="<?php echo $this->quoteEscape($this->__('Update Shopping Cart')); ?>" class="button2 btn-update"><span><span><?php echo $this->__('Update Shopping Cart'); ?></span></span></button>
-
-                          <button type="submit" name="update_cart_action" data-cart-empty value="empty_cart" title="<?php echo $this->quoteEscape($this->__('Empty Cart')); ?>" class="button2 btn-empty" id="empty_cart_button"><span><span><?php echo $this->__('Empty Cart'); ?></span></span></button>
-
-                          <button type="submit" name="update_cart_action" data-cart-item-update value="update_qty" title="<?php echo $this->quoteEscape($this->__('Update Shopping Cart')); ?>" class="button2 btn-update"><span><span><?php echo $this->__('Update Shopping Cart'); ?></span></span></button>
-
-                          <span class="or">-<?php echo $this->__('or'); ?>-</span>
-
-                          <?php if($this->getContinueShoppingUrl()): ?>
-                              <button type="button" title="<?php echo $this->quoteEscape($this->__('Continue Shopping')) ?>" class="button2 btn-continue" onclick="setLocation('<?php echo Mage::helper('core')->quoteEscape($this->getContinueShoppingUrl()) ?>')"><span><span><?php echo $this->__('Continue Shopping') ?></span></span></button>
+        </div>
+        <?php echo $this->getChildHtml('form_before') ?>
+        <div class="firas-cart-left">
+          <form action="<?php echo $this->getFormActionUrl() ?>" method="post">
+              <?php echo $this->getBlockHtml('formkey'); ?>
+              <div class="table-responsive">
+                  <table id="shopping-cart-table" class="table cart-table data-table">
+                      
+        
+                  <?php $mergedCells = ($this->helper('tax')->displayCartBothPrices() ? 2 : 1); ?>
+                      <thead>
+                          <tr>
+                              <th rowspan="<?php echo $mergedCells; ?>"><span class="nobr"><?php echo $this->__('Product') ?></span></th>
+        
+                              <th rowspan="<?php echo $mergedCells; ?>">&nbsp;</th>
+        
+                              <th class="a-center cart-price-head" colspan="<?php echo $mergedCells; ?>">
+          <!--                            <div class="cart-price-placeholder">-->
+                                      <span class="nobr"><?php echo $this->__('Price') ?></span>
+          <!--                            </div>-->
+                              </th>
+        
+                              <th rowspan="<?php echo $mergedCells; ?>" class="a-center hidden">
+                                  <?php echo $this->__('Qty') ?>
+        
+                                  <?php /*if ($this->helper('wishlist')->isAllowInCart()) : ?>
+                                      <span class="nobr"><?php echo $this->__('Move to Wishlist') ?></span>
+                                  <?php endif*/ ?>
+        
+                              </th>
+        
+                              <th class="a-center" rowspan="<?php echo $mergedCells; ?>">&nbsp;</th>
+        
+                              <th class="a-center cart-total-head" colspan="<?php echo $mergedCells; ?>">
+          <!--                            <div class="cart-total-placeholder">-->
+                                      <?php echo $this->__('Subtotal') ?>
+          <!--                            </div>-->
+                              </th>
+        
+        
+        
+                          </tr>
+                          <?php if ($this->helper('tax')->displayCartBothPrices()): ?>
+                          <tr>
+                              <th class="a-center cart-price-head"><?php echo $this->helper('tax')->getIncExcTaxLabel(false) ?></th>
+                              <th class="a-center cart-price-head"><?php echo $this->helper('tax')->getIncExcTaxLabel(true) ?></th>
+                              <th class="a-center cart-total-head"><?php echo $this->helper('tax')->getIncExcTaxLabel(false) ?></th>
+                              <th class="a-center cart-total-head"><?php echo $this->helper('tax')->getIncExcTaxLabel(true) ?></th>
+                          </tr>
                           <?php endif; ?>
-                          <!--[if lt IE 8]>
-                          <input type="hidden" id="update_cart_action_container" data-cart-item-update />
-                          <script type="text/javascript">
-                          //<![CDATA[
-                              Event.observe(window, 'load', function()
-                              {
-                                  // Internet Explorer (lt 8) does not support value attribute in button elements
-                                  $emptyCartButton = $('empty_cart_button');
-                                  $cartActionContainer = $('update_cart_action_container');
-                                  if ($emptyCartButton && $cartActionContainer) {
-                                      Event.observe($emptyCartButton, 'click', function()
+                      </thead>
+                      <tfoot>
+                          <tr>
+                              <td colspan="50" class="a-right cart-footer-actions">
+        
+                                  <!-- Make this button the first responder rather than empty cart -->
+                                  <button type="submit" style="visibility:hidden;" data-cart-item-update name="update_cart_action" value="update_qty" title="<?php echo $this->quoteEscape($this->__('Update Shopping Cart')); ?>" class="button2 btn-update"><span><span><?php echo $this->__('Update Shopping Cart'); ?></span></span></button>
+        
+                                  <button type="submit" name="update_cart_action" data-cart-empty value="empty_cart" title="<?php echo $this->quoteEscape($this->__('Empty Cart')); ?>" class="button2 btn-empty" id="empty_cart_button"><span><span><?php echo $this->__('Empty Cart'); ?></span></span></button>
+        
+                                  <button type="submit" name="update_cart_action" data-cart-item-update value="update_qty" title="<?php echo $this->quoteEscape($this->__('Update Shopping Cart')); ?>" class="button2 btn-update"><span><span><?php echo $this->__('Update Shopping Cart'); ?></span></span></button>
+        
+                                  <span class="or">-<?php echo $this->__('or'); ?>-</span>
+        
+                                  <?php if($this->getContinueShoppingUrl()): ?>
+                                      <button type="button" title="<?php echo $this->quoteEscape($this->__('Continue Shopping')) ?>" class="button2 btn-continue" onclick="setLocation('<?php echo Mage::helper('core')->quoteEscape($this->getContinueShoppingUrl()) ?>')"><span><span><?php echo $this->__('Continue Shopping') ?></span></span></button>
+                                  <?php endif; ?>
+                                  <!--[if lt IE 8]>
+                                  <input type="hidden" id="update_cart_action_container" data-cart-item-update />
+                                  <script type="text/javascript">
+                                  //<![CDATA[
+                                      Event.observe(window, 'load', function()
                                       {
-                                          $emptyCartButton.setAttribute('name', 'update_cart_action_temp');
-                                          $cartActionContainer.setAttribute('name', 'update_cart_action');
-                                          $cartActionContainer.setValue('empty_cart');
+                                          // Internet Explorer (lt 8) does not support value attribute in button elements
+                                          $emptyCartButton = $('empty_cart_button');
+                                          $cartActionContainer = $('update_cart_action_container');
+                                          if ($emptyCartButton && $cartActionContainer) {
+                                              Event.observe($emptyCartButton, 'click', function()
+                                              {
+                                                  $emptyCartButton.setAttribute('name', 'update_cart_action_temp');
+                                                  $cartActionContainer.setAttribute('name', 'update_cart_action');
+                                                  $cartActionContainer.setValue('empty_cart');
+                                              });
+                                          }
+        
                                       });
-                                  }
-
-                              });
-                          //]]>
-                          </script>
-                          <![endif]-->
-                      </td>
-                  </tr>
-              </tfoot>
-              <tbody>
-              <?php foreach($this->getItems() as $_item): ?>
-                  <?php echo $this->getItemHtml($_item) ?>
-              <?php endforeach ?>
-              </tbody>
-          </table>
-          <script type="text/javascript">decorateTable('shopping-cart-table')</script>
-      </form>
-    </div>
-    <div class="firas-cart-right pull-right">
-      <?php echo $this->getChildHtml('shopping.cart.table.after'); ?>
-      <!--<div class="top-checkout-btn pull-right">
-        <a href="<?php //echo Mage::getUrl('checkout/onepage');; ?>">proceed to checkout</a>
-      </div>-->
-      <div class="new-cart-total pull-right">
-        <?php
-        $countryCode = Mage::getStoreConfig('general/country/default');
-
-        // Update the cart's quote.
-        $cart = Mage::getSingleton('checkout/cart');
-        $address = $cart->getQuote()->getShippingAddress();
-        $address->setCountryId($countryCode)
-                ->setCollectShippingrates(true);
-        $cart->save();
-
-        // Find if our shipping has been included.
-        $rates = $address->collectShippingRates()
-                         ->getGroupedAllShippingRates();
-
-          $subTotal = Mage::helper('checkout/cart')->getQuote()->getSubtotal();
-          $quote = Mage::getModel('checkout/session')->getQuote();
-          $quoteData= $quote->getData();
-          $grandTotal=$quoteData['grand_total'];
-          $grandTotal=Mage::helper('core')->currency($grandTotal, true, false);
-          $formattedSubTotal = Mage::helper('core')->currency($subTotal , true, false);
-          //subtotal with tax starts here
-          // $totals = Mage::getSingleton('checkout/cart')->getQuote()->getTotals();
-          // $rate = Mage::helper('checkout/cart')->getQuote()->getData('base_to_quote_rate');
-          // $subtotalIncTax = $totals["subtotal"]->getValue()/$rate;
-          //subtotal with tax ends here
-
-        ?>
-        <div class="new-subtotal" style="margin-bottom:30px;">
-          <span class="sub-heading">Subtotal</span>
-          <span class="sub-total"><?php echo $formattedSubTotal; ?></span>
+                                  //]]>
+                                  </script>
+                                  <![endif]-->
+                              </td>
+                          </tr>
+                      </tfoot>
+                      <tbody>
+                      <?php foreach($this->getItems() as $_item): ?>
+                          <?php echo $this->getItemHtml($_item) ?>
+                      <?php endforeach ?>
+                      </tbody>
+                  </table>
+              </div>
+              <script type="text/javascript">decorateTable('shopping-cart-table')</script>
+          </form>
         </div>
-
-      <div class="new-subtotal" style="margin-bottom:30px;">
-          <span class="sub-heading">Shipping Estimate</span>
-          <span class="sub-total">CAD $5.29</span>
-        </div>
-
-        <div class="new-subtotal" style="margin-bottom:30px;">
-          <span class="sub-heading">Estimated Delivery</span>
-          <span class="sub-total">2-5 Business Days</span>
-        </div>
-
-        <div class="cart-actions">
-          <a href="<?php echo Mage::getUrl('emptycart/index/index',array('_secure'=>true)); ?>" class="empty-cart">Empty Cart</a>
-          <a class="bottom-checkout-btn" href="<?php echo Mage::getBaseUrl()."onestepcheckout"; ?>">proceed to checkout</a>
-
-        </div>
-      </div>
-      <div class="pull-right continue-shop"><a href="<?php echo Mage::getBaseUrl(); ?>">continue shopping</a></div>
-      <div class="cart-forms hidden">
-          <?php /* Extensions placeholder */ ?>
-          <?php echo $this->getChildHtml('checkout_cart_widget') ?>
-          <?php echo $this->getChildHtml('coupon') ?>
-          <?php echo $this->getChildHtml('checkout.cart.extra') ?>
-          <?php if (!$this->getIsVirtual()): echo $this->getChildHtml('shipping'); endif; ?>
-      </div>
-      <div class="cart-totals-wrapper hidden">
-          <div class="cart-totals">
-              <?php echo $this->getChildHtml('totals'); ?>
-              <?php if(!$this->hasError()): ?>
-              <ul class="checkout-types bottom">
-              <?php foreach ($this->getMethods('methods') as $method): ?>
-                  <?php if ($methodHtml = $this->getMethodHtml($method)): ?>
-                  <li class="method-<?php echo preg_replace("/[^_a-zA-Z0-9-]/", '-', $method); ?>"><?php echo $methodHtml; ?></li>
+        
+     </div>
+     
+     <div class="col-md-4">
+        <div class="firas-cart-right">
+          <?php echo $this->getChildHtml('shopping.cart.table.after'); ?>
+          <!--<div class="top-checkout-btn pull-right">
+            <a href="<?php //echo Mage::getUrl('checkout/onepage');; ?>">proceed to checkout</a>
+          </div>-->
+          <div class="new-cart-total">
+            <?php
+            $countryCode = Mage::getStoreConfig('general/country/default');
+    
+            // Update the cart's quote.
+            $cart = Mage::getSingleton('checkout/cart');
+            $address = $cart->getQuote()->getShippingAddress();
+            $address->setCountryId($countryCode)
+                    ->setCollectShippingrates(true);
+            $cart->save();
+    
+            // Find if our shipping has been included.
+            $rates = $address->collectShippingRates()
+                             ->getGroupedAllShippingRates();
+    
+              $subTotal = Mage::helper('checkout/cart')->getQuote()->getSubtotal();
+              $quote = Mage::getModel('checkout/session')->getQuote();
+              $quoteData= $quote->getData();
+              $grandTotal=$quoteData['grand_total'];
+              $grandTotal=Mage::helper('core')->currency($grandTotal, true, false);
+              $formattedSubTotal = Mage::helper('core')->currency($subTotal , true, false);
+              //subtotal with tax starts here
+              // $totals = Mage::getSingleton('checkout/cart')->getQuote()->getTotals();
+              // $rate = Mage::helper('checkout/cart')->getQuote()->getData('base_to_quote_rate');
+              // $subtotalIncTax = $totals["subtotal"]->getValue()/$rate;
+              //subtotal with tax ends here
+    
+            ?>
+            <div class="new-subtotal">
+              <span class="sub-heading">Subtotal</span>
+              <span class="sub-total"><?php echo $formattedSubTotal; ?></span>
+            </div>
+    
+          <div class="new-subtotal" >
+              <span class="sub-heading">Shipping Estimate</span>
+              <span class="sub-total">CAD $5.29</span>
+            </div>
+    
+            <div class="new-subtotal" >
+              <span class="sub-heading">Estimated Delivery</span>
+              <span class="sub-total">2-5 Business Days</span>
+            </div>
+    
+            <div class="cart-actions">
+              <a href="<?php echo Mage::getUrl('emptycart/index/index',array('_secure'=>true)); ?>" class="empty-cart">Empty Cart</a>
+              <a class="bottom-checkout-btn" href="<?php echo Mage::getBaseUrl()."onestepcheckout"; ?>">proceed to checkout</a>
+    
+            </div>
+          </div>
+          <div class="continue-shop text-right"><a href="<?php echo Mage::getBaseUrl(); ?>">continue shopping</a></div>
+          <div class="cart-forms hidden">
+              <?php /* Extensions placeholder */ ?>
+              <?php echo $this->getChildHtml('checkout_cart_widget') ?>
+              <?php echo $this->getChildHtml('coupon') ?>
+              <?php echo $this->getChildHtml('checkout.cart.extra') ?>
+              <?php if (!$this->getIsVirtual()): echo $this->getChildHtml('shipping'); endif; ?>
+          </div>
+          <div class="cart-totals-wrapper hidden">
+              <div class="cart-totals">
+                  <?php echo $this->getChildHtml('totals'); ?>
+                  <?php if(!$this->hasError()): ?>
+                  <ul class="checkout-types bottom">
+                  <?php foreach ($this->getMethods('methods') as $method): ?>
+                      <?php if ($methodHtml = $this->getMethodHtml($method)): ?>
+                      <li class="method-<?php echo preg_replace("/[^_a-zA-Z0-9-]/", '-', $method); ?>"><?php echo $methodHtml; ?></li>
+                      <?php endif; ?>
+                  <?php endforeach; ?>
+                  </ul>
                   <?php endif; ?>
-              <?php endforeach; ?>
-              </ul>
-              <?php endif; ?>
+              </div>
           </div>
       </div>
-  </div>
-
+	</div>
 
   <!-- syed changes  starts-->
 
+	<div class="clearfix"></div>
 
-
-  <div class="white-bg">
+  <div class="white-bg col-sm-12">
   <div class="main-container" id="maincontent">
   <div class="main">
   <div class="col-main">

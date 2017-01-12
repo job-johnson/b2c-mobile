@@ -28,7 +28,7 @@
 <?php $_product = $this->getProduct(); ?>
 <?php $_wishlistSubmitUrl = $this->helper('wishlist')->getAddUrl($_product); ?>
 
-<div class="add-to-links-wr f-right">
+<div class="add-to-links-wr col-sm-6 hidden">
 	<ul class="add-to-links">
 	<?php if ($this->helper('wishlist')->isAllow()) : ?>
 	    <li><a href="<?php echo $_wishlistSubmitUrl ?>" onclick="productAddToCartForm.submitLight(this, this.href); return false;" class="link-wishlist"><img src="<?php echo $this->getSkinUrl('images/fav.png'); ?>"/><span><?php echo $this->__('Add to My Favorites') ?></span></a></li>

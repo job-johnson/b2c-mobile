@@ -44,118 +44,164 @@
 <head>
 <?php echo $this->getChildHtml('head') ?>
 </head>
-<body<?php echo $this->getBodyClass()?' class="'.$this->getBodyClass().'"':'' ?>>
-<?php echo $this->getChildHtml('after_body_start') ?>
-<div class="wrapper">
-    <?php echo $this->getChildHtml('global_notices') ?>
-    <div class="page">
-        <?php echo $this->getChildHtml('header') ?>
-        <div class="main-container col2-left-layout clearall custom-product-layout" id="maincontent">
-            <div class="main">
-                <?php //echo $this->getChildHtml('breadcrumbs') ?>
-                <?php // This left_first block will display above the main content on smaller viewports ?>
-                <?php if ($_leftContent = $this->getChildHtml('left_first')): ?>
-                <div class="col-left sidebar col-left-first" style="margin-top: 20px;">
-                <div class="main-cat-menu hidden"><?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('head-cat')->toHtml(); ?></div>
-                
-                <div class="static-left-block">
-                      <!-- /100058245/Marketplace_MR3 -->
-                      <div id='div-gpt-ad-1472827447864-5' style='height:250px; width:300px;'>
-                      <script>
-                      googletag.cmd.push(function() { googletag.display('div-gpt-ad-1472827447864-5'); });
-                      </script>
-                      </div>
-                </div>
-
-                <div class="static-left-block">
-                    <img src="<?php echo $this->getSkinUrl('images/home-left-1.jpg'); ?>"/>
-                </div>
-
-                <div class="static-left-block">
-                    <img src="<?php echo $this->getSkinUrl('images/home-left-2.jpg'); ?>"/>
-                </div>
-                <div class="custom-left-content">
-                  <?php echo $_leftContent;   ?>
-                </div>
-                </div>
-                <?php endif; ?>
-                <div class="col-main" style="margin-top: 20px;">
-                  <div class="store-search hidden">
-                    <form>
-                      <div class="input-group">
-                                    <input type="text" name="q" id="q" class="form-control" autocomplete="off" placeholder="What are you looking for?">
-                                    <button class="btn btn-default" type="submit">
-                                            <i class="icon-search"></i>
-                                            <span class="i-name">Search</span>
-                                        </button>
-                                </div>
-                    </form>
-                  </div>
-                    <?php echo $this->getChildHtml('global_messages') ?>
-                    <?php echo $this->getChildHtml('content') ?>
-                </div>
-                <div class="col-left sidebar">
-
-                    <!-- custom sub category listing of current category starts -->
-
-                    <?php
-                      $_cat = new Mage_Catalog_Block_Navigation();
-                      $curent_cat = $_cat->getCurrentCategory();
-                      $curent_cat_id = $curent_cat->getId();?>
-                      <?php
-                      $parentId=Mage::getModel('catalog/category')->load($curent_cat_id)->getParentId();
-                      $defaultCatId = Mage::app()->getStore("default")->getRootCategoryId();
-                      if($defaultCatId != $parentId){
-                          //echo $parentId; // $parentId will print your current category's parent Id
-                      ?>
-                        <div class="subcat-menu hidden">
-                          <p>Sub Category</p>
-                          <ul>
-                            <?php
-                            $root = Mage::getModel('catalog/category')->load($parentId);
-                            $subCat = explode(',',$root->getChildren());
-                            $collection  = $root
-                                         ->getCollection()
-                                         ->addAttributeToSelect("*")
-                                         ->addFieldToFilter("entity_id", array("in", $subCat) )
-                                         ->addAttributeToSort('position');//sort by position
-
-                            foreach($collection as $category){ ?>
-                              <li><a href="<?php echo Mage::getBaseUrl().$category->getRequestPath(); ?>"><span><?php echo $category->getName(); ?></span><span class="custom-prod-count">(<?php echo $category->getProductCount();  ?>)</span></a></li>
-                            <?php } ?>
-                          </ul>
-                        </div>
-                      <?php } ?>
+<body <?php echo $this->getBodyClass()?' class="'.$this->getBodyClass().'"':'' ?>>
+	<?php echo $this->getChildHtml('after_body_start') ?>
+	
+	<div class="container hidden">
+		<div class="row">
+			<div class="col-sm-12">
+				<?php echo $this->getChildHtml('global_notices') ?>
+			</div>
+		</div>
+	</div>
+	
+	<?php echo $this->getChildHtml('header') ?>
+	
+	
+	<section id="mainContent">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					 <?php echo $this->getChildHtml('global_messages') ?>
+					 <div class="row">
+					 	<?php if ($_leftContent = $this->getChildHtml('left_first')): ?>
+						<div class="col-lg-3 hidden-md hidden-sm hidden-xs ">
+							<div id="left-sidebar">
+								<div class="row">
+									<div class="col-sm-12 hidden sidebarBlock" id="left-Menu">
+										<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('head-cat')->toHtml(); ?>
+									</div>
+									
+									<div class="col-sm-12 googleAd sidebarBlock">
+										  <!-- /100058245/Marketplace_MR3 -->
+										  <div id='div-gpt-ad-1472827447864-5'>
+											  <script>
+											  googletag.cmd.push(function() { googletag.display('div-gpt-ad-1472827447864-5'); });
+											  </script>
+										  </div>
+									</div>
+									
+									<div class="col-sm-12 sidebarBlock">
+										<img src="<?php echo $this->getSkinUrl('images/home-left-1.jpg'); ?>" class="img-responsive"/>
+									</div>
+									
+									<div class="col-sm-12 sidebarBlock">
+										<img src="<?php echo $this->getSkinUrl('images/home-left-2.jpg'); ?>" class="img-responsive"/>
+									</div>
+									
+									<div class="col-sm-12 custom-left-content sidebarBlock">
+									  	<?php echo $_leftContent;   ?>
+									</div>
+									
+									
+									<?php
+									  $_cat = new Mage_Catalog_Block_Navigation();
+									  $curent_cat = $_cat->getCurrentCategory();
+									  $curent_cat_id = $curent_cat->getId();?>
+									  <?php
+									  $parentId=Mage::getModel('catalog/category')->load($curent_cat_id)->getParentId();
+									  $defaultCatId = Mage::app()->getStore("default")->getRootCategoryId();
+									  if($defaultCatId != $parentId){
+										  //echo $parentId; // $parentId will print your current category's parent Id
+									  ?>
+										<div class="col-sm-12 subcat-menu hidden">
+										  <p>Sub Category</p>
+										  <ul>
+											<?php
+											$root = Mage::getModel('catalog/category')->load($parentId);
+											$subCat = explode(',',$root->getChildren());
+											$collection  = $root
+														 ->getCollection()
+														 ->addAttributeToSelect("*")
+														 ->addFieldToFilter("entity_id", array("in", $subCat) )
+														 ->addAttributeToSort('position');//sort by position
+				
+											foreach($collection as $category){ ?>
+											  <li><a href="<?php echo Mage::getBaseUrl().$category->getRequestPath(); ?>"><span><?php echo $category->getName(); ?></span><span class="custom-prod-count">(<?php echo $category->getProductCount();  ?>)</span></a></li>
+											<?php } ?>
+										  </ul>
+										</div>
+									  <?php } ?>
 
                     <!-- custom sub category listing of current category ends -->
 
 
 
-                    <div class="static-left-block hidden">
-                        <img src="<?php echo $this->getSkinUrl('images/range.jpg'); ?>"/>
-                    </div>
+									<div class="col-sm-12 hidden">
+										<img src="<?php echo $this->getSkinUrl('images/range.jpg'); ?>" class="img-responsive"/>
+									</div>
 
-                    <?php echo $this->getChildHtml('left') ?>
+                    				<?php echo $this->getChildHtml('left') ?>
 
-                    <div class="static-left-block">
-                      <!-- /100058245/Marketplace_MR3 -->
-                      <div id='div-gpt-ad-1472827447864-5' style='height:250px; width:300px;'>
-                      <script>
-                      googletag.cmd.push(function() { googletag.display('div-gpt-ad-1472827447864-5'); });
-                      </script>
-                      </div>
-                    </div>
+									<div class="col-sm-12 googleAd">
+									  <!-- /100058245/Marketplace_MR3 -->
+									  <div id='div-gpt-ad-1472827447864-5'>
+									  <script>
+									  googletag.cmd.push(function() { googletag.display('div-gpt-ad-1472827447864-5'); });
+									  </script>
+									  </div>
+									</div>
+									
+									
+									
+									
+								</div>
+							</div>
+						</div>							
+						<?php endif; ?>
+						
+						<div class="col-lg-<?php echo ($_leftContent = $this->getChildHtml('left_first'))?"9":"12"?> col-md-12">
+							<div class="row">
+								<div class="col-sm-12">
+									<div id="mainPage" class="catalog-page">
+										<div class="store-search hidden">
+										 <form>
+										  <div class="input-group">
+												<input type="text" name="q" id="q" class="form-control" autocomplete="off" placeholder="What are you looking for?">
+												<button class="btn btn-default" type="submit">
+														<i class="icon-search"></i>
+														<span class="i-name">Search</span>
+													</button>
+											</div>
+										</form>
+										</div>
+										<?php echo $this->getChildHtml('content') ?>
+									</div>
+								</div>
+							</div>
+						</div>	
+						
+						
+					 </div>
+						
+				</div>
+			</div>
+		</div>
+	</section>
+	
+	
+	
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12">
+				<?php echo $this->getChildHtml('footer_before') ?>
+			</div>
+		</div>
+	</div>
 
 
-                </div>
-            </div>
-        </div>
-        <?php echo $this->getChildHtml('footer_before') ?>
-        <?php echo $this->getChildHtml('footer') ?>
-        <?php echo $this->getChildHtml('global_cookie_notice') ?>
-        <?php echo $this->getChildHtml('before_body_end') ?>
-    </div>
-</div>
+	<?php echo $this->getChildHtml('footer') ?>
+	
+	
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12">
+				<?php echo $this->getChildHtml('global_cookie_notice') ?>
+			<?php echo $this->getChildHtml('before_body_end') ?>
+			</div>
+		</div>
+	</div>
+	
 <?php echo $this->getAbsoluteFooter() ?>
 </body>
 </html>

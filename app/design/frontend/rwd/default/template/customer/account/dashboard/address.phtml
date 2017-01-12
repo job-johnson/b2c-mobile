@@ -26,27 +26,27 @@
 ?>
 <div class="box-account box-info">
     <div class="box-head">
-        <h2><?php echo $this->__('Address Book') ?></h2>
-        <a href="<?php echo $this->getAddressBookUrl() ?>"><?php echo $this->__('Manage Addresses') ?></a>
+        <h2><?php echo $this->__('Address Book') ?> <a href="<?php echo $this->getAddressBookUrl() ?>"><?php echo $this->__('Manage Addresses') ?></a></h2>
+        
     </div>
-    <div class="col2-set">
-        <div class="col-1">
+    <div class="row">
+        <div class="col-md-6">
             <div class="box">
                 <div class="box-title">
 
-                    <h3><?php echo $this->__('Shipping Address') ?></h3>
-                    <a href="<?php echo $this->getPrimaryShippingAddressEditUrl() ?>"><?php echo $this->__('Edit Address') ?></a>
+                    <h4 class="contact_information_title"><?php echo $this->__('Shipping Address') ?> <a href="<?php echo $this->getPrimaryShippingAddressEditUrl() ?>"><?php echo $this->__('Edit Address') ?></a></h4>
+                    
                 </div>
                 <div class="box-content">
                     <address><?php echo $this->getPrimaryShippingAddressHtml() ?></address>
                 </div>
             </div>
         </div>
-        <div class="col-2">
+        <div class="col-md-6">
             <div class="box">
                 <div class="box-title">
-                    <h3><?php echo $this->__('Billing Address') ?></h3>
-                    <a href="<?php echo $this->getPrimaryBillingAddressEditUrl() ?>"><?php echo $this->__('Edit Address') ?></a>
+                    <h4 class="contact_information_title"><?php echo $this->__('Billing Address') ?> <a href="<?php echo $this->getPrimaryBillingAddressEditUrl() ?>"><?php echo $this->__('Edit Address') ?></a></h4>
+                    
 
                 </div>
                 <div class="box-content">

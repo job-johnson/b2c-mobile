@@ -121,14 +121,14 @@ $quote = Mage::getModel('checkout/session')->getQuote();
                 <?php endif; ?>
             </p>
         </div>
-        <div class="block-content" style="padding-top: 20px;">
+        <div class="block-content" >
             <p class="subtotal">
               <span class="label"><?php echo $this->__('shipping Estimate:') ?></span>
                 <span class="price"><?php echo Mage::helper('core')->currency(5.29, true, true); ?></span>
 
             </p>
         </div>
-        <div class="block-content" style="padding-top: 20px;">
+        <div class="block-content" >
             <p class="subtotal">
               <span class="label"><?php echo $this->__('Estimated Delivery:') ?></span>
                 <span class="price">2-5 Business Days</span>
@@ -138,7 +138,7 @@ $quote = Mage::getModel('checkout/session')->getQuote();
 
 
 
-
+		<div class="clearfix"></div>
         <div class="minicart-actions">
             <?php if($_cartQty && $this->isPossibleOnepageCheckout()): ?>
                 <ul class="checkout-types minicart">
@@ -153,7 +153,7 @@ $quote = Mage::getModel('checkout/session')->getQuote();
                     </li>
                 </ul>
             <?php endif ?>
-            <a class="cart-link" href="<?php echo $this->getUrl('checkout/cart'); ?>">
+            <a class="cart-link hidden" href="<?php echo $this->getUrl('checkout/cart'); ?>">
                 <?php echo $this->__('View Shopping Cart'); ?>
             </a>
         </div>

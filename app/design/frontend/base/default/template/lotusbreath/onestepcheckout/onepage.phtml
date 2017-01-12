@@ -24,12 +24,13 @@ $isAllowComment = Mage::getStoreConfig('lotusbreath_onestepcheckout/general/allo
     };
 </script>
 
-<div class="lt-checkoutpage layout-2col " id="checkoutSteps">
+<div id="checkoutSteps">
     <?php echo $this->getChildHtml("loginform");?>
 
     <form id="checkout_form" name="checkout_form">
-        <div class="grid">
-          <div class="left-header remove-float">
+    <div class="row">
+        <div class="col-sm-12">
+          <div class="checkout-title">
              <h1><img src="https://ziwira.com/skin/frontend/rwd/default/images/lock-icon.png" alt="Icon"> SECURE CHECKOUT</h1>
           </div>
             <?php if (!Mage::helper('customer')->isLoggedIn()) : ?>
@@ -39,100 +40,112 @@ $isAllowComment = Mage::getStoreConfig('lotusbreath_onestepcheckout/general/allo
             <?php if (Mage::getStoreConfig('lotusbreath_onestepcheckout/content/display_bottom_static_block')): ?>
                 <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('onestepcheckout_top_block')->toHtml(); ?>
             <?php endif;?>
-            <div class="row  no-padding padding-mobile">
-                <div class="four columns">
-                    <h3 class="ptitle">
+            <div class="row">
+                <div class="col-md-4">
+                    
                         <?php if ($billingHeader = Mage::getStoreConfig('lotusbreath_onestepcheckout/content/billing_header')):?>
-                          <div class="sectionheading"><h3><span class="badge border-radius-change">1</span><?php echo $this->__("Billing Information"); ?> </div>
+                          <div class="sectionheading"><h3 class="ptitle"><span class="badge border-radius-change">1</span><?php echo $this->__("Billing Information"); ?></h3></div>
                         <?php else:?>
-                            <div class="sectionheading"><h3><span class="badge border-radius-change">1</span><?php echo $this->__("Billing Information"); ?> </div>
+                            <div class="sectionheading"><h3 class="ptitle"><span class="badge border-radius-change">1</span><?php echo $this->__("Billing Information"); ?></h3></div>
                         <?php endif;?>
 
-                    </h3>
+                    
                     <?php echo $this->getChildHtml('billing'); ?>
                     <div id="shipping-area" style="display: none;">
-                        <h3 class="ptitle">
+                        
                             <?php if ($shippingHeader = Mage::getStoreConfig('lotusbreath_onestepcheckout/content/shipping_address_header')):?>
-                                <div class="sectionheading"><h3><?php echo $this->__("Shipping Information"); ?> </div>
+                                <div class="sectionheading"><h3><?php echo $this->__("Shipping Information"); ?></h3></div>
                             <?php else:?>
-                                <div class="sectionheading"><h3><?php echo $this->__("Shipping Information"); ?> </div>
+                                <div class="sectionheading"><h3><?php echo $this->__("Shipping Information"); ?></h3></div>
                             <?php endif;?>
 
-                        </h3>
+                        
                         <?php
                         echo $this->getChildHtml('shipping'); ?>
                     </div>
                 </div>
-                <div class="eight columns">
-                  <h3 class="ptitle">
+                <div class="col-md-8">
+                 
                       <?php if ($shippingMethodHeader = Mage::getStoreConfig('lotusbreath_onestepcheckout/content/shipping_method_header')):?>
-                          <div class="sectionheading"><h3><span class="badge border-radius-change">2</span><?php echo $this->__("Shipping and Payment Method"); ?> </div>
+                          <div class="sectionheading"><h3 class="ptitle"><span class="badge border-radius-change">2</span><?php echo $this->__("Shipping and Payment Method"); ?></h3></div>
                       <?php else:?>
-                            <div class="sectionheading"><h3><span class="badge border-radius-change">2</span><?php echo $this->__("Shipping and Payment Method"); ?> </div>
+                            <div class="sectionheading"><h3 class="ptitle"><span class="badge border-radius-change">2</span><?php echo $this->__("Shipping and Payment Method"); ?></h3></div>
                       <?php endif;?>
-                  </h3>
-                    <div class="row row-changes">
+                  
+                    <div class="row">
                         <?php if(!$this->getQuote()->isVirtual()):?>
 
-                        <div class="five columns">
+                        <div class="col-sm-4">
                             <div id="shipping_partial">
                                 <?php echo $this->getChildHtml('shipping_method'); ?>
                             </div>
 
                         </div>
                         <?php endif;?>
-                        <div class="seven columns">
-                          <div class="payment-icons payment-icons-chanes"><img src="https://ziwira.com/skin/frontend/rwd/default/images/payment-icons.png"></div>
-                            <div id="payment_partial">
+                        
+                        <div class="col-sm-3">
+                        	<div id="payment_partial">
                                 <?php echo $this->getChildHtml('payment'); ?>
                             </div>
                         </div>
-                    </div>
-
-
-                    <div class="col-3">
-                        <?php if( Mage::getStoreConfig('lotusbreath_onestepcheckout/general/allowshowgiftmessage') ):?>
-                            <?php if (!$this->getQuote()->isVirtual()): ?>
-                                <?php echo $this->helper('giftmessage/message')->getInline('onepage_checkout', $this->getQuote(), $this->getDontDisplayContainer()) ?>
-                            <?php endif; ?>
-                        <?php endif;?>
-                        <?php if( Mage::getStoreConfig('lotusbreath_onestepcheckout/general/allowshowcoupon') ):?>
-                            <div id="coupon_patial">
-                                  <div class="sectionheading"><h3><?php echo $this->__("Discount Codes"); ?> </div>
-                              <!--  <h3 class="ptitle"><?php //echo $this->__("Discount Codes");?></h3>-->
-
-                                <?php echo $this->getChildHtml('coupon'); ?>
-                            </div>
-                        <?php endif;?>
-                        <?php if( Mage::getStoreConfig('lotusbreath_onestepcheckout/general/allowcomment') ):?>
-                            <div id="comment-patial">
-                                <h3 class="ptitle"><?php echo $this->__("Comment");?></h3>
-                                <ul class="form-list">
-                                    <li class="fields">
-                                        <div class="input-box">
-                                            <textarea name="order_comment" placeholder="<?php echo $this->__("Type comment here");?>" class="input-text"></textarea>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        <?php endif;?>
-
-                        <h3 class="ptitle">
-                            <?php if ($reviewOrderHeader = Mage::getStoreConfig('lotusbreath_onestepcheckout/content/review_header')):?>
-                              <div class="sectionheading"><h3><span class="badge border-radius-change">3</span><?php echo $this->__("Review Order"); ?></div>
-
-                            <?php else:?>
-                              <div class="sectionheading"><h3><span class="badge border-radius-change">3</span><?php echo $this->__("Review Order"); ?></div>
-                            <?php endif;?>
-
-                        </h3>
-                        <div id="review_partial">
-                            <?php echo $this->getData("reviewHtml"); ?>
-                            <?php echo $this->getChildHtml('review'); ?>
+                        
+                        
+                        <div class="col-sm-5">
+                              <div class="payment-icons payment-icons-chanes">
+                                <img src="https://ziwira.com/skin/frontend/rwd/default/images/payment-icons.png" class="img-responsive">
+                              </div>
                         </div>
-
-
+                            
                     </div>
+
+					<br />
+<br />
+
+                    <div class="row">
+                    	<div class="col-sm-12">
+							<?php if( Mage::getStoreConfig('lotusbreath_onestepcheckout/general/allowshowgiftmessage') ):?>
+                                <?php if (!$this->getQuote()->isVirtual()): ?>
+                                    <?php echo $this->helper('giftmessage/message')->getInline('onepage_checkout', $this->getQuote(), $this->getDontDisplayContainer()) ?>
+                                <?php endif; ?>
+                            <?php endif;?>
+                            <?php if( Mage::getStoreConfig('lotusbreath_onestepcheckout/general/allowshowcoupon') ):?>
+                              
+                            <div class="sectionheading"><h3><?php echo $this->__("Discount Codes"); ?></h3> </div>
+                                  <!--  <h3 class="ptitle"><?php //echo $this->__("Discount Codes");?></h3>-->
+    
+                             <?php echo $this->getChildHtml('coupon'); ?>
+                               
+                            <?php endif;?>
+                            <?php if( Mage::getStoreConfig('lotusbreath_onestepcheckout/general/allowcomment') ):?>
+                                <div id="comment-patial">
+                                    <h3 class="ptitle"><?php echo $this->__("Comment");?></h3>
+                                    <div class="form-group">
+                                    <textarea name="order_comment" placeholder="<?php echo $this->__("Type comment here");?>" class="form-control"></textarea>
+                                    </div>       
+                                </div>
+                            <?php endif;?>
+    
+                            
+                                <?php if ($reviewOrderHeader = Mage::getStoreConfig('lotusbreath_onestepcheckout/content/review_header')):?>
+                                  <div class="sectionheading"><h3><span class="badge border-radius-change">3</span><?php echo $this->__("Review Order"); ?></h3></div>
+    
+                                <?php else:?>
+                                  <div class="sectionheading"><h3><span class="badge border-radius-change">3</span><?php echo $this->__("Review Order"); ?></h3></div>
+                                <?php endif;?>
+    
+                           
+                            <div id="review_partial">
+                                <?php echo $this->getData("reviewHtml"); ?>
+                                <?php echo $this->getChildHtml('review'); ?>
+                            </div>
+
+						</div>
+                    </div>
+                    
+                    
+                    
+                    
+                    
                 </div>
 
             </div>
@@ -141,6 +154,7 @@ $isAllowComment = Mage::getStoreConfig('lotusbreath_onestepcheckout/general/allo
             <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('onestepcheckout_bottom_block')->toHtml(); ?>
             <?php endif;?>
         </div>
+    </div>
     </form>
 </div>
 

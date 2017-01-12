@@ -27,18 +27,18 @@
 <?php $_product = $this->getProduct(); ?>
 <?php $buttonTitle = Mage::helper('core')->quoteEscape($this->__('Add to Cart')); ?>
 <?php if($_product->isSaleable()): ?>
-    <div class="add-to-cart">
+    <div class="add-to-cart row">
         <?php if(!$_product->isGrouped()): ?>
-        <div class="qty-wrapper">
+        <div class="qty-wrapper col-xs-6">
             <label for="qty"><?php echo $this->__('Quantity:') ?></label>
             <button class="qty-btn" data-operation="minus">-</button>
             <input type="text" pattern="\d*" name="qty" id="qty" maxlength="12" value="<?php echo max($this->getProductDefaultQty() * 1, 1) ?>" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Qty')) ?>" class="input-text qty" />
             <button class="qty-btn btn2" data-operation="plus">+</button>
         </div>
         <?php endif; ?>
-        <div class="add-to-cart-buttons">
+        <div class="add-to-cart-buttons col-xs-6 text-right">
             <!--<button type="button" title="Buy Now" onclick="productBuyNowForm.submit(this)" class="button btn-buy"><span><span><?php //echo $this->__('Buy Now'); ?></span></span></button> -->
-            <button type="button"   id="<?php echo $_product->getId(); ?>" title="Buy Now" onclick="buyNowClick(this)" class="button btn-buy"><span><span><?php echo $this->__('Buy Now'); ?></span></span></button>
+            <button type="button"   id="<?php echo $_product->getId(); ?>" title="Buy Now" onclick="buyNowClick(this)" class="button btn-buy "><span><span><?php echo $this->__('Buy Now'); ?></span></span></button>
             <button type="button" title="<?php echo $buttonTitle ?>" class="button btn-cart" onclick="productAddToCartForm.submit(this)"><span><span><?php echo $buttonTitle ?></span></span></button>
             <?php echo $this->getChildHtml('', true, true) ?>
         </div>

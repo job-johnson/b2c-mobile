@@ -25,7 +25,7 @@ if ($isShowImage){
 
         <?php if ($review_img) :?>
         <div class="cart-item-img">
-        <img  src="<?php echo $review_img; ?>" alt="<?php echo $this->htmlEscape($this->getProductName()); ?>"/>
+        	<img  src="<?php echo $review_img; ?>" alt="<?php echo $this->htmlEscape($this->getProductName()); ?>" class="img-responsive"/>
         </div>
         <?php endif;?>
         <h3 class="product-name"><?php echo $this->escapeHtml($this->getProductName()) ?></h3>

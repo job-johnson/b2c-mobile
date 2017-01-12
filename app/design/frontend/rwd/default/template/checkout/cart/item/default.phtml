@@ -29,17 +29,17 @@ $_item = $this->getItem();
 $isVisibleProduct = $_item->getProduct()->isVisibleInSiteVisibility();
 $canApplyMsrp = Mage::helper('catalog')->canApplyMsrp($_item->getProduct(), Mage_Catalog_Model_Product_Attribute_Source_Msrp_Type::TYPE_BEFORE_ORDER_CONFIRM);
 ?>
-<tr>
+<tr >
     <td class="product-cart-image">
         <?php if ($this->hasProductUrl()):?>
             <a href="<?php echo $this->getProductUrl() ?>" title="<?php echo $this->escapeHtml($this->getProductName()) ?>" class="product-image">
         <?php endif;?>
-            <img src="<?php echo $this->getProductThumbnail()->resize(90); ?>" alt="<?php echo $this->escapeHtml($this->getProductName()) ?>" />
+            <img src="<?php echo $this->getProductThumbnail()->resize(90); ?>" alt="<?php echo $this->escapeHtml($this->getProductName()) ?>" class="img-responsive" />
         <?php if ($this->hasProductUrl()):?>
             </a>
         <?php endif;?>
 
-        <ul class="cart-links">
+        <ul class="cart-links hidden ">
             <?php if ($isVisibleProduct): ?>
                 <li>
                     <a href="<?php echo $this->getConfigureUrl() ?>" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Edit item parameters')) ?>"><?php echo $this->__('Edit') ?></a>
@@ -56,7 +56,7 @@ $canApplyMsrp = Mage::helper('catalog')->canApplyMsrp($_item->getProduct(), Mage
 
     <td class="product-cart-info">
 
-        <a href="<?php echo $this->getDeleteUrl() ?>" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Remove Item')) ?>" class="btn-remove btn-remove2"><?php echo $this->__('Remove Item') ?></a>
+        <a href="<?php echo $this->getDeleteUrl() ?>" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Remove Item')) ?>" class="btn-remove btn-remove2 hidden-lg hidden-md hidden-sm"><?php echo $this->__('Remove Item') ?></a>
 
         <h2 class="product-name">
         <?php if ($this->hasProductUrl()):?>
@@ -66,7 +66,7 @@ $canApplyMsrp = Mage::helper('catalog')->canApplyMsrp($_item->getProduct(), Mage
         <?php endif; ?>
         </h2>
 
-        <div class="product-cart-sku">
+        <div class="product-cart-sku hidden">
             <span class="label"><?php echo $this->__('SKU'); ?>:</span> <?php echo $this->escapeHtml($_item->getSku()); ?>
         </div>
 
@@ -120,7 +120,7 @@ $canApplyMsrp = Mage::helper('catalog')->canApplyMsrp($_item->getProduct(), Mage
     <?php else: ?>
 
         <?php if ($this->helper('tax')->displayCartPriceExclTax() || $this->helper('tax')->displayCartBothPrices()): ?>
-        <td class="product-cart-price hidden" data-rwd-label="<?php echo $this->__('Price'); ?>" data-rwd-tax-label="<?php echo $this->__('Excl. Tax'); ?>">
+        <td class="product-cart-price hidden-lg hidden-md hidden-sm" data-rwd-label="<?php echo $this->__('Price'); ?>" data-rwd-tax-label="<?php echo $this->__('Excl. Tax'); ?>">
 
             <?php if (Mage::helper('weee')->typeOfDisplay($_item, array(1, 4), 'sales') && $_item->getWeeeTaxAppliedAmount()): ?>
                 <span class="cart-tax-total" onclick="taxToggle('eunit-item-tax-details<?php echo $_item->getId(); ?>', this, 'cart-tax-total-expanded');">
@@ -213,7 +213,7 @@ $canApplyMsrp = Mage::helper('catalog')->canApplyMsrp($_item->getProduct(), Mage
         <button type="submit" name="update_cart_action" data-cart-item-update value="update_qty" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Update')); ?>" class="button btn-update btn-update-<?php echo $_item->getId()?>"><span><span><?php echo $this->__('Update'); ?></span></span>
         </button>
 
-        <ul class="cart-links">
+        <ul class="cart-links hidden-lg hidden-md hidden-sm">
             <?php if ($isVisibleProduct): ?>
                 <li>
                     <a href="<?php echo $this->getConfigureUrl() ?>" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Edit item parameters')) ?>"><?php echo $this->__('Edit') ?></a>

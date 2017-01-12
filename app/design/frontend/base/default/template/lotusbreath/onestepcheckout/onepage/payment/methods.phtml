@@ -32,25 +32,25 @@
  */
 
 ?>
-<dl class="sp-methods" id="checkout-payment-method-load">
+<div class="sp-methods" id="checkout-payment-method-load">
     <?php
     $methods = $this->getMethods();
     $oneMethod = count($methods) <= 1;
     ?>
     <?php if (empty($methods)): ?>
-        <dt>
+        <div>
             <?php echo $this->__('No Payment Methods') ?>
-        </dt>
+        </div>
     <?php else:
         foreach ($methods as $_method):
             $_code = $_method->getCode();
             ?>
-            <dt>
-
+            <div class="radio">
+					<label for="p_method_<?php echo $_code ?>">
                     <input id="p_method_<?php echo $_code ?>" value="<?php echo $_code ?>" type="radio" name="payment[method]" title="<?php echo $this->escapeHtml($_method->getTitle()) ?>" <?php if($this->getSelectedMethodCode()==$_code): ?> checked="checked"<?php endif; ?> class="radio" />
                 
-                <label for="p_method_<?php echo $_code ?>"><?php echo $this->escapeHtml($this->getMethodTitle($_method)) ?> <?php echo $this->getMethodLabelAfterHtml($_method) ?></label>
-            </dt>
+                <?php echo $this->escapeHtml($this->getMethodTitle($_method)) ?> <?php echo $this->getMethodLabelAfterHtml($_method) ?></label>
+            </div>
             <?php if ($html = $this->getPaymentMethodFormHtml($_method)): ?>
             <dd>
                 <?php echo $html; ?>
@@ -59,8 +59,8 @@
         <?php endforeach;
     endif;
     ?>
-</dl>
-<div class="no-display" data-checkout-price="<?php echo (float)$this->getQuote()->getBaseGrandTotal(); ?>" />
+</div>
+<div class="hidden" data-checkout-price="<?php echo (float)$this->getQuote()->getBaseGrandTotal(); ?>" />
 <?php echo $this->getChildChildHtml('additional'); ?>
 <script type="text/javascript">
     //<![CDATA[

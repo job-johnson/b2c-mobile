@@ -32,7 +32,7 @@ if ($isNewsletter) {
     <?php endif ?>
     <tr>
         <td class="a-right" colspan="<?php echo $_colspan + 1; ?>">
-            <div class="row edit-cart-review">
+            
                 <?php if (Mage::getStoreConfig('lotusbreath_onestepcheckout/revieworder/show_link_cart')): ?>
                     <div class="forgot-link">
                     <span> <?php echo $this->__('Forgot an Item?') ?> <a
@@ -45,25 +45,27 @@ if ($isNewsletter) {
                 $canEditCart = Mage::getStoreConfig('lotusbreath_onestepcheckout/revieworder/can_edit_cart');
                 ?>
                 <?php if ($canEditCart): ?>
-                    <div class="lt-buttons-set right" id="review-buttons-container">
+                    <div class="lt-buttons-set" id="review-buttons-container">
                         <button type="button" name="edit_cart_action" id="edit_cart_action"
                                 value="update_qty" title="<?php echo $this->__('Edit Your Cart') ?>"
-                                class="button btn-update">
-                            <span><span><?php echo $this->__('Edit Your Cart') ?></span></span></button>
+                                class="btn btn-warning">
+                            <?php echo $this->__('Edit Your Cart') ?></button>
                         <button type="button" name="edit_cart_action" id="update_cart_action"
-                                value="update_qty" title="<?php echo $this->__('Update') ?>" class="button btn-update"
+                                value="update_qty" title="<?php echo $this->__('Update') ?>" class="btn btn-success"
                                 style="display: none;">
-                            <span><span><?php echo $this->__('Update') ?></span></span></button>
+                            <?php echo $this->__('Update') ?></button>
                         <button type="button" name="edit_cart_action" id="cancel_cart_action"
-                                value="update_qty" title="<?php echo $this->__('Cancel') ?>" class="button btn-close"
+                                value="update_qty" title="<?php echo $this->__('Cancel') ?>" class="btn btn-danger"
                                 style="display: none;" m>
-                            <span><span><?php echo $this->__('Cancel') ?></span></span></button>
+                            <?php echo $this->__('Cancel') ?></button>
                     </div>
+<br />
 
                 <?php endif; ?>
-            </div>
+            
             <?php if ($isNewsletter): ?>
-                <p class="newsletter">
+                <div class="checkbox" > 
+                	<label for="newsletter-signup">
                     <input type="checkbox" id="newsletter-signup" name="newsletter" value="1"
                            title="<?php echo Mage::helper('newsletter')->__('Sign up for our newsletter') ?>"
                            class="checkbox"
@@ -71,23 +73,23 @@ if ($isNewsletter) {
                         echo Mage::getStoreConfig('lotusbreath_onestepcheckout/general/autochecksubscriber') ? 'checked="checked"' : '';
                         ?>
                         />
-                    <label for="newsletter-signup">
+                   
                         <?php echo Mage::helper('newsletter')->__('Sign up for our newsletter') ?>
                     </label>
                 </p>
             <?php endif; ?>
             <div class="hst hst-changes">
-      <div class="first-line">
-        <p>Help: why does it appears that I’m being charged HST twice?</p>
-        <span><input type="radio" name="hst" value="show" checked="true"><label>Show</label></span>
-        <span><input type="radio" name="hst" value="hide"><label>Hide</label></span>
-      </div>
-      <div class="other-lines" style="display: block;">
+      
+        	<p>Help: why does it appears that I’m being charged HST twice?
+        	<input type="radio" name="hst" value="show" checked="true">&nbsp; Show
+        	<input type="radio" name="hst" value="hide">&nbsp; Hide</p>
+      	
+      	
         <p>Under Ontario’s new HSt rules, some products qualify an 8% tax rebate. This means that only</p>
         <p>5% HST is charged on itmes such as children’s clothing, diapers, and fminine hygiene products.</p>
         <p>In order to make our billing more transparent, we show the tax on itmes that are charged 5% on a separate line.</p>
-      </div>
-    </div>
+      	
+    		</div>
             <?php echo $this->getChildHtml('agreements') ?>
             <div id="saveOder-error" class="error"></div>
             <?php
@@ -101,7 +103,7 @@ if ($isNewsletter) {
             <input type="hidden" id="grand_total_value" value="<?php echo $grandTotal; ?>" />
             <button role='review-save' type="submit"
                     title="<?php echo Mage::helper('checkout')->__('Place Order') ?>" name="submitbtn"
-                    id="lbonepage-place-order-btn" class="button btn-checkout new-place-order-btn">
+                    id="lbonepage-place-order-btn" class="btn btn-primary btn-lg active btn-checkout new-place-order-btn">
                 <span><span><?php echo Mage::helper('checkout')->__('Place Order') ?></span></span>
             </button>
         </td>
@@ -113,10 +115,10 @@ jQuery('.hst input[type="radio"]').on('click',function(){
   var hstValue = jQuery('input[name=hst]:checked').val();
   // alert(hstValue);
   if( hstValue == 'show' ){
-    jQuery('.hst .other-lines').css({"display":"block"});
+    jQuery('.hst p:not(:first-child)').css({"display":"block"});
   }
   else{
-    jQuery('.hst .other-lines').css({"display":"none"});
+    jQuery('.hst p:not(:first-child)').css({"display":"none"});
   }
 });
 

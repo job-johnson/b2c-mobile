@@ -7,7 +7,7 @@
         </reference>
         <reference name="head">
             <action method="addCss"><stylesheet>lotusbreath/onestepcheckout/css/onestepcheckout.css</stylesheet></action>
-            <action method="addCss" ifconfig="lotusbreath_onestepcheckout/compatibility/is_load_gumby" ><stylesheet>lotusbreath/onestepcheckout/css/gumby_grid.css</stylesheet></action>
+            <!--<action method="addCss" ifconfig="lotusbreath_onestepcheckout/compatibility/is_load_gumby" ><stylesheet>lotusbreath/onestepcheckout/css/gumby_grid.css</stylesheet></action>-->
             <action method="addCss"><stylesheet>lotusbreath/onestepcheckout/css/magnific-popup/magnific-popup.css</stylesheet></action>
         </reference>
         <reference name="content">
