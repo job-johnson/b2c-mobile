@@ -127,9 +127,12 @@
     display: block;
 }
 
-#loginFrm h3 {
+#loginFrm h3,
+#forgotFrm h3 {
     /*color : #e87403;*/
     border-bottom: 1px solid; /*#e87403;*/
+	font-size:25px;
+	margin-bottom:20px;
 }
 
 #loginFrm fieldset ul {

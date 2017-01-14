@@ -28,7 +28,6 @@ Growler = (function(){
 	};
 	var growlerOptions = {
 		location: 			"tr"
-		,width: 			"250px"
 	};
 	var IE = (Prototype.Browser.IE) ? parseFloat(navigator.appVersion.split("MSIE ")[1]) || 0 : 0;
 	function removeNotice(n, o){

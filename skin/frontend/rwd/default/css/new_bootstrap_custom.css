@@ -1,13 +1,31 @@
 /**********Global Block************/
+
+@media (min-width: 1320px)
+{
+.container {
+    width: 1280px !important;
+}
+.homeMainContainer .col-sm-4, .homeMainContainer .col-md-9, .homeMainContainer .col-md-3 { padding-left: 0px; padding-right: 15px;}
+}
+
 div.googleAd{}
 	div.googleAd iframe{max-width:100% !important; max-height:100% !important; text-align:center !important}
 	div.googleAd img{max-width:100%;}
+
+
+div.Growler[style]{
+max-width:80% !important;
+}
 div.Growler-notice[style]{
 background:#000000 !important;
 color:#ffffff !important;
-width: 500px !important;
 font-size: 15px !important;
+line-height:1.5em;
 }
+
+div.Growler-notice-head {margin-bottom:15px;}
+
+
 /********************************/
 
 section#topBar
@@ -429,10 +447,10 @@ section#headerMenu
 		display:none;	
 	}
 			
-
+ 
 section#mainContent
 {
-	padding:35px 0;
+	padding:20px 0;
 	clear:both;	
 }
 
@@ -930,6 +948,7 @@ section#mainContent
 				position:absolute;
 				left:5px; top:42%;	
 				z-index:900;
+				display:none !important;
 			}
 			.prod-name {
 				height: 37px;
@@ -1020,14 +1039,14 @@ section#mainContent
 				}
 				.product-view .product-shop .price-wr p{color: #7b7b7b !important; font-family:Arial, Helvetica, sans-serif !important; font-size:16px !important; margin-bottom:15px !important;}
 				.product-view .product-shop .price-wr p span.cart-view{
-					color:#0E9247;  font-size: 30px;
+					color:#0E9247;  
     				position: relative;
-    				top: 4px;
+    				/* top: 4px; font-size: 30px; */
 					font-weight:bold;
 				}
 				.product-view .product-shop .price-wr p span.price{
 					font-weight:bold;
-					font-size:22px;
+					/* font-size:22px; */
 					text-decoration:line-through;	
 				}
 				.product-view .add-to-cart {
@@ -1074,7 +1093,7 @@ section#mainContent
 					color: #000;
 					height: 34px;
 					margin-left: -4px;
-					top: -2px;
+					top: 0px;
 					width: 60px;
 					text-align: center;
 					position:relative;
@@ -1583,7 +1602,7 @@ section.carousal-container
 				 margin-bottom:7px;
 				 color:#fff;
 				 text-decoration:none;
-				 visibility:hidden;
+				 visibility:visible;
 			}
 			
 			div.product-box .featured-quick-view
@@ -1762,7 +1781,20 @@ section.carousal-container
 			{
 				border-right: 1px solid #dbdbdb;
 			}
+			.block-layered-nav dl dd ol > li{line-height:28px;}
+			.block-layered-nav dl dd ol > li > a {
+				color: #000;
+				font-family: OpenSansRegular;
+				font-size: 14px;
+				padding-left: 0;
+			}
 			
+			.block-layered-nav dl dd ol > li > a .count {
+				color: #000;
+				float: right;
+				font-family: UbuntuMedium;
+				font-weight: bold;
+			}
 			div.block{}
 			.view-order-sidebar {
 				margin-top: 0;
@@ -1793,7 +1825,8 @@ section.carousal-container
 				padding-bottom: 7px;
 			}
 			
-			.customer-account .dashboard_container .box-head h2 {
+			.customer-account .dashboard_container .box-head h2,
+			 {
 				color: #3b4849;
 				font-family: "Open Sans",sans-serif;
 				font-size: 17.33px;
@@ -1813,7 +1846,9 @@ section.carousal-container
 				margin-bottom: 45px;
 				padding-bottom: 40px;
 			}
-			.customer-account .dashboard .box-account h4{
+			.customer-account .dashboard .box-account h4,
+			div.box-info div.box-title h4,
+			div.box-account .box-head h2.table-caption  {
 			  color: #3b4849;
 			font-size: 13.33px;
 			font-weight: bold;
@@ -1905,7 +1940,8 @@ section.carousal-container
 				margin-bottom: 7px;
 			}
 			
-			.box-account .box-content address {
+			.box-account .box-content address,
+			.box-info .box-content address {
 				font-family: Georgia,Times,"Times New Roman",serif;
 				font-style: italic;
 				color: #000;
@@ -2021,7 +2057,66 @@ section.carousal-container
 				box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.125) inset;
 				margin: 0;
 			}
+			
+			
+			.order-history {
+				border: 1px solid #dbdbdb;
+				float: none;
+				padding: 20px 15px;
+				width: auto;
+			}
+				.order-history .order-info {
+					background: #f3f3f3 none repeat scroll 0 0;
+					border: 0 none;
+					list-style: outside none none;
+					margin: 0;
+					padding: 10px 10px 10px 20px;
+					margin-bottom:20px;
+				}
+				.order-info dt {
+					margin-right: 20px; display:inline;
+				}
+				.order-history .order-info dd {
+					color: #253537;
+					font-family: "Open Sans",sans-serif;
+					font-size: 13.33px;
+					font-weight: bold;
+					margin: 0;
+					padding: 0;
+				}
+				
+			a.link-reorder,
+			a.link-print
+			{
+				color: #3bac4a;
+				font-family: Arial,Helvetica,sans-serif;
+				font-size: 13.33px;
+				margin: 10px 0;
+				width: 100%;
+			}
+			
+			td .cart-price .price {
+    color: #000;
+
+    font-family: UbuntuMedium;
+    font-size: 14px;
+    text-transform: capitalize;
+}
+			table#my-orders-table{font-family: UbuntuMedium;}
 			/***************end my Acount********/
+			
+			#forgotFrm div.from-group,
+			form#loginFrm div.form-group{margin-bottom:10px;}
+			#forgotFrm label,
+			form#loginFrm label {
+					font-family: UbuntuMedium;
+					font-size: 14px;
+					line-height: 30px;
+					margin-right: none;
+					color:#7F8C97
+				}
+				forgotFrm input.form-control,
+				form#loginFrm input.form-control{box-shadow: inset 0 3px 5px 0 rgba(0, 0, 0, 0.125); margin:0;}
 			
 section#footer
 {

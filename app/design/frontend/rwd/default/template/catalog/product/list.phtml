@@ -39,8 +39,9 @@
 <?php if(!$_productCollection->count()): ?>
 <p class="note-msg"><?php echo $this->__('There are no products matching the selection.') ?></p>
 <?php else: ?>
-<div class="category-products">
-    <?php echo $this->getToolbarHtml() ?>
+<?php echo $this->getToolbarHtml() ?>
+<div class="row category-products">
+    
     <?php // List mode ?>
     <?php if($this->getMode()!='grid'): ?>
     <?php $_iterator = 0; ?>
@@ -119,95 +120,99 @@
 
     <?php $_collectionSize = $_productCollection->count() ?>
     <?php $_columnCount = $this->getColumnCount(); ?>
-    <ul class="custom-product-list products-grid products-grid--max-<?php echo $_columnCount; ?>-col">
+    <ul class="custom-product-list">
         <?php $i=0; foreach ($_productCollection as $_product): ?>
             <?php /*if ($i++%$_columnCount==0): ?>
             <?php endif*/ ?>
 
-            <li class="item<?php if(($i-1)%$_columnCount==0): ?> first<?php elseif($i%$_columnCount==0): ?> last<?php endif; ?>">
-                <?php
-                $isNew = $_product->getResource()->getAttribute('is_new');
-                $isSale = $_product->getResource()->getAttribute('is_sale');
-                $isTopSeller = $_product->getResource()->getAttribute('is_top_seller');
-
-                if ($isNew && $isSale):
-                $isNewValue = $isNew ->getFrontend()->getValue($_product);
-                $isSaleValue = $isSale ->getFrontend()->getValue($_product);
-
-                if($isNewValue == 'Yes' && $isSaleValue == 'Yes'){ ?>
-                  <div class="flag-sale-top flag-arrow-top"></div>
-                  <div class="flag-text">sale</div>
-                <?php }
-                elseif($isNewValue == 'Yes' && $isSaleValue == 'No'){ ?>
-                  <div class="flag-new-top flag-arrow-top"></div>
-                  <div class="flag-text">new</div>
-              <?php   }
-                elseif($isNewValue == 'No' && $isSaleValue == 'Yes'){ ?>
-                  <div class="flag-sale-top flag-arrow-top"></div>
-                  <div class="flag-text">sale</div>
-              <?php   } ?>
-
-              <?php endif ?>
-
-
-
-                <?php
-                if ($isTopSeller):
-                $isTopSellerValue = $isTopSeller ->getFrontend()->getValue($_product);
-            // echo $attribute_value;
-
-                if($isTopSellerValue == 'Yes'): ?>
-                <div class="flag-arrow-right"></div>
-                <div class="seller-arrow-text">best seller</div>
-                <?php endif ?>
-                <?php endif ?>
-
-
-
-
-
-<div class="prod-img" style="">
-<a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="product-image">
-<?php $_imgSize = 210; ?>
-  <img id="product-collection-image-<?php echo $_product->getId(); ?>"
-  src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize($_imgSize); ?>"
-  alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" />
-</a>
-</div>
-<div class="prod-action">
-  <?php if(!$_product->canConfigure() && $_product->isSaleable()): ?>
-   <a class="featured-add-to-cart" title="<?php echo $this->quoteEscape($this->__('Add to Cart')) ?>" onclick="setLocation('<?php echo $this->getAddToCartUrl($_product) ?>')"><i class="icon-market" ></i><?php echo $this->__('Add to Cart') ?></a>
-   <a href="<?php echo $_product->getProductUrl() ?>" class="featured-quick-view"><i class="icon-search"></i>Quick View</a>
-
-  <?php elseif($_product->getStockItem() && $_product->getStockItem()->getIsInStock()): ?>
-    <a href="<?php echo $_product->getProductUrl() ?>" class="featured-quick-view"><i class="icon-search"></i>Quick View</a>
-  <?php else: ?>
-    <p class="availability out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></p>
-  <?php endif; ?>
-
-</div>
-
-<div class="prod-info">
-  <div class="recycle-flag"><img src="<?php echo $this->getSkinUrl('images/recycle-flag.png'); ?>"/></div>
-  <h2 class="prod-name"><a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($_product->getName(), null, true) ?>"><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></a></h2>
-  <?php
-                    // Provides extra blocks on which to hang some features for products in the list
-                    // Features providing UI elements targeting this block will display directly below the product name
-                    if ($this->getChild('name.after')) {
-                        $_nameAfterChildren = $this->getChild('name.after')->getSortedChildren();
-                        foreach ($_nameAfterChildren as $_nameAfterChildName) {
-                            $_nameAfterChild = $this->getChild('name.after')->getChild($_nameAfterChildName);
-                            $_nameAfterChild->setProduct($_product);
-                            echo $_nameAfterChild->toHtml();
-                        }
-                    }
-                    ?>
-                    <?php echo $this->getPriceHtml($_product, true) ?>
-                    <?php if($_product->getRatingSummary()): ?>
-                    <?php echo $this->getReviewsSummaryHtml($_product, 'short') ?>
-                    <?php endif; ?>
-  <h3 class="prod-price hidden"><span class="new-price">US $7.48</span>/<span class="old-price">US $8.00</span></h3>
-</div>
+            <li class="item<?php if(($i-1)%$_columnCount==0): ?> first<?php elseif($i%$_columnCount==0): ?> last<?php endif; ?> col-md-4 col-sm-6 col-xs-6">
+            	<div class="recycle-flag"><img src="<?php echo $this->getSkinUrl('images/recycle-flag.png'); ?>"/></div>
+					<div class="product-box">
+					<?php
+					$isNew = $_product->getResource()->getAttribute('is_new');
+					$isSale = $_product->getResource()->getAttribute('is_sale');
+					$isTopSeller = $_product->getResource()->getAttribute('is_top_seller');
+			
+					if ($isNew && $isSale):
+					$isNewValue = $isNew ->getFrontend()->getValue($_product);
+					$isSaleValue = $isSale ->getFrontend()->getValue($_product);
+			
+					if($isNewValue == 'Yes' && $isSaleValue == 'Yes'){ ?>
+					  <div class="flag-sale-top flag-arrow-top"></div>
+					  <div class="flag-text">sale</div>
+					<?php }
+					elseif($isNewValue == 'Yes' && $isSaleValue == 'No'){ ?>
+					  <div class="flag-new-top flag-arrow-top"></div>
+					  <div class="flag-text">new</div>
+				  <?php   }
+					elseif($isNewValue == 'No' && $isSaleValue == 'Yes'){ ?>
+					  <div class="flag-sale-top flag-arrow-top"></div>
+					  <div class="flag-text">sale</div>
+				  <?php   } ?>
+			
+				  <?php endif ?>
+			
+			
+			
+					<?php
+					if ($isTopSeller):
+					$isTopSellerValue = $isTopSeller ->getFrontend()->getValue($_product);
+				// echo $attribute_value;
+			
+					if($isTopSellerValue == 'Yes'): ?>
+					<div class="flag-arrow-right"></div>
+					<div class="seller-arrow-text">best seller</div>
+					<?php endif ?>
+					<?php endif ?>
+			
+			
+			
+			
+			
+			<div class="prod-img" style="">
+			<a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="">
+			<?php $_imgSize = 210; ?>
+			<img id="product-collection-image-<?php echo $_product->getId(); ?>"
+			src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize($_imgSize); ?>"
+			alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="img-responsive" />
+			</a>
+			</div>
+			<div class="prod-action text-center">
+			<?php if(!$_product->canConfigure() && $_product->isSaleable()): ?>
+			<a class="featured-add-to-cart" title="<?php echo $this->quoteEscape($this->__('Add to Cart')) ?>" onclick="setLocation('<?php echo $this->getAddToCartUrl($_product) ?>')"><i class="icon-market" ></i><?php echo $this->__('Add to Cart') ?></a>
+			<a href="<?php echo $_product->getProductUrl() ?>" class="featured-quick-view"><i class="icon-search"></i>Quick View</a>
+			
+			<?php elseif($_product->getStockItem() && $_product->getStockItem()->getIsInStock()): ?>
+			<a href="<?php echo $_product->getProductUrl() ?>" class="featured-quick-view"><i class="icon-search"></i>Quick View</a>
+			<?php else: ?>
+			<p class="availability out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></p>
+			<?php endif; ?>
+			
+			</div>
+			
+			
+			<div class="prod-info">
+			
+			<h2 class="prod-name"><a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($_product->getName(), null, true) ?>"><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></a></h2>
+			<?php
+						// Provides extra blocks on which to hang some features for products in the list
+						// Features providing UI elements targeting this block will display directly below the product name
+						if ($this->getChild('name.after')) {
+							$_nameAfterChildren = $this->getChild('name.after')->getSortedChildren();
+							foreach ($_nameAfterChildren as $_nameAfterChildName) {
+								$_nameAfterChild = $this->getChild('name.after')->getChild($_nameAfterChildName);
+								$_nameAfterChild->setProduct($_product);
+								echo $_nameAfterChild->toHtml();
+							}
+						}
+						?>
+						<?php echo $this->getPriceHtml($_product, true) ?>
+						<?php if($_product->getRatingSummary()): ?>
+						<?php echo $this->getReviewsSummaryHtml($_product, 'short') ?>
+						<?php endif; ?>
+			<h3 class="prod-price hidden"><span class="new-price">US $7.48</span>/<span class="old-price">US $8.00</span></h3>
+			</div>
+			</div>
 </li>
 
             <?php /*if ($i%$_columnCount==0 || $i==$_collectionSize): ?>
@@ -217,10 +222,8 @@
     <script type="text/javascript">decorateGeneric($$('ul.products-grid'), ['odd','even','first','last'])</script>
     <?php endif; ?>
 
-    <div class="toolbar-bottom">
-        <?php echo $this->getToolbarHtml() ?>
-    </div>
 </div>
+<?php echo $this->getToolbarHtml() ?>
 <?php endif; ?>
 <?php
 // Provides a block where additional page components may be attached, primarily good for in-page JavaScript

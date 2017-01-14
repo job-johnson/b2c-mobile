@@ -2384,11 +2384,11 @@ body.customer-account .data-table .show-details .summary-collapse:hover:before {
   text-align: center;
 }
 
-.a-right,
+/*.a-right,
 .align-right {
   text-align: right;
 }
-
+*/
 /*.no-display {
   display: none !important;
 }
@@ -4802,24 +4802,24 @@ p.product-name a:hover {
     margin-top: -3px;
   }
 
-  #narrow-by-list,
+ /* #narrow-by-list,
   #narrow-by-list2 {
     padding: 10px;
     border: 1px solid #cccccc;
     border-top: 0;
   }
-
+*/
   .block-layered-nav dl ol > li > a,
   .block-layered-nav dl ol > li > span {
     padding: 7px;
     margin: 5px;
   }
 
-  .block-layered-nav dl ol > li > a {
+ /* .block-layered-nav dl ol > li > a {
     color: #636363;
     background-color: #f4f4f4;
     padding: 5px 10px;
-  }
+  }*/
   .block-layered-nav dl ol > li > a:hover {
     text-decoration: none;
     background: #ececec;

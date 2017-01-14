@@ -80,7 +80,7 @@ padding-bottom: 5px;
  width:100%;
  max-height:395px;
 }
-div.Growler[style]{
+/*div.Growler[style]{
 width: 600px !important;
 }
 div.Growler-notice[style]{
@@ -88,7 +88,7 @@ background:#000000 !important;
 color:#ffffff !important;
 width: 500px !important;
 font-size: 15px !important;
-}
+}*/
 .search-autocomplete ul li.selected {
     background-color: #3baf4a;
     color: white;
@@ -4045,7 +4045,7 @@ top: 16px;
 body.customer-account .my-account .title-buttons{
       height: 50px;
 }
-.order-history{
+/*.order-history{
   border: 1px solid #dbdbdb;
 float: left;
 width: 100%;
@@ -4066,7 +4066,7 @@ border: 0;
     list-style: none;
     display: inline;
     width: 180px;
-    /* padding: 10px 0; */
+  
     color: #253537;
     font-size: 13.33px;
     font-family: "Open Sans", sans-serif;
@@ -4093,7 +4093,7 @@ width: 100%;
 }
 .order-history .order-info-box .box-title{
       width: 180px;
-}
+}*/
 .order-history .order-info-box .col-1 h2, .order-history .order-info-box .col-2 h2{
   font-family: Arial, Helvetica, sans-serif;
 font-weight: bold;
@@ -4128,7 +4128,7 @@ padding-top: 0;
 .order-info-box + .order-info-box{
   border: 0;
 }
-.order-history .order-items .table-caption{
+/*.order-history .order-items .table-caption{
   background: #f3f3f3;
 float: left;
 padding: 0;
@@ -4141,7 +4141,7 @@ font-size: 13.33px;
 font-family: "Open Sans", sans-serif;
 font-weight: 400;
 margin-bottom: 0px;
-}
+}*/
 .order-history .data-table th{
   padding: 20px;
     color: #253537;

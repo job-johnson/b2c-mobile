@@ -25,19 +25,16 @@
  */
 ?>
 <?php  $_order = $this->getOrder() ?>
-<table class="data-table linearize-table-large" id="my-orders-table" summary="<?php echo $this->__('Items Ordered') ?>">
-    <col />
-    <col width="1" />
-    <col width="1" />
-    <col width="1" />
-    <col width="1" />
+<div class="table-responsive">
+<table class="table" id="my-orders-table" summary="<?php echo $this->__('Items Ordered') ?>">
+    
     <thead>
         <tr>
             <th><?php echo $this->__('Product') ?></th>
             <th><?php echo $this->__('SKU') ?></th>
-            <th class="a-right"><?php echo $this->__('Price') ?></th>
-            <th class="a-center"><?php echo $this->__('Qty') ?></th>
-            <th class="a-right"><?php echo $this->__('Subtotal') ?></th>
+            <th class="text-right"><?php echo $this->__('Price') ?></th>
+            <th class="text-center"><?php echo $this->__('Qty') ?></th>
+            <th class="text-right"><?php echo $this->__('Subtotal') ?></th>
         </tr>
     </thead>
     <tfoot>
@@ -66,4 +63,5 @@
         </tbody>
         <?php endforeach; ?>
 </table>
+</div>
 <script type="text/javascript">decorateTable('my-orders-table', {'tbody' : ['odd', 'even'], 'tbody tr' : ['first', 'last']})</script>

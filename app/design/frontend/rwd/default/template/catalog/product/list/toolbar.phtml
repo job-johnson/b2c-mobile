@@ -75,7 +75,7 @@
 		
 		<div class="col-sm-<?php echo ( $this->isExpanded() )?"8":"12"?> pager">
 				<div class="row">
-					<div class="col-sm-<?php echo ($this->getLastPageNum()>1)?"6":""?> text-right hidden-xs">
+					<div class="col-sm-<?php echo ($this->getLastPageNum()>1)?"6":"12"?> text-right hidden-xs">
 						<?php if($this->getLastPageNum()>1): ?>
 							
 								<?php echo $this->__('%s-%s of %s', $this->getFirstNum(), $this->getLastNum(), $this->getTotalNum()) ?>
