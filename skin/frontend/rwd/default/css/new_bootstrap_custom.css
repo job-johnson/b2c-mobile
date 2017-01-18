@@ -5,9 +5,12 @@
 .container {
     width: 1280px !important;
 }
-.homeMainContainer .col-sm-4, .homeMainContainer .col-md-9, .homeMainContainer .col-md-3 { padding-left: 0px; padding-right: 15px;}
+.homeMainContainer .col-sm-4, .homeMainContainer .col-md-9, .homeMainContainer .col-md-3,
+.homeMainContainer .col-lg-9, .homeMainContainer .col-lg-3  
+{ padding-left: 0px; padding-right: 15px;}
 }
 
+.new-minicart-item{ top: -3px !important;}
 div.googleAd{}
 	div.googleAd iframe{max-width:100% !important; max-height:100% !important; text-align:center !important}
 	div.googleAd img{max-width:100%;}
@@ -1777,6 +1780,13 @@ section.carousal-container
 			
 			
 			/***************my Acount********/
+			
+			.my-account .pager {
+    position: relative !important;
+    float: right;
+     
+}
+.my-account .pager .count-container .amount{margin:5px !important}
 			div.sidebar
 			{
 				border-right: 1px solid #dbdbdb;
@@ -2139,7 +2149,7 @@ section#footer
 		clear:both;
 	}
 	
-	section#footer div.footer-cat ul li{line-height:1.3em; }
+	section#footer div.footer-cat ul li{line-height:1.3em; list-style:none; margin-left:0; font-style: normal; }
 	
 	section#footer div.footer-cat ul li a {
 		color: #000000;
@@ -2184,7 +2194,7 @@ section#footer
 		
 		
 		p.social-media{text-align:center; position:relative; }
-		p.social-media img{display:inline; margin:0 6px;}
+		p.social-media img{display:inline; margin:0 6px; width:auto !important}
 	
 	section#footer-bottom
 	{
@@ -2347,7 +2357,7 @@ section#footer
 		#portal-nav.in ul.navbar-nav{margin:0 !important}
 		#portal-nav.in ul.navbar-nav li:first-child{padding-left:0;}
 		#portal-nav.in ul.navbar-nav li a{margin-right:0;}
-		.navbar-nav > li > span.glyphicon{position:relative; color:#0E9247; font-size:18px; top:13px; cursor:pointer;}
+		.navbar-nav > li > span.glyphicon{position:relative; color:#0E9247; font-size:22px; top:5px; padding:5px; cursor:pointer;}
 		
 		.navbar-nav > li > a:hover::before {
 			content: "";
@@ -2612,4 +2622,27 @@ section#footer
 	.product-view .product-shop .add-to-cart-wrapper .add-to-cart-buttons button{font-size:13px;}	
 	.product-view .add-to-cart .qty-wrapper .qty{width:58px;}
 	.product-view .product-shop .add-to-cart-wrapper .add-to-cart-buttons button{padding:0 21px;}
+}
+
+
+.btn-primary.active.focus, .btn-primary.active:focus, .btn-primary.active:hover, .btn-primary:active.focus, .btn-primary:active:focus, .btn-primary:active:hover, .open>.dropdown-toggle.btn-primary.focus, .open>.dropdown-toggle.btn-primary:focus, .open>.dropdown-toggle.btn-primary:hover
+{
+	background:#3bb04b;
+	border-color:#3bb04b;
+}
+
+.btn-primary.active, .btn-primary:active, .open>.dropdown-toggle.btn-primary, .btn-primary {background: #3bb04b; border-color:#3bb04b;}
+
+
+
+@media (max-width: 740px)
+{
+	.page404 .errorsec .leftarea h2{   font-size:74px;  
+    font-weight: 300; line-height: 74px;}
+	
+.page404 .errorsec .rightarea a.backtohome{  padding: 17px 10px 0 36px;font-size: 16px; width: auto;     background-position: 10px center; }
+.page404 .errorsec .leftarea h2 span {
+    font-size: 40px;
+    text-transform: uppercase;
+}
 }

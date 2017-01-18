@@ -9613,9 +9613,9 @@ div.paypal-logo span > img {
 .cms-page-view .std p,
 .cms-no-route .std p {
   color: #636363;
-  font-family: Georgia, Times, "Times New Roman", serif;
+ /* font-family: Georgia, Times, "Times New Roman", serif;
   font-size: 14px;
-  font-style: italic;
+  font-style: italic; */
   line-height: 24px;
 }
 .cms-page-view .std h1,
